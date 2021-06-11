@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title th:text="'Home de '+${#authentication.name}">Home</title>
+    <link rel="stylesheet" href="/styles/app/home.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>TomoList App</h1>
+        <p><a onclick="javascipt:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
+        <input type="search" name="buscador" placeholder="Searcher" list="usuarios">
+    </header>
+
+    <nav>
+        <div id="amistad"><div><span class="material-icons">
+        people
+        </span></div>Amigos</div>
+    </nav>
+
+    
+    <form id="formLogout" method="post" th:action="@{/logout}"></form>
+</body>
+
+</html>

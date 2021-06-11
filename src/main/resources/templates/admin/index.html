@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=" UTF-8 ">
+    <title>Ctrl Panel</title>
+    <link rel="stylesheet " href="/styles/admin/ctrlpanel.css ">
+</head>
+
+<body>
+    <header>
+        <h1>TomoList</h1>
+        <p><a onclick="javascript:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
+    </header>
+
+    <div class="cat">
+        <h4>Control Panel</h4>
+        <ul>
+            <li><a href="/admin/usuarios">Usuarios</a></li>
+            <li><a href="/admin/roles">Roles</a></li>
+            <li><a href="/admin/entradas">Entradas</a></li>
+            <li><a href="/admin/comentarios">Comentarios</a></li>
+            <li><a href="/admin/likes">Likes</a></li>
+            <li><a href="/admin/amigos">Amigos</a></li>
+            <li><a href="/admin/mensajes">Mensajes</a></li>
+        </ul>
+    </div>
+
+    <form id="formLogout" method="post" th:action="@{/logout} "></form>
+</body>
+
+</html>

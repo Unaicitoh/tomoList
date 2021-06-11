@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+}
+
+header {
+    align-items: center;
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 100%;
+    color: white;
+    padding: 1em 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1em;
+    margin: 1em 0;
+}
+
+#container {
+    margin: 0 auto;
+    width: 250px;
+}
+
+#container form {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#container form label {
+    margin-top: 1em;
+}
+
+#log {
+    margin: 1em auto;
+    width: 100px;
+}
+
+#register {
+    margin: 1em;
+    text-align: center;
+}
+
+#login {
+    margin: 1em;
+    text-align: center;
+}
+
+#infoForm div {
+    color: red;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.5em;
+    height: fit-content;
+}
+
+#checkAge{
+		margin-top:1em;
+		text-align:center;
+}
+
+#checker{
+	font-size:0.75em;
+}
+
+@media (min-width: 960px) {
+    header,
+    h2,
+    form label {
+        font-size: 1.5em;
+    }
+    #container form input {
+        font-size: 1.15em;
+    }
+    #register {
+        font-size: 1.25em;
+    }
+    #checker{
+	font-size:0.90em;
+}
+}

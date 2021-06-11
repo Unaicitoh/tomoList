@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+}
+
+body {
+    text-align: center;
+    background-color: rgb(211, 211, 211);
+    font-family: sans-serif;
+    height: 100%;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    padding: 1em;
+    background-color: rgb(0, 0, 0, 0.8);
+    margin-bottom: 3em;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin-right: 1em;
+    font-size: 3em;
+    color: white;
+}
+
+header h2 {
+    font-size: 2em;
+}
+
+header p {
+    color: rgb(100, 100, 100, 0.9);
+    font-size: 0.8em;
+    width: fit-content;
+}
+
+header p a:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.cat {
+    background-color: rgba(76, 123, 173, 0.9);
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 1em;
+    height: auto;
+}
+
+.cat ul {
+    margin-bottom: 1em;
+}
+
+.cat ul li {
+    list-style: none;
+    margin: 1em 0;
+}
+
+.cat a {
+    color: white;
+    text-decoration: none;
+}
+
+.cat a:hover {
+    color: rgb(255, 100, 100);
+}
+
+.cat a:active {
+    color: rgb(255, 255, 100);
+}
+
+.cat h4 {
+    font-size: 1.15em;
+    padding: 1em;
+}
+
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 4em;
+    }
+    .cat h4 {
+        font-size: 2em;
+    }
+    header h2 {
+        font-size: 3em;
+    }
+    .cat {
+        font-size: 1em;
+        max-width: 600px;
+    }
+    .cat ul {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .cat ul li {
+        margin: 1em 0;
+        flex-basis: 40%;
+        font-size: 1.25em;
+    }
+    header p {
+        font-size: 1em;
+    }
+}

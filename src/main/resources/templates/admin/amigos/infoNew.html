@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ctrl Amigos</title>
+    <link rel="stylesheet" href="/styles/admin/amigos/info_ami.css">
+</head>
+
+<body>
+    <header>
+        <h1>Insercción de Amistad</h1>
+        <p><a onclick="javascript:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
+    </header>
+   <footer>
+        <h3><a href="/admin/amigos">TomoList Amigos</a></h3>
+    </footer>
+    <div id="container">
+        <form method="POST" th:action="@{/admin/amigos/new/submit}" th:object="${amigo}">
+       		<label for="id" th:style="${#fields.hasErrors('idamistad')?'color:red;':''}">ID</label>
+       		<span class="errores" th:if="${#fields.hasErrors('idamistad')}" th:errors="*{idamistad}">Errores</span>
+       		<input id="id" type="text" th:field="*{idamistad}">
+            
+            <label for="nombre" th:style="${#fields.hasErrors('aceptado')?'color:red;':''}">Aceptado</label>
+            <span class="errores" th:if="${#fields.hasErrors('aceptado')}" th:errors="*{aceptado}">Errores</span>
+             <input id="nombre" type="text" th:field="*{aceptado}">
+
+
+            <label for="amigo1" th:style="${#fields.hasErrors('amigo1')?'color:red;':''}">Autor</label>
+            <span class="errores" th:if="${#fields.hasErrors('amigo1')}" th:errors="*{amigo1}">Errores</span>
+             <input id="amigo1" type="text" th:field="*{amigo1}" maxlength="1">
+           
+            <label for="amigo2" th:style="${#fields.hasErrors('amigo2')?'color:red;':''}">Autor</label>
+            <span class="errores" th:if="${#fields.hasErrors('amigo2')}" th:errors="*{amigo2}">Errores</span>
+             <input id="amigo2" type="text" th:field="*{amigo2}" maxlength="1">
+             
+            <input id="enviar" type="submit" value="Insertar">
+        </form>
+    </div>
+ 	<footer>
+        <h3><a href="/admin/amigos">TomoList Amigos</a></h3>
+    </footer>
+    <form id="formLogout" method="post" th:action="@{/logout}"></form>
+</body>
+
+</html>

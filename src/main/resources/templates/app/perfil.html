@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title th:text="'Perfil de '+${#authentication.name}">Home</title>
+    <link rel="stylesheet" href="/styles/app/perfil.css">
+</head>
+
+<body>
+    <header>
+        <h1 sec:authentication="${name}"></h1>
+        <input id="searchbar" type="text" placeholder="Searcher">
+        <p><a onclick="javascript:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
+    </header>
+
+    <div id="banner">
+        <div>
+            <figure>
+                <img src="" alt="">
+                <figcaption></figcaption>
+            </figure>
+        </div>
+
+        <nav id="navbar">
+
+            <div>Entradas</div>
+            <div>Mensajes</div>
+        </nav>
+    </div>
+
+
+
+    <form id="formLogout" method="post" th:action="@{/logout}"></form>
+</body>
+
+</html>

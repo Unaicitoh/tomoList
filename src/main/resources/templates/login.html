@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>LogIn Tomolist</title>
+    <link rel="stylesheet" href="/styles/app/login_register.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>TomoList</h1>
+    </header>
+
+    <h2>Credenciales de acceso:</h2>
+    <div id="infoForm">
+        <div th:if="${param.error}">Credenciales erroneos</div>
+    </div>
+
+    <div id="container">
+        <form method="post" th:action="@{/login}">
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" required autofocus>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" required>
+            <input id="log" type="submit" value="Log in">
+        </form>
+    </div>
+
+    <div id="register">Aún no tienes cuenta?, <a th:href="@{/register}">Registrate aqui!</a></div>
+
+</body>
+
+</html>

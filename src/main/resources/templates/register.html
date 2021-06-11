@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Register Tomolist</title>
+    <link rel="stylesheet" href="/styles/app/login_register.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>TomoList</h1>
+    </header>
+
+    <h2>Registro de usuario:</h2>
+
+    <div id="container">
+        <form method="post" th:action="@{/register/submit}" th:object="${usuario}">
+        
+        	<input type="hidden" id="id" th:field="*{idusuario}" th:value="0"> 
+        
+            <label for="username">Nickname</label>
+          	<input id="username" type="text" th:field="*{username}" required autofocus>
+           
+			<label for="email">Email</label> 
+            <input id="email" type="text" th:field="*{email}">
+
+			<label for="pass">Password</label> 
+            <input id="pass" type="password" th:field="*{rawpass}" required>
+            
+            <div id="checkAge">
+            <input id="age" type="checkbox" required>
+			<label id="checker" for="age">Verificas, que tienes mas de 16 años?</label> 
+			</div>
+			
+
+
+            <input id="log" type="submit" value="Registrar">
+        </form>
+    </div>
+
+    <div id="login">Ya tienes cuenta?, <a th:href="@{/login}">Vuelve al LogIn!</a></div>
+
+
+</body>
+
+</html>

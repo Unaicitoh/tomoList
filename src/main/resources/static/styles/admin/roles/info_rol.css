@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-width: 320px;
+}
+
+body {
+    background-color: rgb(185, 185, 185);
+    font-family: sans-serif;
+    width: 100%;
+    min-width: 320px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 100%;
+}
+
+header h1 {
+    font-size: 1.5em;
+    padding: 1em 0.5em;
+    text-align: center;
+    color: white;
+}
+
+#container {
+    width: 100%;
+}
+
+form {
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 1em 0;
+}
+
+form input {
+    padding-left: 10px;
+    margin-bottom: 1em;
+    height: 50px;
+    max-width: 800px;
+    border-radius: 5px;
+}
+
+form textarea {
+    max-width: 800px;
+    border-radius: 5px;
+}
+
+label {
+    width: 100px;
+    background-color: rgb(0, 0, 0, 0.5);
+    margin: 1em auto;
+    text-align: center;
+    padding: 1em;
+    color: white;
+    border-radius: 10px;
+}
+
+#enviar {
+    width: fit-content;
+    margin: 1em auto;
+    padding: 1em;
+    height: auto;
+    color: white;
+    background-color: rgb(0, 0, 0, 0.8);
+    border-radius: 5px;
+    border-color: black;
+    text-transform: uppercase;
+}
+
+#enviar:active {
+    background-color: rgb(255, 255, 255, 0.9);
+    color: black;
+}
+
+#enviar:active a {
+    color: black;
+}
+
+#enviar:hover {
+    background-color: rgb(100, 100, 100, 0.5);
+    color: black;
+}
+
+footer {
+    text-align: center;
+    margin: 1em;
+}
+
+header p {
+    color: rgb(100, 100, 100, 0.7);
+    margin-right: 1em;
+}
+
+header p a {
+    font-size: 0.8em;
+}
+
+footer h3 a {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    color: white;
+}
+
+@media (min-width:550px) {
+    form .errores {
+        margin: 0.5em auto;
+    }
+}
+
+@media (min-width:760px) {
+    header h1 {
+        font-size: 3em;
+    }
+    label {
+        font-size: 1.25em;
+        width: 250px;
+    }
+    form input {
+        font-size: 1.25em;
+        margin: 0 auto;
+        width: 80%;
+    }
+    form textarea {
+        width: 80%;
+        margin: 0 auto;
+        font-size: 1.25em;
+        text-indent: 10px;
+    }
+    footer {
+        text-align: right;
+        margin: 1em;
+    }
+    #enviar {
+        font-size: 1.15em;
+    }
+    form .errores {
+        margin: 0.5em auto;
+    }
+    header p a {
+        font-size: 1em;
+    }
+}

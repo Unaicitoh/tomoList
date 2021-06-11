@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ctrl Entradas</title>
+    <link rel="stylesheet" href="/styles/admin/entradas/entradas_style.css">
+    <script src="/js/admin/eliminarEntrada.js"></script>
+</head>
+
+<body>
+    <header>
+    	<h1>TomoList</h1>
+    	<p><a onclick="javascript:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
+    </header>
+     <h2>Entradas<br/><span id="infoT">ID - Titulo - Autor - Fecha</span></h2>
+     <footer>
+        <h3><a href="/admin">TomoList CP</a></h3>
+    </footer>
+         <div class="btn btn-ins"><a th:href="@{/admin/entradas/new}">Insertar entrada</a></div>
+    <div id="container" th:each="e: ${entradas}">
+        <input type="hidden" th:value="${e.identrada}"/>
+        <div class="row">
+            <div class="info">
+                <div class="imagen">
+                    <div>
+                        <img class="icono" th:src="@{${e.imagen} ? ${e.imagen} : @{images/fotoex.jpg}}" alt="No hay imagen" />
+                    </div>
+                </div>
+                <div th:text="${e.identrada}">1ai_13</div>
+                <div th:text="${e.titulo}">Unai Gonzalez</div>
+                <div th:text="${e.autor.nombre}">unaigsanchez@gmail.com</div>
+                <div th:text="${e.fecha}">2020/13/13</div>
+            </div>
+            <div class="botones">
+                <button class="btn btn-mod"><a th:href="@{/admin/entradas/update/{id}(id=${e.identrada})}">Modificar</a></button>
+                <button class="btn btn-del">Borrar</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="btn btn-ins"><a th:href="@{/admin/entradas/new}">Insertar entrada</a></div>
+    <footer>
+        <h3><a href="/admin">TomoList CP</a></h3>
+    </footer>
+    <form id="formLogout" method="post" th:action="@{/logout}"></form>
+</body>
+
+</html>
