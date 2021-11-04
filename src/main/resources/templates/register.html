@@ -19,7 +19,7 @@
     <div id="container">
         <form method="post" th:action="@{/register/submit}" th:object="${usuario}">
         
-        	<input type="hidden" id="id" th:field="*{idusuario}" th:value="0"> 
+        	<input type="hidden" id="id" th:field="*{idusuario}" value="0"> 
         
             <label for="username">Nickname</label>
           	<input id="username" type="text" th:field="*{username}" required autofocus>

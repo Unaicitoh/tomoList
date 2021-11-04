@@ -18,6 +18,8 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     background-color: rgb(0, 0, 0, 0.8);
@@ -25,3 +27,26 @@ header {
     color: white;
     padding: 1em 0;
 }
+
+header p {
+    color: rgb(100, 100, 100, 0.9);
+    font-size: 0.8em;
+    width: fit-content;
+}
+
+header p a:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#buscador{
+    background-color: rgb(0, 0, 0, 0.8);
+    padding: 0.25em 0;
+    text-align: center;
+}
+#buscador span{
+    position:relative;
+    top: 6px;
+    color:white;
+}
+

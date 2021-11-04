@@ -62,11 +62,8 @@ public class UsuarioController {
 	public String homeUsu(Model m) {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		
-		String nombre=auth.getName();
-		UsuarioVO usuario=su.findByUsername(nombre).get();
-		
-		m.addAttribute("entradas",su.entradasTablon(usuario.getIdusuario(), PageRequest.of(0, 50)));
-		
+		UsuarioVO usuario=su.findByUsername(auth.getName()).get();
+
 		m.addAttribute("usuario",usuario);
 		
 		return "app/home";

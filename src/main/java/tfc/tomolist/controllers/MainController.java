@@ -51,7 +51,7 @@ public class MainController {
 	@GetMapping("/app")
 	public String home() {
 		
-		return "app/home";
+		return "redirect:/app/home";
 	}
 	
 	@RequestMapping("/success")
@@ -92,7 +92,6 @@ public class MainController {
 		usuario.setFecha(LocalDate.now());
 		usuario.setPassword(coder.encode(usuario.getRawpass()));
 		usuario.setRol(sr.findById(2).get());
-		System.out.println("estoy registrando "+usuario);
 		su.save(usuario);
 
 		

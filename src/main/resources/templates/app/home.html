@@ -8,22 +8,31 @@
     <title th:text="'Home de '+${#authentication.name}">Home</title>
     <link rel="stylesheet" href="/styles/app/home.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="/js/app/home.js"></script>
 </head>
 
 <body>
     <header>
         <h1>TomoList App</h1>
         <p><a onclick="javascipt:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
-        <input type="search" name="buscador" placeholder="Searcher" list="usuarios">
-    </header>
 
+    </header>
+    <section id="buscador">
+        <span id="btn_buscar" class="material-icons">
+            search
+            </span>
+        <input id="searcher" type="search" placeholder="Perfiles de usuario" list="listUsers">
+    </section>
     <nav>
         <div id="amistad"><div><span class="material-icons">
         people
         </span></div>Amigos</div>
     </nav>
 
-    
+    <datalist id="listUsers">
+
+    </datalist>
+    <input id="idu" type="hidden" th:value="${usuario.idusuario}">
     <form id="formLogout" method="post" th:action="@{/logout}"></form>
 </body>
 
