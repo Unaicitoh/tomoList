@@ -21,6 +21,8 @@ public class AmigosController {
 	ServiciosAmigo sa;
 
 	
+	
+	
 	@GetMapping("/admin/amigos")
 	public String allAmigos(Model m) {
 		
