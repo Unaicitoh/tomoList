@@ -143,6 +143,10 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return (UserDetails) ur.findByUsername(username).get();
 	}
 
+	public Optional<ArrayList<UsuarioVO>> userSearcherByNickname(String s, int id) {
+		return ur.userSearcherByNickname(s, id);
+	}
+
 
 
 

@@ -18,10 +18,10 @@ public class WSUsuarioController {
 	@Autowired
 	ServiciosUsuario su;
 	
-	@GetMapping("/usersearch/{user}")
-	public List<UsuarioVO> getUsuariosBuscados(@PathVariable("user") String name){
+	@GetMapping("/usersearch/{user}/{id}")
+	public List<UsuarioVO> getUsuariosBuscados(@PathVariable("user") String name, @PathVariable("id") int id){
 		
-		List<UsuarioVO> list=su.findByUsernameContaining(name).get();
+		List<UsuarioVO> list=su.userSearcherByNickname(name, id).get();
 		
 		return list;
 		

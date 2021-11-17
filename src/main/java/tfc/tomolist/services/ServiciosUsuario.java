@@ -58,6 +58,9 @@ public interface ServiciosUsuario {
 	//Buscador de usuarios
 	Optional<ArrayList<UsuarioVO>> findByUsernameContaining(String nombre);
 	
+	//Buscador de usuarios
+	Optional<ArrayList<UsuarioVO>> userSearcherByNickname(String s, int id);
+	
 	//Entradas para la página principal de usuario registrados
 	Optional<ArrayList<EntradaVO>> entradasTablon(int id, Pageable page);
 	

@@ -31,6 +31,9 @@
             <label for="pass" th:style="${#fields.hasErrors('password')?'color:red;':''}">Password</label> 
             <span class="errores" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Errores</span>
             <input id="pass" type="text" th:field="*{password}">
+            <label for="pass" th:style="${#fields.hasErrors('rawpass')?'color:red;':''}">Password sin encriptar</label> 
+            <span class="errores" th:if="${#fields.hasErrors('rawpass')}" th:errors="*{rawpass}">Errores</span>
+            <input id="pass" type="text" th:field="*{rawpass}">
             <label for="email" th:style="${#fields.hasErrors('email')?'color:red;':''}">Email</label> 
             <span class="errores" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Errores</span>
             <input id="email" type="text" th:field="*{email}">

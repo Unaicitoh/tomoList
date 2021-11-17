@@ -32,6 +32,9 @@ public interface UsuarioRepository extends CrudRepository<UsuarioVO, Integer> {
 	@Query("SELECT m FROM MensajeVO m WHERE m.autor.idusuario=:amigo1 AND m.receptor.idusuario=:amigo2 OR m.autor.idusuario=:amigo2 AND m.receptor.idusuario=:amigo1 ORDER BY m.fecha")
 	Optional<ArrayList<MensajeVO>> getConversacionEntreAmigos(@Param("amigo1")int amigo1,@Param("amigo2") int amigo2);
 	
+	@Query("SELECT u FROM UsuarioVO u WHERE u.username LIKE %:s% AND u.idusuario!=:id AND u.rol.idrol!=1")
+	Optional<ArrayList<UsuarioVO>> userSearcherByNickname(String s, int id);
+	
 	Optional<ArrayList<UsuarioVO>> findByUsernameContaining(String s);
 	
 	Optional<UsuarioVO> findByUsername(String username);
