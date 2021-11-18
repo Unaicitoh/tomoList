@@ -74,11 +74,11 @@ public class UsuarioController {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		
 		String nombre= auth.getName();
+		UsuarioVO usuarioPerfil=su.findById(id).get();
+		UsuarioVO usuarioSesion=su.findByUsername(nombre).get();
 		
-		UsuarioVO usuario=su.findByUsername(nombre).get();
-		
-		m.addAttribute("u",usuario);
-		
+		m.addAttribute("usuarioSesion",usuarioSesion);
+		m.addAttribute("usuarioPerfil", usuarioPerfil);
 		return "app/perfil";
 	}
 	

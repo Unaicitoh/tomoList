@@ -4,13 +4,14 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title th:text="'Perfil de '+${#authentication.name}">Home</title>
+    <title th:text="'Perfil de '+${usuarioPerfil.username}">Home</title>
     <link rel="stylesheet" href="/styles/app/perfil.css">
 </head>
 
 <body>
     <header>
-        <h1 sec:authentication="name"></h1>
+        <h1 th:text="${usuarioPerfil.username}"></h1>
+        <h2 th:text="${usuarioPerfil.nombre}"></h2>
         <input id="searchbar" type="text" placeholder="Searcher">
         <p><a onclick="javascript:document.getElementById('formLogout').submit()">Cerrar sesion</a></p>
     </header>

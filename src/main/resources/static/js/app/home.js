@@ -2,45 +2,64 @@ var input;
 var nick;
 var lista;
 var usuarioActivo;
-var btnBuscar;
 var options;
 
-window.onload = () => {
-    input = document.getElementById("searcher");
+$( document ).ready(function() {
+    console.log( "ready!" );
+	input = document.getElementById("searcher");
     lista = document.getElementById("listUsers");
     usuarioActivo = document.getElementById("idu");
-    btnBuscar = document.getElementById("btnBuscar");
 
-    input.addEventListener("keyup", userSearcher);
-    $("#options > option").click(function(){
-        location.href="/app/perfil/"+$(this).attr("data-id");
-    })
-}
+    input.addEventListener("input", userSearcher);
+	
+	$("#search-icon").click(function(){
+		if($("#searcher").data("id")!=undefined){
+			var id=$("#searcher").data("id");
+			location.href="/app/perfil/"+id;
+		}
 
+	}); 
+
+	$("#search-icon").hover(function(){
+		$(this).css("cursor","pointer");
+	});
+});
 
 async function userSearcher() {
-    lista.innerHTML = '';
+	
     nick = input.value;
     var response = await fetch(`/api/usersearch/` + nick+ "/" + usuarioActivo.value);
     var usuarios = await response.json();
+	loadOptions();
+	lista.innerHTML = '';
     showUsuarios(usuarios);
-    loadOptions();
+
+	    
 
 }
 
 function showUsuarios(usuarios) {
     for (const usuario of usuarios) {
+	
             var option = document.createElement("option");
-            option.className = "btnPerfil";
+			option.setAttribute("class","btnPerfil");
             option.dataset.id = usuario.idusuario;
             var showname = `${usuario.username}, ${usuario.nombre}`;
             option.setAttribute("value", showname);
-            lista.appendChild(option);
-        
+           	$("#listUsers").append(option);
+			
+			
     }
 
 }
 
 function loadOptions() {
-    options = document.querySelectorAll("btnPerfil");
+    options = $("#listUsers").children();
+	for(option of options){
+		if(nick==option.value){
+			var id=option.getAttribute("data-id");
+			input.dataset.id=id;
+		}
+	}
+
 }

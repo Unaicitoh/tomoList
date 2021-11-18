@@ -6,3 +6,10 @@
 header {
     background-color: var(--main-color);
 }
+
+
+#search-icon:hover{
+
+	fill:black;
+	
+}
