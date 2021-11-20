@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import tfc.tomolist.model.AmigoVO;
 import tfc.tomolist.model.EntradaVO;
+import tfc.tomolist.model.MegustaVO;
 import tfc.tomolist.model.MensajeVO;
 import tfc.tomolist.model.UsuarioVO;
 
@@ -29,6 +29,9 @@ public interface UsuarioRepository extends CrudRepository<UsuarioVO, Integer> {
 	@Query("SELECT e FROM EntradaVO e WHERE e.autor.idusuario=:id")
 	Optional<ArrayList<EntradaVO>> getEntradas(@Param("id") int id);
 	
+	@Query("SELECT m FROM MegustaVO m WHERE m.entrada.autor.idusuario=:id")
+	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(@Param("id") int id);
+	
 	@Query("SELECT m FROM MensajeVO m WHERE m.autor.idusuario=:amigo1 AND m.receptor.idusuario=:amigo2 OR m.autor.idusuario=:amigo2 AND m.receptor.idusuario=:amigo1 ORDER BY m.fecha")
 	Optional<ArrayList<MensajeVO>> getConversacionEntreAmigos(@Param("amigo1")int amigo1,@Param("amigo2") int amigo2);
 	
@@ -39,8 +42,6 @@ public interface UsuarioRepository extends CrudRepository<UsuarioVO, Integer> {
 	
 	Optional<UsuarioVO> findByUsername(String username);
 	
-	@Query("SELECT e FROM EntradaVO e, AmigoVO a WHERE (e.autor.idusuario=a.amigo1.idusuario OR e.autor.idusuario=a.amigo2.idusuario) AND (a.amigo1.idusuario=:id OR a.amigo2.idusuario=:id) AND a.aceptado=1 AND e.autor.idusuario!=:id ORDER BY e.fecha")
-	Optional<ArrayList<EntradaVO>> entradasTablon(@Param("id") int id, Pageable page );
 	
 	@Transactional
 	@Modifying

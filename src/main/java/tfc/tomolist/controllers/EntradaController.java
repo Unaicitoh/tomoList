@@ -74,7 +74,7 @@ public class EntradaController {
 			se.save(entrada);
 			return "redirect:/admin/entradas";
 		}
-		
 	}
+	
 	
 }

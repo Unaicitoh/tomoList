@@ -33,6 +33,8 @@ public class EntradaVO {
 	@NotEmpty
 	@Column(length = 70, nullable = false)
 	private String titulo;
+	@Column(length = 250)
+	private String contenido;
 	@Column(length = 500)
 	private String imagen;
 	@Column(nullable = false)
@@ -41,4 +43,5 @@ public class EntradaVO {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "idautor")
 	private UsuarioVO autor;
+	
 }

@@ -20,9 +20,6 @@ $( document ).ready(function() {
 
 	}); 
 
-	$("#search-icon").hover(function(){
-		$(this).css("cursor","pointer");
-	});
 });
 
 async function userSearcher() {

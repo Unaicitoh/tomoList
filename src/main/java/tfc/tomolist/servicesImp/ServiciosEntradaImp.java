@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import tfc.tomolist.model.ComentarioVO;
 import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.model.MegustaVO;
+import tfc.tomolist.model.pagination.Paged;
+import tfc.tomolist.model.pagination.Paging;
 import tfc.tomolist.repository.EntradaRepository;
 import tfc.tomolist.services.ServiciosEntrada;
 
@@ -80,6 +84,13 @@ public class ServiciosEntradaImp implements ServiciosEntrada {
 	public Optional<ArrayList<MegustaVO>> getMegustas(int id) {
 		return er.getMegustas(id);
 	}
+	
+	public Optional<Paged<EntradaVO>> entradasTablon(int id,int pageNumber, int size) {
+
+		PageRequest request = PageRequest.of(pageNumber - 1, size);
+        Page<EntradaVO> postPage = er.entradasTablon(id, request).get();
+        return Optional.of(new Paged<EntradaVO>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size)));
+	}
 
 	@Override
 	public int numeroComentarios(int id) {
@@ -90,5 +101,6 @@ public class ServiciosEntradaImp implements ServiciosEntrada {
 	public int numeroDeLikes(int id) {
 		return er.getMegustas(id).get().size();
 	}
+
 	
 }

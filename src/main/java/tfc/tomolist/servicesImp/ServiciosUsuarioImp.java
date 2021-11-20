@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import tfc.tomolist.model.AmigoVO;
 import tfc.tomolist.model.EntradaVO;
+import tfc.tomolist.model.MegustaVO;
 import tfc.tomolist.model.MensajeVO;
 import tfc.tomolist.model.UsuarioVO;
 import tfc.tomolist.repository.UsuarioRepository;
@@ -120,9 +120,7 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return Optional.of(filterList);
 	}
 
-	public Optional<ArrayList<EntradaVO>> entradasTablon(int id, Pageable page) {
-		return ur.entradasTablon(id, page);
-	}
+
 
 	@Override
 	public int numeroEntradas(int id) {
@@ -145,6 +143,11 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 
 	public Optional<ArrayList<UsuarioVO>> userSearcherByNickname(String s, int id) {
 		return ur.userSearcherByNickname(s, id);
+	}
+
+	@Override
+	public Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id) {
+		return ur.getMegustasUsuarios(id);
 	}
 
 

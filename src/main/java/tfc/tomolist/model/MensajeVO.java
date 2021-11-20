@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.OnDelete;
@@ -31,7 +32,7 @@ public class MensajeVO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idmensaje;
 	@Column(length = 1000, nullable = false)
-	@NotEmpty
+	@NotBlank(message = "Inserta contenido en entrada")
 	private String contenido;
 	@Column(nullable = false)
 	private LocalDateTime fecha;

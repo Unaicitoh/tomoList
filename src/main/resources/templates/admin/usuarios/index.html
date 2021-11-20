@@ -18,6 +18,7 @@
     <footer>
         <h3><a href="/admin">TomoList CP</a></h3>
     </footer>
+    <div class="btn btn-ins"><a th:href="@{/admin/newAdmin/}">Insertar usuario ADMIN</a></div>
     <div id="container" th:each="usu: ${usuarios}">
         <input type="hidden" th:value="${usu.idusuario}" />
         <div class="row">

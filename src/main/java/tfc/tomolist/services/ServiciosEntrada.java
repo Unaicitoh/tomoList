@@ -6,6 +6,7 @@ import java.util.Optional;
 import tfc.tomolist.model.ComentarioVO;
 import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.model.MegustaVO;
+import tfc.tomolist.model.pagination.Paged;
 
 public interface ServiciosEntrada {
 
@@ -36,6 +37,9 @@ public interface ServiciosEntrada {
 	
 	//Likes de una entrada
 	Optional<ArrayList<MegustaVO>> getMegustas(int id);
+	
+	//Entradas para la página principal de usuario registrados
+	Optional<Paged<EntradaVO>> entradasTablon(int id, int pageNumber, int size);
 	
 	//Numero de comentarios de la entrada
 	int numeroComentarios(int id);

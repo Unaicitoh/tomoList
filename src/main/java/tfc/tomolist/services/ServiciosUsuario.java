@@ -3,10 +3,9 @@ package tfc.tomolist.services;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.springframework.data.domain.Pageable;
-
 import tfc.tomolist.model.AmigoVO;
 import tfc.tomolist.model.EntradaVO;
+import tfc.tomolist.model.MegustaVO;
 import tfc.tomolist.model.MensajeVO;
 import tfc.tomolist.model.UsuarioVO;
 
@@ -61,12 +60,14 @@ public interface ServiciosUsuario {
 	//Buscador de usuarios
 	Optional<ArrayList<UsuarioVO>> userSearcherByNickname(String s, int id);
 	
-	//Entradas para la página principal de usuario registrados
-	Optional<ArrayList<EntradaVO>> entradasTablon(int id, Pageable page);
+
 	
 	//Borrar amigos en ambas direcciones
 	void borrarAmistad(int id1, int id2);
 	
 	Optional<UsuarioVO> findByUsername(String username);
+	
+	
+	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id);
 	
 }

@@ -18,13 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import tfc.tomolist.model.UsuarioVO;
+import tfc.tomolist.security.SecurityConfig;
 import tfc.tomolist.services.ServiciosRol;
 import tfc.tomolist.services.ServiciosUsuario;
 
 @Controller
 public class MainController {
 
-
+	@Autowired
+	SecurityConfig config;
+	
 	@Autowired
 	ServiciosUsuario su;
 
@@ -86,11 +89,10 @@ public class MainController {
 			rndName+=rnd;
 		}
 		
-		BCryptPasswordEncoder coder= new BCryptPasswordEncoder();
 		usuario.setEdad(16);
 		usuario.setNombre(rndName);
 		usuario.setFecha(LocalDate.now());
-		usuario.setPassword(coder.encode(usuario.getRawpass()));
+		usuario.setPassword(config.encriptarPassword(usuario.getRawpass()));
 		usuario.setRol(sr.findById(2).get());
 		su.save(usuario);
 
