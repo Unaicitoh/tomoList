@@ -66,9 +66,9 @@ class TomoListApplicationTests {
 	@Test
 	@Order(2)
 	public void insertarUsuario() {
-		su.save(new UsuarioVO(0, "Unai Gonzalez", "unai@unai.com","usu1", "123","123", LocalDate.now(), 'H', "images", "Adivinas", "1234", "Calle 13",22, sr.findById(1).get()));
-		su.save(new UsuarioVO(0, "Rober Rodriguez", "r@unai.com","usu2", "123","123", LocalDate.now(), 'H', "images", "Adivinas", "1234", "Calle 13",22, sr.findById(2).get()));
-		su.save(new UsuarioVO(0, "Xenia Rodriguez","@unai.com","usu3", "123","123", LocalDate.now(), 'M', "images", "Adivinas", "1234", "Calle 13",23, sr.findById(2).get()));
+		su.save(new UsuarioVO(0, "Unai Gonzalez", "unai@unai.com","usu1", "123","123", LocalDate.now(), "H", "images", "Adivinas", "1234", "Calle 13",22, sr.findById(1).get()));
+		su.save(new UsuarioVO(0, "Rober Rodriguez", "r@unai.com","usu2", "123","123", LocalDate.now(), "H", "images", "Adivinas", "1234", "Calle 13",22, sr.findById(2).get()));
+		su.save(new UsuarioVO(0, "Xenia Rodriguez","@unai.com","usu3", "123","123", LocalDate.now(), "M", "images", "Adivinas", "1234", "Calle 13",23, sr.findById(2).get()));
 		assertNotNull(su.findById(1).get());
 	}
 	

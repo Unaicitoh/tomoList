@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>LogIn Tomolist</title>
     <link rel="stylesheet" href="/styles/app/login_register.css">
@@ -16,31 +16,58 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/js/app/home.js"></script>
 </head>
 
 <body>
 
-    <header>
-        <h1>TomoList</h1>
+    <header class="container-fluid">
+    <div class="row d-flex py-2 align-items-center ">
+    <div class="col-2 w-auto">
+    <img th:src="@{/images/LogoTomo.png}" height="60vh">
+    </div>
+    <h1 class="col-6 col-lg-10 text-lg-center m-0 p-0 text-light">TomoList</h1>
+    </div>
     </header>
 
-    <h2>Credenciales de acceso:</h2>
+
     
 
-    <div id="container">
-    <div id="infoForm">
-        <div th:classappend="${param.error}? 'alert-danger' : ''" >Credenciales erroneos</div>
-    </div>
-        <form method="post" th:action="@{/login}">
+    <div class="container">
+    <h2>Credenciales de acceso:</h2>
+    <div class="row">
+    
+    <form method="post" th:action="@{/login}">
             <label for="username">Usuario:</label>
             <input type="text" name="username" required autofocus>
             <label for="password">Contraseña:</label>
             <input type="password" name="password" required>
             <input id="log" type="submit" value="Log in">
         </form>
+        <div id="register">Aún no tienes cuenta?, <a th:href="@{/register}">Registrate aqui!</a></div>
+    </div> 
     </div>
 
-    <div id="register">Aún no tienes cuenta?, <a th:href="@{/register}">Registrate aqui!</a></div>
+    <footer class="container-fluid fixed-bottom bg-info">
+<div class="row w-auto justify-content-center gap-2 mb-2">
+  <div class="col-4 col-lg-3 w-auto">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action" id="list-us-list" data-bs-toggle="list" href="#list-us" role="tab" aria-controls="us">Sobre Nosotros</a>
+      <a class="list-group-item list-group-item-action" id="list-autor-list" data-bs-toggle="list" href="#list-autor" role="tab" aria-controls="autor">Autor</a>
+      <a class="list-group-item list-group-item-action active" id="list-copy-list" data-bs-toggle="list" href="#list-copy" role="tab" aria-controls="copy">Copyright</a>
+    </div>
+  </div>
+  <div class="col-8 col-lg-9 d-flex align-items-center">
+    <div class="tab-content" id="list-nav-tabContent">
+      <div class="tab-pane fade" id="list-us" role="tabpanel" aria-labelledby="list-us-list"><strong>TomoList</strong>, está desarrollada para ser una red social, tiene como planteamiento principal ser una app intuitiva, atractiva y visual para los usuarios darles la capacidad a los usuarios de interactuar unos con otros desde donde quieran cuando quieran.</div>
+      <div class="tab-pane fade" id="list-autor" role="tabpanel" aria-labelledby="list-autor-list">Unai González Sánchez, Full Stack Developer Web</div>
+      <div class="tab-pane fade show active" id="list-copy" role="tabpanel" aria-labelledby="list-copy-list"><strong>© 2020-2021</strong> / TomoList / <strong>No rights reserved</strong></div>
+    </div>
+  </div>
+</div>
+    </footer>
 
 </body>
 

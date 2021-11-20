@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,7 +71,6 @@ public class MainController {
 	
 	@GetMapping("/register")
 	public String register(Model m) {
-		
 		m.addAttribute("usuario",new UsuarioVO());
 		
 		return "register";
@@ -89,10 +87,10 @@ public class MainController {
 			rndName+=rnd;
 		}
 		
-		usuario.setEdad(16);
 		usuario.setNombre(rndName);
 		usuario.setFecha(LocalDate.now());
 		usuario.setPassword(config.encriptarPassword(usuario.getRawpass()));
+		usuario.setEdad(16);
 		usuario.setRol(sr.findById(2).get());
 		su.save(usuario);
 
