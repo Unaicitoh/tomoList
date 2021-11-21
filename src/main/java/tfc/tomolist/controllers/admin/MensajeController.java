@@ -1,4 +1,4 @@
-package tfc.tomolist.controllers;
+package tfc.tomolist.controllers.admin;
 
 import java.time.LocalDateTime;
 

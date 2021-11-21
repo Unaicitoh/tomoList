@@ -1,15 +1,21 @@
+
+
 :root {
-	--main-color: rgb(89, 89, 255)
-	
+	--main-color: rgb(89, 89, 255);
 	}
-	
+
+
 header {
 	background-color: var(--main-color);
 }
 
 #search-icon:hover {
-	fill: black;
+	color: black;
 	cursor: pointer;
+}
+
+#card-header{
+	color: var(--cardHeaderBg);
 }
 
 #img_header {

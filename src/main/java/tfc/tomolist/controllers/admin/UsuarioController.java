@@ -1,4 +1,4 @@
-package tfc.tomolist.controllers;
+package tfc.tomolist.controllers.admin;
 
 import java.time.LocalDate;
 
@@ -90,36 +90,12 @@ public class UsuarioController {
 			usu.setEdad(16);
 			usu.setFecha(LocalDate.now());
 			usu.setPassword(config.encriptarPassword(usu.getRawpass()));
-			usu.setRol(sr.findById(1).get());
+			usu.setRol(sr.findById(2).get());
 			su.save(usu);
 			return "redirect:/admin/usuarios";
 		}
 		
 	}
-	
-	@GetMapping("/app/home")
-	public String homeUsu(Model m, @RequestParam(name = "num", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "5") int size) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-		
-		UsuarioVO usuario=su.findByUsername(auth.getName()).get();
-		Paged<EntradaVO> postsPageados= se.entradasTablon(usuario.getIdusuario(), pageNumber, size).get();
-		m.addAttribute("usuario",usuario);
-		m.addAttribute("entradas", postsPageados);
-		return "app/home";
-	}
-	
 
-	@GetMapping("/app/perfil/{id}")
-	public String perfilUsuario(@PathVariable int id, Model m) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-		
-		String nombre= auth.getName();
-		UsuarioVO usuarioPerfil=su.findById(id).get();
-		UsuarioVO usuarioSesion=su.findByUsername(nombre).get();
-		
-		m.addAttribute("usuarioSesion",usuarioSesion);
-		m.addAttribute("usuarioPerfil", usuarioPerfil);
-		return "app/perfil";
-	}
 	
 }

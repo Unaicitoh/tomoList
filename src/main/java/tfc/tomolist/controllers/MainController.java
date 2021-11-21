@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import tfc.tomolist.model.UsuarioVO;
 import tfc.tomolist.security.SecurityConfig;
@@ -41,7 +43,16 @@ public class MainController {
 	
 	
 	@GetMapping("/login")
-	public String logIn() {
+	public String logIn(@RequestParam(required = false, name = "registro") String character, Model m) {
+		if(character!=null) {
+			m.addAttribute("registrando", true);
+		}
+		return "login";
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		
 		return "login";
 	}
 	
@@ -95,7 +106,7 @@ public class MainController {
 		su.save(usuario);
 
 		
-		return "redirect:/login";
+		return "redirect:/login?registro=true";
 		
 	}
 		
