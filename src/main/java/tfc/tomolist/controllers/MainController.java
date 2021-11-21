@@ -43,9 +43,9 @@ public class MainController {
 	
 	
 	@GetMapping("/login")
-	public String logIn(@RequestParam(required = false, name = "registro") String character, Model m) {
-		if(character!=null) {
-			m.addAttribute("registrando", true);
+	public String logIn(@RequestParam(required = false, name = "registro") String registro, Model m) {
+		if(registro != null) {
+			m.addAttribute("msgRegistro", "Registro de usuario completado satisfactoriamente");
 		}
 		return "login";
 	}
@@ -106,7 +106,7 @@ public class MainController {
 		su.save(usuario);
 
 		
-		return "redirect:/login?registro=true";
+		return "redirect:/login?registro";
 		
 	}
 		

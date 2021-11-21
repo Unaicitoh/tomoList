@@ -38,10 +38,10 @@
 		<div class="row justify-content-center text-center py-3">
 			<h3 class="display-6">Credenciales de acceso:</h3>
 		</div>
-		<div class="row align-items-center justify-content-center" th:classappend="${registrando} ? '' : 'd-none'">
-		<div class="col-9 d-flex  align-items-center" role="alert" th:classappend="${registrando} ? 'alert alert-success alert-dismissible' : ''">
+		<div class="row align-items-center justify-content-center" th:if="${param.registro != null}">
+		<div class="col-9 alert alert-success alert-dismissible d-flex align-items-center" role="alert">
 			<i class="bi bi-check-circle-fill d-flex flex-shrink-0 me-2" role="img"></i>
-			<div th:text="${registrando}?'Registro de usuario completado satisfactoriamente' : '' " ></div>
+			<div th:text="${msgRegistro}"></div>
 			 <button type="button" class="btn-close d-flex align-items-center my-auto" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 		</div>
@@ -65,14 +65,15 @@
 			<form class="form-floating col-9 col-md-6 col-lg-4 my-3" method="post" th:action="@{/login}">
 				<div class="form-floating mb-3">
 					<input type="text" name="username" class="form-control" id="floatingInput"
-						placeholder="name@example.com"> <label for="floatingInput">Nickname</label>
+						placeholder="name@example.com" autofocus> <label for="floatingInput">Nickname</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="password" name="password" class="form-control" id="floatingPassword"
 						placeholder="Password"> <label for="floatingPassword">Password</label>
 				</div>
 				<div class="text-center">
-				<button type="submit" class="btn btn-outline-success text-end">Log In</button>
+					<button type="submit" class="btn btn-outline-success text-end">Log
+						In</button>
 				</div>
 				
 			</form>

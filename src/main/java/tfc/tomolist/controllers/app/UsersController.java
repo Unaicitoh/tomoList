@@ -32,13 +32,13 @@ public class UsersController {
 
 	
 	@GetMapping("/home")
-	public String homeUsu(Model m, @RequestParam(name = "num", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "5") int size) {
+	public String homeUsu(Model m, @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "5") int size) {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		
 		UsuarioVO usuario=su.findByUsername(auth.getName()).get();
 		Paged<EntradaVO> postsPageados= se.entradasTablon(usuario.getIdusuario(), pageNumber, size).get();
 		m.addAttribute("usuario",usuario);
-		m.addAttribute("entradas", postsPageados);
+		m.addAttribute("posts", postsPageados);
 		return "app/home";
 	}
 	
