@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tfc.tomolist.model.validpass.ValidPassword;
 
 @SuppressWarnings("serial")
 @Data
@@ -51,7 +52,7 @@ public class UsuarioVO implements UserDetails{
 	@Column(length = 500, nullable = false)
 	private String password;
 	@Column(length = 500, nullable = false)
-	@NotBlank(message="Password no puede estar vacia")
+	@ValidPassword
 	private String rawpass;
 	@Column(nullable = false)
 	private LocalDate fecha;

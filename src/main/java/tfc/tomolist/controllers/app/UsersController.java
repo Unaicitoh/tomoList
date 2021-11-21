@@ -32,7 +32,7 @@ public class UsersController {
 
 	
 	@GetMapping("/home")
-	public String homeUsu(Model m, @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "5") int size) {
+	public String homeUsu(Model m, @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "6") int size) {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		
 		UsuarioVO usuario=su.findByUsername(auth.getName()).get();
