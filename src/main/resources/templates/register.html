@@ -42,46 +42,54 @@
 
 		<div class="row justify-content-center">
 			<form class="form-floating my-3" method="post"
-				th:action="@{/register/submit}" th:object="${usuario}">
+				th:action="@{/register/submit}" th:object="${usuarioRegistro}">
 
-				<div th:if="${#fields.hasErrors('username')}"
-					class="col-9 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
+				<div th:if="${#fields.hasErrors('username')  or mensajeUsername !=null}"
+					class="col-7 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
 					<i
 						class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2"
 						role="img"></i>
 					<div th:errors="*{username}"></div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<div th:if="${mensajeUsername != null}"
+						th:text="${mensajeUsername}"></div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
 				</div>
-				<div class="form-floating mb-3 col-9 col-md-6 col-lg-4 mx-auto">
+				<div class="form-floating mb-3 col-9 col-sm-6 col-md-4 col-lg-3 mx-auto">
 					<input type="text" th:field="*{username}" class="form-control"
 						id="floatingInput" placeholder="Nickname" autofocus> <label
 						for="floatingInput">Nickname</label>
 				</div>
-				
-				<div th:if="${#fields.hasErrors('email')}"
-					class="col-9 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
+
+				<div th:if="${#fields.hasErrors('email') or mensajeEmail !=null}"
+					class="col-7 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
 					<i
 						class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2"
 						role="img"></i>
 					<div th:errors="*{email}"></div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<div
+						th:text="${mensajeEmail}"></div>
+
+					<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
 				</div>
-				<div class="form-floating mb-3 col-9 col-md-6 col-lg-4 mx-auto">
+				<div class="form-floating mb-3 col-9 col-sm-6 col-md-4 col-lg-3 mx-auto">
 					<input type="text" th:field="*{email}" class="form-control"
 						id="floatingEmail" placeholder="name@example.com"> <label
 						for="floatingEmail">Email</label>
 				</div>
-				
+
 				<div th:if="${#fields.hasErrors('rawpass')}"
-					class="col-9 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
+					class="col-7 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
 					<i
 						class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2"
 						role="img"></i>
-					<div th:each="error : ${#fields.errors('rawpass')}" th:utext="${error}">
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<div th:each="error : ${#fields.errors('rawpass')}"
+						th:utext="${error}"></div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
 				</div>
-				<div class="form-floating mb-3 col-9 col-md-6 col-lg-4 mx-auto">
+				<div class="form-floating mb-3 col-9 col-sm-6 col-md-4 col-lg-3 mx-auto">
 					<input type="password" th:field="*{rawpass}" class="form-control"
 						id="floatingPassword" placeholder="Password"> <label
 						for="floatingPassword">Password</label>

@@ -60,7 +60,7 @@ public interface ServiciosUsuario {
 	//Buscador de usuarios
 	Optional<ArrayList<UsuarioVO>> userSearcherByNickname(String s, int id);
 	
-
+	Optional<UsuarioVO> findByEmail(String email);
 	
 	//Borrar amigos en ambas direcciones
 	void borrarAmistad(int id1, int id2);

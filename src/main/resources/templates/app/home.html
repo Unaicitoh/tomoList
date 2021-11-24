@@ -26,25 +26,37 @@
 <body>
 
 	<header class="container-fluid bg-gradient">
-		<div class="d-flex row align-items-center">
+		<div class="d-flex row align-items-center  justify-content-between">
 
 			<div
-				class="d-flex col-12 col-md-5 col-lg-7 col-xxl-8 align-items-center justify-content-center justify-content-md-start">
-				<div class="d-flex col-1 m-1 justify-content-center">
+				class="d-flex col-12 col-md-6 col-lg-7 col-xxl-8 align-items-center justify-content-center justify-content-md-start">
+				<div class="d-flex col-1 me-2 justify-content-center">
 					<img th:src="@{/images/LogoTomo.png}" height="50px"
 						alt="img-thumbnail">
 				</div>
 
-				<h1 class="display-1 col-5 text-light text-center text-md-start">TomoList</h1>
+				<div class="d-flex align-items-center w-100 pb-2 text-center"
+					th:switch="${usuario.genero}">
+					<div th:case="H"
+						class="display-3 col-11 text-light text-center w-100" role="alert"
+						th:text="'Bienvenido '+ ${#strings.substringBefore(usuario.nombre,' ')}"></div>
+					<div th:case="M" class="display-3 col-11 text-light text-center"
+						role="alert"
+						th:text="'Bienvenida ' + ${#strings.substringBefore(usuario.nombre,' ')}"></div>
+					<div th:case="*" class="display-3 col-11 text-light text-center"
+						role="alert"
+						th:text="'Bienvenidx '+ ${#strings.substringBefore(usuario.nombre,' ')}"></div>
+				</div>
 
 			</div>
 
 
 			<div
-				class="btn-group col-8 col-sm-6 col-md-4 col-lg-3 col-xxl-2 order-md-2 mx-auto gap-1">
+				class="btn-group col-8 col-sm-6 col-md-3 col-lg-3 col-xxl-2 order-md-2 mx-auto gap-1">
 				<div id="card-header"
 					class="d-flex me-1 float-end justify-content-end">
-					<img id="img_header" th:src="@{${usuario.foto}}"
+					<img id="img_header"
+						th:src="${usuario.foto} ? ${usuario.foto} : '/images/fotoex.jpg'"
 						class="border rounded-circle" alt="img-thumbnail">
 				</div>
 				<button id="btn_header" type="button"
@@ -66,7 +78,7 @@
 				<div id="search-icon-container" class="col-1 text-white fs-4">
 					<i id="search-icon" class="bi bi-search" role="img"></i>
 				</div>
-				<div>
+				<div class="col-7 col-lg-10">
 					<input class="form-control col-12 border border-2 rounded shadow"
 						id="searcher" type="search" placeholder="Usuarios..."
 						list="listUsers" />
@@ -101,19 +113,24 @@
 			</div>
 		</div>
 	</nav>
-
-	<div id="posts" class="container">
+	<div class="container" th:if="${avisoTablon}!=null">
+		<div class="row justify-content-center">
+		<div class="alert alert-info col-12 text-center display fs-4 w-auto my-4 p-5"th:utext="${avisoTablon}"></div>
+		</div>
+	</div>
+	<div id="posts" class="container" th:if="${avisoTablon}==null">
 		<div class="row justify-content-evenly gap-3 my-3">
 			<div
 				class="card col-12 col-xl-5 shadow border-primary border-1 px-0 my-2"
 				th:each="post: ${posts.page}">
-				<div class="card-header d-flex align-items-center bg-white gap-2">
+				<div id="card-header" class="card-header d-flex align-items-center bg-white gap-2">
 					<div class="img-container-usuario-post">
-						<img id="imgUsuarioPost" class="border rounded-circle"
+						<img id="imgUsuarioPost" class="bg-white border rounded-circle border-dark"
 							th:src="@{${post.autor.foto}}">
 					</div>
-					<h3 class="card-title display-1 fs-2"
+					<h3 class="card-title display-1 fs-2 text-dark"
 						th:text="${post.autor.username}">Nombre autor</h3>
+						<input type="hidden" th:value="${post.autor.idusuario}">
 				</div>
 
 				<img th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
@@ -121,14 +138,12 @@
 					<h5 class="card-subtitle" th:text="${post.titulo}">Card title</h5>
 
 					<p class="card-text pt-2" th:text="${post.contenido}">This is a
-						wider card with supporting text below as a natural lead-in to
-						additional content. This content is a little bit longer.</p>
+						wider card</p>
 					<p class="card-text d-flex gap-1 h-100">
 						<small id="diaSemanaPost" class="text-muted align-self-end"
 							th:text="${#temporals.dayOfWeekNameShort(post.fecha)}">DAY</small>
 						<small class="text-muted align-self-end"
-							th:text="${#temporals.format(post.fecha, 'dd-MM-yyyy HH:mm')}">Last
-							updated 3 mins ago</small>
+							th:text="${#temporals.format(post.fecha, 'dd-MM-yyyy HH:mm')}">Last</small>
 					</p>
 				</div>
 
@@ -146,7 +161,8 @@
 						<li class="page-item"
 							th:classappend="${item.index == posts.paging.pageNumber? 'active' : ''}"
 							th:if="${item.pageItemType.name() == 'PAGE'}"><a
-							class="page-link" th:href="@{'/app/home?pageNumber=' + ${item.index}}"
+							class="page-link"
+							th:href="@{'/app/home?pageNumber=' + ${item.index}}"
 							th:text="${item.index}"></a></li>
 						<li class="page-item disabled"
 							th:if="${item.pageItemType.name() == 'DOTS'}"><a
@@ -180,7 +196,8 @@
 						role="tab" aria-controls="copy">Copyright</a>
 				</div>
 			</div>
-			<div class="col-7 col-lg-8 d-flex align-items-center justify-content-center">
+			<div
+				class="col-7 col-lg-8 d-flex align-items-center justify-content-center">
 				<div class="tab-content" id="list-nav-tabContent">
 					<div class="tab-pane fade" id="list-us" role="tabpanel"
 						aria-labelledby="list-us-list">
@@ -202,9 +219,10 @@
 			</div>
 		</div>
 	</footer>
-
+	
 	<datalist id="listUsers">
 	</datalist>
+	
 	<input id="idu" type="hidden" th:value="${usuario.idusuario}" />
 	<form id="formLogout" method="post" th:action="@{/logout}"></form>
 

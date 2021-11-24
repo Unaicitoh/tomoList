@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +38,9 @@ public class MainController {
 	@Autowired
 	ServiciosRol sr;
 
+	@Autowired
+	LocalValidatorFactoryBean validator;
+	
 	@GetMapping("/admin")
 	public String moderador() {
 
@@ -86,30 +91,45 @@ public class MainController {
 
 		return "register";
 	}
+	
+	@ModelAttribute("usuarioRegistro")
+	public UsuarioVO getUsuario() {
+		UsuarioVO usu=new UsuarioVO();
+		usu.setNombre("User Apellido");
+		usu.setEdad(16);
+
+		return usu;
+	}
 
 	@PostMapping("/register/submit")
-	public String envioRegistro(@Valid @ModelAttribute("usuario") UsuarioVO usuario, BindingResult br) {
-		String rndName = "User_";
+	public String envioRegistro(@Valid @ModelAttribute("usuarioRegistro") UsuarioVO usuario, BindingResult br, Model m) {
 
-		for (int i = 0; i < 5; i++) {
-			int rnd = (int) Math.floor(Math.random() * 10);
-			rndName += rnd;
-		}
-
-		usuario.setNombre(rndName);
 		usuario.setFecha(LocalDate.now());
 		usuario.setPassword(config.encriptarPassword(usuario.getRawpass()));
-		usuario.setEdad(16);
 		usuario.setRol(sr.findById(2).get());
+
 		if (br.hasErrors()) {
 
 			return "register";
 		} else {
-			su.save(usuario);
+			try {
+				su.save(usuario);
+			} catch (DataIntegrityViolationException e) {
+				
+				if(su.findByUsername(usuario.getUsername()).isPresent()) 
+					m.addAttribute("mensajeUsername", "Nickname ya registrado en la app");
+				
+				if(su.findByEmail(usuario.getEmail()).isPresent()) 
+					m.addAttribute("mensajeEmail", "E-mail ya registrado en la app");
+				
+				
+				return "register";
+			}
 
 			return "redirect:/login?registro";
 		}
 
 	}
+
 
 }

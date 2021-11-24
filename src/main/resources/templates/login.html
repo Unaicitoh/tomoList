@@ -39,21 +39,21 @@
 			<h3 class="display-6">Credenciales de acceso:</h3>
 		</div>
 		<div class="row align-items-center justify-content-center" th:if="${param.registro != null}">
-		<div class="col-9 alert alert-success alert-dismissible d-flex align-items-center" role="alert">
+		<div class="col-7 alert alert-success alert-dismissible d-flex align-items-center" role="alert">
 			<i class="bi bi-check-circle-fill d-flex flex-shrink-0 me-2" role="img"></i>
 			<div th:text="${msgRegistro}"></div>
 			 <button type="button" class="btn-close d-flex align-items-center my-auto" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 		</div>
 		<div class="row align-items-center justify-content-center" th:if="${param.logout != null}">
-		<div class="alert alert-success alert-dismissible col-9 d-flex  align-items-center" role="alert">
+		<div class="alert alert-success alert-dismissible col-7 d-flex  align-items-center" role="alert">
 			<i class="bi bi-check-circle-fill d-flex flex-shrink-0 me-2" role="img"></i>
 			<div>Logout de cuenta exitoso.</div>
 			 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 		</div>
 		<div class="row align-items-center justify-content-center" th:if="${param.error != null}">
-		<div class="alert alert-danger alert-dismissible col-9 d-flex  align-items-center" role="alert">
+		<div class="alert alert-danger alert-dismissible col-7 d-flex  align-items-center" role="alert">
 			<i class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2" role="img"></i>
 			<div>Error verificando Nickname y/o Contraseña.</div>
 			 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -62,7 +62,7 @@
 		
 
 		<div class="row justify-content-center">
-			<form class="form-floating col-9 col-md-6 col-lg-4 my-3" method="post" th:action="@{/login}">
+			<form class="form-floating col-9 col-sm-6 col-md-4 col-lg-3 my-3" method="post" th:action="@{/login}">
 				<div class="form-floating mb-3">
 					<input type="text" name="username" class="form-control" id="floatingInput"
 						placeholder="name@example.com" autofocus> <label for="floatingInput">Nickname</label>

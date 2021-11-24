@@ -42,6 +42,7 @@ public interface UsuarioRepository extends CrudRepository<UsuarioVO, Integer> {
 	
 	Optional<UsuarioVO> findByUsername(String username);
 	
+	Optional<UsuarioVO> findByEmail(String email);
 	
 	@Transactional
 	@Modifying

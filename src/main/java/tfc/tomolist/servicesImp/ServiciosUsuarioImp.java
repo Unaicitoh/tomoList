@@ -150,6 +150,11 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return ur.getMegustasUsuarios(id);
 	}
 
+	@Override
+	public Optional<UsuarioVO> findByEmail(String email) {
+		return ur.findByEmail(email);
+	}
+
 
 
 
