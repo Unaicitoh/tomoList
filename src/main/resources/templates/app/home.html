@@ -115,7 +115,9 @@
 	</nav>
 	<div class="container" th:if="${avisoTablon}!=null">
 		<div class="row justify-content-center">
-		<div class="alert alert-info col-12 text-center display fs-4 w-auto my-4 p-5"th:utext="${avisoTablon}"></div>
+			<div
+				class="alert alert-info col-12 text-center display fs-4 w-auto my-4 p-5"
+				th:utext="${avisoTablon}"></div>
 		</div>
 	</div>
 	<div id="posts" class="container" th:if="${avisoTablon}==null">
@@ -123,14 +125,16 @@
 			<div
 				class="card col-12 col-xl-5 shadow border-primary border-1 px-0 my-2"
 				th:each="post: ${posts.page}">
-				<div id="card-header" class="card-header d-flex align-items-center bg-white gap-2">
+				<div id="card-header"
+					class="card-header d-flex align-items-center bg-white gap-2">
 					<div class="img-container-usuario-post">
-						<img id="imgUsuarioPost" class="bg-white border rounded-circle border-dark"
+						<img id="imgUsuarioPost"
+							class="bg-white border rounded-circle border-dark"
 							th:src="@{${post.autor.foto}}">
 					</div>
 					<h3 class="card-title display-1 fs-2 text-dark"
 						th:text="${post.autor.username}">Nombre autor</h3>
-						<input type="hidden" th:value="${post.autor.idusuario}">
+					<input type="hidden" th:value="${post.autor.idusuario}">
 				</div>
 
 				<img th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
@@ -139,12 +143,21 @@
 
 					<p class="card-text pt-2" th:text="${post.contenido}">This is a
 						wider card</p>
-					<p class="card-text d-flex gap-1 h-100">
-						<small id="diaSemanaPost" class="text-muted align-self-end"
+					<div class="card-text d-flex h-100">
+						<small id="diaSemanaPost" class="text-muted align-self-end col-1"
 							th:text="${#temporals.dayOfWeekNameShort(post.fecha)}">DAY</small>
-						<small class="text-muted align-self-end"
+						<small class="text-muted align-self-end col-7"
 							th:text="${#temporals.format(post.fecha, 'dd-MM-yyyy HH:mm')}">Last</small>
-					</p>
+						<i
+							class="likeIcon bi bi-heart align-self-end col-1 fs-3 text-danger"></i>
+						<div class="nLikes col-1 h-auto align-self-end mb-2"></div>
+						<a class="col-1 align-self-end fs-3 text-secondary"
+							th:href="@{/app/comentarios(idE=${post.identrada})}"><i
+							id="commentIcon" class="bi bi-chat-square-quote-fill"></i></a>
+						<div class="nComentarios col-1 h-auto align-self-end mb-2">2</div>
+						<input id="ide" type="hidden" th:value="${post.identrada}">
+
+					</div>
 				</div>
 
 			</div>
@@ -219,10 +232,10 @@
 			</div>
 		</div>
 	</footer>
-	
+
 	<datalist id="listUsers">
 	</datalist>
-	
+
 	<input id="idu" type="hidden" th:value="${usuario.idusuario}" />
 	<form id="formLogout" method="post" th:action="@{/logout}"></form>
 

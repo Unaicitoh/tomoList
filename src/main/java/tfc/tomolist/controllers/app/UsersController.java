@@ -38,8 +38,10 @@ public class UsersController {
 		UsuarioVO usuario=su.findByUsername(auth.getName()).get();
 		Paged<EntradaVO> postsPageados= se.entradasTablon(usuario.getIdusuario(), pageNumber, size).get();
 		m.addAttribute("usuario",usuario);
+		
+		
 		if(postsPageados.getPage().isEmpty()) {
-			m.addAttribute("avisoTablon", "Aun no tienes <strong>TomoPosts</strong> en tu tablón de amigos");
+			m.addAttribute("avisoTablon", "Aún no tienes <strong>TomoPosts</strong> en tu tablón de amigos");
 		}else {
 			m.addAttribute("posts", postsPageados);
 		}

@@ -54,7 +54,33 @@ INSERT INTO entradas values (0,"Sed ultricies, felis ut laoreet tincidunt, ipsum
 INSERT INTO megustas values (0,1,1);
 INSERT INTO megustas values (0,2,1);
 INSERT INTO megustas values (0,3,1);
+INSERT INTO megustas values (0,26,2);
+INSERT INTO megustas values (0,26,3);
+INSERT INTO megustas values (0,25,1);
+INSERT INTO megustas values (0,25,2);
+INSERT INTO megustas values (0,25,3);
+INSERT INTO megustas values (0,6,2);
+INSERT INTO megustas values (0,6,2);
+INSERT INTO megustas values (0,7,2);
+INSERT INTO megustas values (0,7,1);
+INSERT INTO megustas values (0,8,3);
+INSERT INTO megustas values (0,8,2);
+INSERT INTO megustas values (0,9,3);
+INSERT INTO megustas values (0,10,2);
+INSERT INTO megustas values (0,10,3);
 
 INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,1,1);
 INSERT INTO comentarios values (0,"QUe tal tio","2021/05/20 12:56:34",1,1,2);
 INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",1,1,3);
+
+INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,1,1);
+INSERT INTO comentarios values (0,"QUe tal tio","2021/05/20 12:56:34",1,25,2);
+INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",null,26,3);
+
+INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,1,1);
+INSERT INTO comentarios values (0,"QUe tal tio","2021/05/20 12:56:34",1,25,2);
+INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",1,26,3);
+
+INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,26,1);
+INSERT INTO comentarios values (0,"QUe tal tio","2021/05/20 12:56:34",1,26,2);
+INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",1,26,3);

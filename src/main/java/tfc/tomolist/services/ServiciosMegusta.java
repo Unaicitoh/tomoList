@@ -28,4 +28,5 @@ public interface ServiciosMegusta {
 
 	void deleteAll();
 
+	Optional<MegustaVO> getMegustaUsuarioEntrada(int id, int idU);
 }

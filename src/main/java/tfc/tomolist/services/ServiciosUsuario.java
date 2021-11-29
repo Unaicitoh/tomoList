@@ -66,7 +66,8 @@ public interface ServiciosUsuario {
 	void borrarAmistad(int id1, int id2);
 	
 	Optional<UsuarioVO> findByUsername(String username);
-	
+
+
 	
 	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id);
 	

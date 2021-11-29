@@ -68,4 +68,12 @@ public class ServiciosMegustaImp implements ServiciosMegusta {
 	public void deleteAll() {
 		mgr.deleteAll();
 	}
+
+	@Override
+	public Optional<MegustaVO> getMegustaUsuarioEntrada(int id, int idU) {
+		
+		return mgr.getMegustaUsuario(id, idU);
+	}
+	
+	
 }

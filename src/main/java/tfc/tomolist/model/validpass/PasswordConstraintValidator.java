@@ -30,7 +30,6 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 		try {
 			prop.load(this.getClass().getClassLoader().getResourceAsStream("passerrormsg.properties"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
