@@ -27,7 +27,7 @@
 	<header class="container-fluid bg-gradient">
 		<div class="row d-flex align-items-center justify-content-sm-between">
 			<div class="d-flex col-1 justify-content-start">
-				<a th:href="@{/app/home}"><img th:src="@{/images/LogoTomo.png}"
+				<a th:href="@{/app/home}"><img th:src="@{/images/LogoTomoList.png}"
 					height="50px" alt="img-thumbnail"></a>
 			</div>
 			<div class="col-4 ms-4 ms-md-0 w-auto display-1 text-light pb-2">Comentarios</div>
@@ -46,8 +46,8 @@
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li><a class="dropdown-item"
 						th:href="@{/app/perfil/}+${usuario.idusuario}">Perfil</a></li>
+					<li><a class="dropdown-item" href="#">Chat</a></li>
 					<li><a class="dropdown-item" href="#">Amigos</a></li>
-					<li><a class="dropdown-item" href="#">Likes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()">Cerrar
 							sesión <i class="bi bi-door-closed-fill"></i>
@@ -106,8 +106,8 @@
 								id="floatingTextarea" style="height: 100px"></textarea>
 							<label for="floatingTextarea">Comentario nuevo</label>
 						</div>
-						<button type="submit"
-							class="btn btn-outline-secondary col-3 col-md-2 ms-2 my-3">
+						<button id="newComment" type="submit"
+							class="btn btn-secondary col-3 col-md-2 ms-2 my-3 disabled">
 							<i class="bi bi-send-fill"></i> Enviar
 						</button>
 						</div>
