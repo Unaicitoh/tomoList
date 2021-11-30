@@ -30,7 +30,7 @@ public class ComentarioVO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idcomentario;
 	@Column(length = 150, nullable = false)
-	@NotEmpty
+	@NotEmpty(message = "Inserta texto en tu comentario")
 	private String contenido;
 	@Column(nullable = false)
 	private LocalDateTime fecha;
