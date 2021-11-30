@@ -75,10 +75,11 @@ INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",1,1,3);
 
 INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,1,1);
 INSERT INTO comentarios values (0,"QUe tal tio","2021/05/20 12:56:34",1,25,2);
+INSERT INTO comentarios values (0,"assdsad tio","2021/05/24 12:56:34",1,25,2);
 INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",null,26,3);
 
 INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,1,1);
-INSERT INTO comentarios values (0,"QUe tal tio","2021/05/20 12:56:34",1,25,2);
+INSERT INTO comentarios values (0,"Pepeeee","2021/05/20 12:52:34",1,25,3);
 INSERT INTO comentarios values (0,"Eyy","2021/05/20 12:57:34",1,26,3);
 
 INSERT INTO comentarios values (0,"Buenaaas","2021/05/20 12:54:34",null,26,1);

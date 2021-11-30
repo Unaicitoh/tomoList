@@ -149,12 +149,12 @@
 						<small class="text-muted align-self-end col-7"
 							th:text="${#temporals.format(post.fecha, 'dd-MM-yyyy HH:mm')}">Last</small>
 						<i
-							class="likeIcon bi bi-heart align-self-end col-1 fs-3 text-danger"></i>
-						<div class="nLikes col-1 h-auto align-self-end mb-2"></div>
-						<a class="col-1 align-self-end fs-3 text-secondary"
-							th:href="@{/app/comentarios(idE=${post.identrada})}"><i
+							class="likeIcon bi bi-heart align-self-end col-1 fs-3 text-danger text-center"></i>
+						<div class="nLikes col-1 h-auto align-self-end ms-2 mb-md-2"></div>
+						<a class="col-1 align-self-end fs-3 text-secondary text-center"
+							th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><i
 							id="commentIcon" class="bi bi-chat-square-quote-fill"></i></a>
-						<div class="nComentarios col-1 h-auto align-self-end mb-2">2</div>
+						<div class="nComentarios col-1 h-auto align-self-end ms-2 mb-md-2">2</div>
 						<input id="ide" type="hidden" th:value="${post.identrada}">
 
 					</div>

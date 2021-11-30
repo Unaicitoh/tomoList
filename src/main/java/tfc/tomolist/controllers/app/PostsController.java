@@ -29,6 +29,7 @@ public class PostsController {
 		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
 		
 		m.addAttribute("usuario", su.findByUsername(auth.getName()).get());
+		m.addAttribute("post", se.findById(idE).get());
 		m.addAttribute("comentarios", se.getComentarios(idE).get());
 		m.addAttribute("nuevoComentario", new ComentarioVO());
 		return "app/comentarios";

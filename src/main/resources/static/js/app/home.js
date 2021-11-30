@@ -6,7 +6,6 @@ var entradaActual;
 var options;
 
 $(document).ready(function() {
-	console.log("ready!");
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
 	lista = document.getElementById("listUsers");
@@ -96,7 +95,6 @@ function cargaLikes() {
 async function comprobarLikesActivos(idE, idU, icono) {
 	const response = await fetch("/api/likeActivo/" + idE + "/" + idU);
 	const isActivo = await response.json();
-	console.log(isActivo)
 	if (isActivo != false) {
 		icono.removeClass("bi-heart");
 		icono.addClass("bi-heart-fill")
@@ -109,14 +107,12 @@ async function comprobarLikesActivos(idE, idU, icono) {
 async function borrarLike(idE, idU) {
 
 	const response = await fetch("/api/borrarLike/" + idE + "/" + idU, { method: "DELETE" });
-	console.log(response);
 	cargaLikes();
 }
 
 async function crearLike(idE, idU) {
 
 	const response = await fetch("/api/creaLike/" + idE + "/" + idU, { method: "POST" });
-	console.log(response);
 	cargaLikes();
 }
 
