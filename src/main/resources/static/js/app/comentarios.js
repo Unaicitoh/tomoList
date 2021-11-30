@@ -16,9 +16,12 @@ $(document).ready(function() {
 		ele.children().first().find("img").toggleClass("border-white");
 		ele.children("h3").toggleClass("text-light");
 		ele.children("h3").toggleClass("text-dark");
-
 	});
 
+	//Validacion Comentario
+	$("textarea").change(function(){
+		if())
+	});
 
 
 
