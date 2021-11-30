@@ -16,7 +16,7 @@ import tfc.tomolist.model.MegustaVO;
 @Repository
 public interface EntradaRepository extends CrudRepository<EntradaVO, Integer>{
 
-	@Query("SELECT c FROM ComentarioVO c WHERE c.entrada.identrada=:id")
+	@Query("SELECT c FROM ComentarioVO c WHERE c.entrada.identrada=:id ORDER BY c.fecha DESC")
 	Optional<ArrayList<ComentarioVO>> getComentarios(@Param("id") int id);
 	
 	@Query("SELECT m FROM MegustaVO m WHERE m.entrada.identrada=:id")

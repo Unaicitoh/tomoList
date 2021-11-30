@@ -9,11 +9,6 @@ header {
 	background-color: var(--main-color);
 }
 
-#search-icon:hover {
-	color: black;
-	cursor: pointer;
-}
-
 
 #img_header {
 	width: 38px;
@@ -29,7 +24,7 @@ header {
 
 .card-img-top{
 	width:100%;
-	height:65vh;
+	height:60vh;
 	object-fit:cover;
 }
 
@@ -52,4 +47,5 @@ header {
 .likeIcon{
 	cursor:pointer;
 }
+
 
