@@ -24,11 +24,12 @@
 </head>
 <body>
 
-	<header class="container-fluid bg-gradient">
+	<header class="container-fluid bg-gradient shadow-sm">
 		<div class="row d-flex align-items-center justify-content-sm-between">
 			<div class="d-flex col-1 justify-content-start">
-				<a th:href="@{/app/home}"><img th:src="@{/images/LogoTomoList.png}"
-					height="50px" alt="img-thumbnail"></a>
+				<a th:href="@{/app/home}"><img
+					th:src="@{/images/LogoTomoList.png}" height="50px"
+					alt="img-thumbnail"></a>
 			</div>
 			<div class="col-4 ms-4 ms-md-0 w-auto display-1 text-light pb-2">Comentarios</div>
 			<div
@@ -100,28 +101,39 @@
 								aria-label="Close"></button>
 						</div>
 						<div class="d-flex">
-						<div class="form-floating col-9 col-md-10">
-							<textarea th:field="${newComentario.contenido}"
-								class="form-control" placeholder="Leave a comment here"
-								id="floatingTextarea" style="height: 100px"></textarea>
-							<label for="floatingTextarea">Comentario nuevo</label>
+							<div
+								class="form-floating col-9 col-md-10 border border-info rounded">
+								<textarea th:field="${newComentario.contenido}"
+									class="form-control" placeholder="Leave a comment here"
+									id="floatingTextarea" style="height: 100px"></textarea>
+								<label for="floatingTextarea">Comentario nuevo</label>
+							</div>
+							<button id="newComment" type="submit"
+								class="btn btn-success col-3 col-md-2 ms-2 my-3 disabled">
+								<i class="bi bi-send-fill"></i> Enviar
+							</button>
 						</div>
-						<button id="newComment" type="submit"
-							class="btn btn-secondary col-3 col-md-2 ms-2 my-3 disabled">
-							<i class="bi bi-send-fill"></i> Enviar
-						</button>
-						</div>
-						
+
 					</form>
 				</div>
 
 			</div>
 		</div>
+
+
+		<div class="container" th:if="${#lists.isEmpty(comentarios)}">
+			<div class="row justify-content-center">
+				<div
+					class="alert alert-info col-12 text-center display fs-5 w-auto my-4 p-5">Aún
+					no hay comentarios</div>
+			</div>
+		</div>
+
 		<div class="row justify-content-center my-3">
 			<ul class="list-group list-group-flush col-12"
 				th:each="comentario: ${comentarios}">
 				<li class="list-group-item col-12 col-lg-6 mx-auto">
-					<div class="card shadow border-info border-1 px-0 my-2">
+					<div class="card shadow border-info border-1 px-0 my-2 bg-light">
 						<div id="card-header"
 							class="card-header d-flex align-items-center bg-white gap-2">
 							<div class="img-container-usuario-post">
