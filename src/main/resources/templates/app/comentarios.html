@@ -86,48 +86,56 @@
 						<input id="ide" type="hidden" th:value="${post.identrada}">
 
 					</div>
-					<form th:action="" method="post" class="col-12">
-						<div class="form-floating">
+					<form
+						th:action="@{/app/newComentario/{idE}(idE=${post.identrada})}"
+						method="post" class="col-12 mt-5 d-flex">
+						<div class="form-floating col-9 col-md-10">
 							<textarea class="form-control" placeholder="Leave a comment here"
 								id="floatingTextarea" style="height: 100px"></textarea>
-							<label for="floatingTextarea">Comments</label>
+							<label for="floatingTextarea">Comentarios</label>
 						</div>
-					</form>
+						<button type="submit" class="btn btn-outline-secondary col-3 col-md-2 ms-2 my-3">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+									d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338 7.494-7.494Z" />
+</svg> Enviar
 				</div>
-
+				</form>
 			</div>
+
 		</div>
-		<div class="row justify-content-center">
-			<ul class="list-group list-group-flush col-12"
-				th:each="comentario: ${comentarios}">
-				<li class="list-group-item col-12 col-lg-6 mx-auto">
-					<div class="card shadow border-info border-1 px-0 my-2">
-						<div id="card-header"
-							class="card-header d-flex align-items-center bg-white gap-2">
-							<div class="img-container-usuario-post">
-								<img id="imgUsuarioPost"
-									class="bg-white border rounded-circle border-dark"
-									th:src="@{${comentario.usuario.foto}}">
-							</div>
-							<h3 class="card-title display-1 fs-2 text-dark"
-								th:text="${comentario.usuario.username}">Nombre autor</h3>
-							<input type="hidden" th:value="${comentario.usuario.idusuario}">
+	</div>
+	<div class="row justify-content-center">
+		<ul class="list-group list-group-flush col-12"
+			th:each="comentario: ${comentarios}">
+			<li class="list-group-item col-12 col-lg-6 mx-auto">
+				<div class="card shadow border-info border-1 px-0 my-2">
+					<div id="card-header"
+						class="card-header d-flex align-items-center bg-white gap-2">
+						<div class="img-container-usuario-post">
+							<img id="imgUsuarioPost"
+								class="bg-white border rounded-circle border-dark"
+								th:src="@{${comentario.usuario.foto}}">
 						</div>
-						<div class="card-body">
-							<p class="card-text" th:text="*{comentario.contenido}">With
-								supporting text below as a natural lead-in to additional
-								content.</p>
-						</div>
-						<div class="card-footer text-muted">
-							<small id="diaSemanaPost"
-								th:text="${#temporals.dayOfWeekNameShort(comentario.fecha)}">DAY</small>
-							<small
-								th:text="${#temporals.format(comentario.fecha, 'dd-MM-yyyy HH:mm')}">Last</small>
-						</div>
+						<h3 class="card-title display-1 fs-2 text-dark"
+							th:text="${comentario.usuario.username}">Nombre autor</h3>
+						<input type="hidden" th:value="${comentario.usuario.idusuario}">
 					</div>
-				</li>
-			</ul>
-		</div>
+					<div class="card-body">
+						<p class="card-text" th:text="*{comentario.contenido}">With
+							supporting text below as a natural lead-in to additional content.</p>
+					</div>
+					<div class="card-footer text-muted">
+						<small id="diaSemanaPost"
+							th:text="${#temporals.dayOfWeekNameShort(comentario.fecha)}">DAY</small>
+						<small
+							th:text="${#temporals.format(comentario.fecha, 'dd-MM-yyyy HH:mm')}">Last</small>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
 	</div>
 
 	<form id="formLogout" method="post" th:action="@{/logout}"></form>
