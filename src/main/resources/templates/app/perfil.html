@@ -86,15 +86,23 @@
 				<img id="imgPerfil" class="img-fluid rounded-circle"
 					th:src="${usuarioPerfil.foto} ? ${usuarioPerfil.foto} : '/images/fotoex.jpg'">
 			</div>
-			
-			<div class="col-12 col-md-6">
-			<div class="h1 fs-4 col-6 mx-auto text-center my-2" th:text="${usuarioPerfil.username}"></div>
-			<div  th:text="${usuarioPerfil.nombre}"></div>
-			<div  th:text="${usuarioPerfil.biografia}"></div>
+
+			<div class="col-12 col-md-6 d-flex flex-column">
+				<div class="h1 fs-4 col-6 mx-auto text-center my-2"
+					th:text="${usuarioPerfil.username}"></div>
+				<div th:text="${usuarioPerfil.nombre}"></div>
+				<div th:text="${usuarioPerfil.biografia}? ${usuarioPerfil.biografia} : 'Aún sin bio'"></div>
+				<div th:text="${usuarioPerfil.email}"></div>
+				<div
+					th:text="${usuarioPerfil.genero} ? 'Género: '+${usuarioPerfil.genero} : 'Género: X'">Genro</div>
+					<div class="row">
+					<div class="col-6" th:text="'Edad: '+${usuarioPerfil.edad}"></div>
+				<div class="col-6" th:text="'Se unió el: '+${#temporals.format(usuarioPerfil.fecha, 'dd/MM/yyyy')}"></div>
+					</div>
 			</div>
-			
-			
-			
+
+
+
 		</div>
 		<div class="row"></div>
 	</div>
