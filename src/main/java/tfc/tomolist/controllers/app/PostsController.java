@@ -64,7 +64,6 @@ public class PostsController {
 			sc.save(comentario);
 			m.remove("comentarios");
 			m.addAttribute("comentarios", se.getComentarios(idE).get());
-			m.remove("newComentario");
 			m.addAttribute("newComentario", new ComentarioVO());
 			return new ModelAndView("app/comentarios", m);
 		}
