@@ -27,12 +27,14 @@
 
 <body>
 	<header class="container-fluid bg-gradient">
-		<div class="d-flex row align-items-center  justify-content-between py-4">
+		<div
+			class="d-flex row align-items-center  justify-content-between py-4">
 
 			<div class="d-flex col-4 col-md-3 col-lg-2 ps-1 align-items-center">
 				<div class="img">
-					<a th:href="@{/app/home}"><img th:src="@{/images/LogoTomoList.png}" height="50px"
-						width="105px" alt="img-thumbnail"></a>
+					<a th:href="@{/app/home}"><img
+						th:src="@{/images/LogoTomoList.png}" height="50px" width="105px"
+						alt="img-thumbnail"></a>
 				</div>
 
 			</div>
@@ -79,18 +81,22 @@
 	</header>
 
 	<div id="infoPerfil" class="container">
-	<div class="row g-0">
-		<div class="col-4">
-			<img id="imgPerfil" class="rounded-circle" th:src="${usuarioPerfil.foto} ? ${usuarioPerfil.foto} : '/images/fotoex.jpg'">
+		<div class="row d-flex g-0 align-items-center">
+			<div class="col-12 col-md-6 d-flex justify-content-center">
+				<img id="imgPerfil" class="img-fluid rounded-circle"
+					th:src="${usuarioPerfil.foto} ? ${usuarioPerfil.foto} : '/images/fotoex.jpg'">
+			</div>
+			
+			<div class="col-12 col-md-6">
+			<div class="h1 fs-4 col-6 mx-auto text-center my-2" th:text="${usuarioPerfil.username}"></div>
+			<div  th:text="${usuarioPerfil.nombre}"></div>
+			<div  th:text="${usuarioPerfil.biografia}"></div>
+			</div>
+			
+			
+			
 		</div>
-		<div class="col-8">
-			<p th:text="${usuarioPerfil.username}"></p>
-			<p th:text="${usuarioPerfil.nombre}"></p>
-			<p th:text="${usuarioPerfil.biografia}"></p>
-		</div>
-	</div>
-	<div class="row">
-	</div>
+		<div class="row"></div>
 	</div>
 
 	<datalist id="listUsers">

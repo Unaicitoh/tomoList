@@ -28,8 +28,7 @@ header {
 }
 
 #imgPerfil{
-	width:160px;
-	height:30vh;
+	height: 40vh;
 	object-fit:cover;
 }
 
