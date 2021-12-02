@@ -3,6 +3,8 @@ package tfc.tomolist.services;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import org.springframework.data.repository.query.Param;
+
 import tfc.tomolist.model.AmigoVO;
 import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.model.MegustaVO;
@@ -67,7 +69,7 @@ public interface ServiciosUsuario {
 	
 	Optional<UsuarioVO> findByUsername(String username);
 
-
+	Optional<ArrayList<AmigoVO>> getSolicitudAmigo(@Param("id") int id, @Param("id2") int id2);
 	
 	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id);
 	

@@ -54,6 +54,9 @@ public class UsersController {
 		UsuarioVO usuarioSesion=su.findByUsername(nombre).get();
 		Paged<EntradaVO> postsPageados= se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
 
+		boolean isAmigo = su.getSolicitudAmigo(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty();
+		
+		m.addAttribute("isAmigo", isAmigo);
 		m.addAttribute("usuarioSesion",usuarioSesion);
 		m.addAttribute("usuarioPerfil", usuarioPerfil);
 		m.addAttribute("posts", postsPageados);

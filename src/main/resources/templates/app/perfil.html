@@ -109,7 +109,17 @@
 
 
 		</div>
-		<div class="row"></div>
+		<div class="row">
+		<div>
+		<div th:unless="${#strings.equals(#authentication.name,usuarioPerfil.username)}" >
+		<a th:if="${isAmigo}" class="col-6 btn btn-primary">Solicitud de amistad</a>
+		<a th:if="${!isAmigo}" class="col-6 btn btn-primary">Ya sois amigos</a>
+		</div>
+		<div th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}" >
+		<a class="col-6 btn btn-primary">Modificar perfil</a>
+		</div>
+		</div>
+		</div>
 		<hr class="mb-5"/>
 	</div>
 	<div id="posts" class="container">
