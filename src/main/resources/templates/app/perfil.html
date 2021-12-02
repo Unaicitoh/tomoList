@@ -120,12 +120,9 @@
 						class="row align-items-center justify-content-center">
 						<div class="col-3 text-center">
 							<div class="fs-5">Ya sois amigos</div>
-							<form
-								th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
-								method="post">
-								<button type="submit" class="col-8 btn btn-danger mt-3 py-2">Borrar
-									amistad</button>
-							</form>
+
+							<button class="col-8 btn btn-warning mt-3 py-2" data-bs-toggle="modal" data-bs-target="#modal">Borrar
+								amistad</button>
 
 						</div>
 						<div class="col-3 text-center">
@@ -214,6 +211,27 @@
 				</ul>
 			</nav>
 
+		</div>
+	</div>
+	<div id="modal" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalVerticallyCenteredLabel">Eliminando
+						amigo...</h5>
+					<button type="button" class="btn-close" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Estás seguro de eliminar a tu amigo?</div>
+				<div class="modal-footer">
+					<form
+						th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
+						method="post">
+						<button type="button" class="btn btn-secondary">Cerrar</button>
+						<button type="submit" class="btn btn-danger">Borrar
+							amistad</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
