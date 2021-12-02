@@ -155,9 +155,10 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return ur.findByEmail(email);
 	}
 
+
 	@Override
-	public Optional<ArrayList<AmigoVO>> getSolicitudAmigo(int id, int id2) {
-		return ur.getSolicitudAmigo(id, id2);
+	public Optional<ArrayList<AmigoVO>> getAmigoUsuario(int id, int id2) {
+		return ur.getAmigoUsuario(id, id2);
 	}
 
 

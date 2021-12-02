@@ -5,10 +5,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.model.UsuarioVO;
@@ -26,41 +30,49 @@ public class UsersController {
 	@Autowired
 	ServiciosEntrada se;
 
-	
 	@GetMapping("/home")
-	public String homeUsu(Model m, @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "6") int size) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-		
-		UsuarioVO usuario=su.findByUsername(auth.getName()).get();
-		Paged<EntradaVO> postsPageados= se.entradasTablon(usuario.getIdusuario(), pageNumber, size).get();
-		m.addAttribute("usuario",usuario);
-		
-		
-		if(postsPageados.getPage().isEmpty()) {
+	public String homeUsu(Model m,
+			@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+			@RequestParam(name = "size", required = false, defaultValue = "6") int size) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		UsuarioVO usuario = su.findByUsername(auth.getName()).get();
+		Paged<EntradaVO> postsPageados = se.entradasTablon(usuario.getIdusuario(), pageNumber, size).get();
+		m.addAttribute("usuario", usuario);
+
+		if (postsPageados.getPage().isEmpty()) {
 			m.addAttribute("avisoTablon", "Aún no tienes <strong>TomoPosts</strong> en tu tablón de amigos");
-		}else {
+		} else {
 			m.addAttribute("posts", postsPageados);
 		}
 		return "app/home";
 	}
-	
 
 	@GetMapping("/perfil")
-	public String perfilUsuario(@RequestParam(required = true,name = "id") int id, Model m, @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "6") int size) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-		
-		String nombre= auth.getName();
-		UsuarioVO usuarioPerfil=su.findById(id).get();
-		UsuarioVO usuarioSesion=su.findByUsername(nombre).get();
-		Paged<EntradaVO> postsPageados= se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
+	public String perfilUsuario(@RequestParam(required = true, name = "id") int id, Model m,
+			@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+			@RequestParam(name = "size", required = false, defaultValue = "6") int size) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		boolean isAmigo = su.getSolicitudAmigo(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty();
-		
+		String nombre = auth.getName();
+		UsuarioVO usuarioPerfil = su.findById(id).get();
+		UsuarioVO usuarioSesion = su.findByUsername(nombre).get();
+		Paged<EntradaVO> postsPageados = se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
+
+		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get()
+				.isEmpty();
+
 		m.addAttribute("isAmigo", isAmigo);
-		m.addAttribute("usuarioSesion",usuarioSesion);
+		m.addAttribute("usuarioSesion", usuarioSesion);
 		m.addAttribute("usuarioPerfil", usuarioPerfil);
 		m.addAttribute("posts", postsPageados);
 		return "app/perfil";
 	}
-	
+
+	@PostMapping("/borrarAmistad/{id1}/{id2}")
+	public String borrarAmistad(@PathVariable int id1, @PathVariable int id2, ModelMap m) {
+		su.borrarAmistad(id1, id2);
+		return "redirect:/app/perfil?id="+id2;
+	}
+
 }

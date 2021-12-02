@@ -61,6 +61,9 @@
 							class="bi bi-chat-fill"></i></a></li>
 					<li><a class="dropdown-item" href="#">Amigos <i
 							class="bi bi-people-fill"></i></a></li>
+					<li
+						th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}"><a
+						class="dropdown-item">Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()">Cerrar
 							sesión <i class="bi bi-door-closed-fill"></i>
@@ -82,15 +85,15 @@
 	</header>
 
 	<div id="infoPerfil" class="container">
-		<div id="filaPerfil" class="row d-flex g-0 align-items-center my-5 shadow bg-light  border border-2 border-primary rounded mx-auto">
+		<div id="filaPerfil"
+			class="row d-flex g-0 align-items-center mt-5 mb-4 shadow bg-light  border border-2 border-primary rounded mx-auto">
 			<div class="col-12 col-md-6 mt-4 mb-3 d-flex justify-content-center">
 				<img id="imgPerfil"
 					class="img-fluid rounded-circle border border-3 border-dark"
 					th:src="${usuarioPerfil.foto} ? ${usuarioPerfil.foto} : '/images/fotoex.jpg'">
 			</div>
 
-			<div
-				class="col-12 col-md-6 d-flex flex-column my-2 p-3">
+			<div class="col-12 col-md-6 d-flex flex-column my-2 p-3">
 				<div class="display-1 fw-bold fs-1 text-center text-md-start mb-3"
 					th:text="${usuarioPerfil.username}"></div>
 				<div class="display-1 fs-3 my-2" th:text="${usuarioPerfil.nombre}"></div>
@@ -110,32 +113,61 @@
 
 		</div>
 		<div class="row">
-		<div>
-		<div th:unless="${#strings.equals(#authentication.name,usuarioPerfil.username)}" >
-		<a th:if="${isAmigo}" class="col-6 btn btn-primary">Solicitud de amistad</a>
-		<a th:if="${!isAmigo}" class="col-6 btn btn-primary">Ya sois amigos</a>
+			<div>
+				<div
+					th:unless="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
+					<div th:if="${!isAmigo}"
+						class="row align-items-center justify-content-center">
+						<div class="col-3 text-center">
+							<div class="fs-5">Ya sois amigos</div>
+							<form
+								th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
+								method="post">
+								<button type="submit" class="col-8 btn btn-danger mt-3 py-2">Borrar
+									amistad</button>
+							</form>
+
+						</div>
+						<div class="col-3 text-center">
+							<a class="col-8 btn btn-primary py-2">Ir a chat</a>
+						</div>
+
+					</div>
+					<div class="col-6 mx-auto text-center">
+						<a th:if="${isAmigo}" class="col-5 btn btn-primary py-2">Solicitud
+							de amistad</a>
+					</div>
+
+				</div>
+				<div
+					th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
+					<div class="row justify-content-center align-items-center">
+						<div class="col-3 text-center">
+							<a class="col-8 btn btn-primary py-2">Ajustes</a>
+						</div>
+						<div class="col-3 text-center">
+							<a class="col-8 btn btn-primary py-2">Chats</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}" >
-		<a class="col-6 btn btn-primary">Modificar perfil</a>
-		</div>
-		</div>
-		</div>
-		<hr class="mb-5"/>
+		<hr class="my-4" />
 	</div>
 	<div id="posts" class="container">
 		<div class="row justify-content-evenly gap-3 my-3">
 			<div
 				class="card col-12 col-xl-5 shadow bg-light border-primary border-1 px-0 my-2"
 				th:each="post: ${posts.page}">
-				
+
 				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img
 					th:src="${post.imagen}" class="card-img-top" alt="card-img-top"></a>
 				<div class="card-body d-flex flex-column">
 
 					<h5 class="card-title h4" th:text="${post.titulo}">Card title</h5>
 
-					<p class="card-subtitle pt-2 fs-5" th:text="${post.contenido}">This is a
-						wider card</p>
+					<p class="card-subtitle pt-2 fs-5" th:text="${post.contenido}">This
+						is a wider card</p>
 					<div class="card-text d-flex h-100">
 						<small id="diaSemanaPost" class="text-muted align-self-end col-1"
 							th:text="${#temporals.dayOfWeekNameShort(post.fecha)}">DAY</small>
