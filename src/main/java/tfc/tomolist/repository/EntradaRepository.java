@@ -24,4 +24,7 @@ public interface EntradaRepository extends CrudRepository<EntradaVO, Integer>{
 	
 	@Query("SELECT e FROM EntradaVO e, AmigoVO a WHERE (e.autor.idusuario=a.amigo1.idusuario OR e.autor.idusuario=a.amigo2.idusuario) AND (a.amigo1.idusuario=:id OR a.amigo2.idusuario=:id) AND a.aceptado=1 AND e.autor.idusuario!=:id ORDER BY e.fecha DESC")
 	Optional<Page<EntradaVO>> entradasTablon(@Param("id") int id, Pageable page);
+	
+	@Query("SELECT e FROM EntradaVO e WHERE e.autor.idusuario=:id ORDER BY e.fecha DESC")
+	Optional<Page<EntradaVO>> entradasPerfil(@Param("id") int id, Pageable page);
 }

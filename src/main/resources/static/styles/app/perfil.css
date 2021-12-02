@@ -28,8 +28,8 @@ header {
 }
 
 #imgPerfil{
-	max-width:225px;
-	height: 40vh;
+	max-width:130px;
+	height: 130px;
 	object-fit:cover;
 }
 
@@ -37,9 +37,31 @@ header {
 	text-transform: uppercase;
 }
 
-
+.card-img-top{
+	width:100%;
+	height:65vh;
+	object-fit:cover;
+}
 
 .likeIcon{
 	cursor:pointer;
 }
 
+@media (min-width: 768px){
+	#imgPerfil{
+	max-width:175px;
+	height: 175px;
+	object-fit:cover;
+	}
+	#filaPerfil{
+		width: 75%;
+	}
+}
+
+@media (min-width: 1200px){
+	#imgPerfil{
+	max-width:235px;
+	height: 235px;
+	object-fit:cover;
+}
+}

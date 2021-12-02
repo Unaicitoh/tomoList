@@ -46,13 +46,12 @@
 					th:text="${usuario.username}">USERNAME</button>
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li><a class="dropdown-item"
-						th:href="@{/app/perfil/}+${usuario.idusuario}">Perfil</a></li>
-					<li><a class="dropdown-item" href="#">Chat</a></li>
-					<li><a class="dropdown-item" href="#">Amigos</a></li>
+						th:href="@{/app/perfil(id=${usuario.idusuario})}">Perfil <i class="bi bi-person-workspace"></i></a></li>
+					<li><a class="dropdown-item" href="#">Chat <i class="bi bi-chat-fill"></i></a></li>
+					<li><a class="dropdown-item" href="#">Amigos <i class="bi bi-people-fill"></i></a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()">Cerrar
-							sesión <i class="bi bi-door-closed-fill"></i>
-					</a></li>
+							sesión <i class="bi bi-door-closed-fill"></i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,9 +75,9 @@
 
 				<img th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
 				<div class="card-body d-flex flex-column">
-					<h5 class="card-subtitle" th:text="${post.titulo}">Card title</h5>
+					<h5 class="card-subtitle h3" th:text="${post.titulo}">Card title</h5>
 
-					<p class="card-text pt-2" th:text="${post.contenido}">This is a
+					<p class="card-text pt-2 fs-5" th:text="${post.contenido}">This is a
 						wider card</p>
 					<div class="card-text d-flex h-100">
 						<small id="diaSemanaPost" class="text-muted align-self-end col-2"

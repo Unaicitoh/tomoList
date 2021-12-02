@@ -32,28 +32,9 @@ $(document).ready(function() {
 	$("#search-icon").click(function() {
 		if ($("#searcher").data("id") != undefined) {
 			var id = $("#searcher").data("id");
-			location.href = "/app/perfil/" + id;
+			location.href = "/app/perfil?id=" + id;
 		}
 	});
-
-	//Estilos POSTS header y Link
-	var headers = $(".card-header");
-	headers.click(function() {
-		var idUsuario = $(this).children().last().val();
-		location.href = "/app/perfil/" + idUsuario;
-	});
-
-	headers.hover(function() {
-		var ele = $(this);
-		ele.toggleClass("bg-white");
-		ele.toggleClass("bg-dark");
-		ele.children().first().find("img").toggleClass("border-dark");
-		ele.children().first().find("img").toggleClass("border-white");
-		ele.children("h3").toggleClass("text-light");
-		ele.children("h3").toggleClass("text-dark");
-
-	});
-
 
 
 

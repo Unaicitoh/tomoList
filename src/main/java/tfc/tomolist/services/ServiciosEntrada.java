@@ -41,6 +41,8 @@ public interface ServiciosEntrada {
 	//Entradas para la página principal de usuario registrados
 	Optional<Paged<EntradaVO>> entradasTablon(int id, int pageNumber, int size);
 	
+	Optional<Paged<EntradaVO>> entradasPerfil(int id, int pageNumber, int size);
+	
 	//Numero de comentarios de la entrada
 	int numeroComentarios(int id);
 	

@@ -64,7 +64,7 @@
 					th:text="${usuario.username}">USERNAME</button>
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li><a class="dropdown-item"
-						th:href="@{/app/perfil/}+${usuario.idusuario}">Perfil <i class="bi bi-person-workspace"></i></a></li>
+						th:href="@{/app/perfil(id=${usuario.idusuario})}">Perfil <i class="bi bi-person-workspace"></i></a></li>
 					<li><a class="dropdown-item" href="#">Chat <i class="bi bi-chat-fill"></i></a></li>
 					<li><a class="dropdown-item" href="#">Amigos <i class="bi bi-people-fill"></i></a></li>
 					<li><a class="dropdown-item text-danger" href="#"
@@ -104,7 +104,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-xl-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" th:href="@{/app/home}">Home</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/app/perfil/{id}(id=${usuario.idusuario})}">Perfil <i class="bi bi-person-workspace"></i></a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/app/perfil(id=${usuario.idusuario})}">Perfil <i class="bi bi-person-workspace"></i></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chat <i class="bi bi-chat"></i></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Amigos <i class="bi bi-people"></i></a></li>
 				</ul>
@@ -137,9 +137,9 @@
 				</div>
 				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img th:src="${post.imagen}" class="card-img-top" alt="card-img-top"></a>
 				<div class="card-body d-flex flex-column">
-					<h5 class="card-subtitle" th:text="${post.titulo}">Card title</h5>
+					<h5 class="card-subtitle h4" th:text="${post.titulo}">Card title</h5>
 
-					<p class="card-text pt-2" th:text="${post.contenido}">This is a
+					<p class="card-text pt-2 fs-5" th:text="${post.contenido}">This is a
 						wider card</p>
 					<div class="card-text d-flex h-100">
 						<small id="diaSemanaPost" class="text-muted align-self-end col-1"

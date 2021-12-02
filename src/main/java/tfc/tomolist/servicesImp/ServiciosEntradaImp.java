@@ -102,5 +102,12 @@ public class ServiciosEntradaImp implements ServiciosEntrada {
 		return er.getMegustas(id).get().size();
 	}
 
+	@Override
+	public Optional<Paged<EntradaVO>> entradasPerfil(int id, int pageNumber, int size) {
+		PageRequest request = PageRequest.of(pageNumber - 1, size);
+        Page<EntradaVO> postPage = er.entradasPerfil(id, request).get();
+        return Optional.of(new Paged<EntradaVO>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size)));
+	}
+
 	
 }

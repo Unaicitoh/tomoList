@@ -13,7 +13,7 @@ $(document).ready(function() {
 	var headers = $(".card-header");
 	headers.click(function() {
 		var idUsuario = $(this).children().last().val();
-		location.href = "/app/perfil/" + idUsuario;
+		location.href = "/app/perfil?id=" + idUsuario;
 	});
 
 	headers.hover(function() {

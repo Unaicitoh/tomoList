@@ -45,16 +45,18 @@ public class UsersController {
 	}
 	
 
-	@GetMapping("/perfil/{id}")
-	public String perfilUsuario(@PathVariable int id, Model m) {
+	@GetMapping("/perfil")
+	public String perfilUsuario(@RequestParam(required = true,name = "id") int id, Model m, @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber, @RequestParam(name = "size", required = false, defaultValue = "6") int size) {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		
 		String nombre= auth.getName();
 		UsuarioVO usuarioPerfil=su.findById(id).get();
 		UsuarioVO usuarioSesion=su.findByUsername(nombre).get();
-		
+		Paged<EntradaVO> postsPageados= se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
+
 		m.addAttribute("usuarioSesion",usuarioSesion);
 		m.addAttribute("usuarioPerfil", usuarioPerfil);
+		m.addAttribute("posts", postsPageados);
 		return "app/perfil";
 	}
 	
