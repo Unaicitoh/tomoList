@@ -18,9 +18,7 @@
 --
 -- Table structure for table `amigos`
 --
-use heroku_a52c091b5c5c5e8;
-set global innodb_file_format = BARRACUDA;
-set global innodb_large_prefix = ON;
+use heroku_41ce6890511c518;
 
 DROP TABLE IF EXISTS `amigos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
