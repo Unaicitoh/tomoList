@@ -27,11 +27,11 @@
 	<header class="container-fluid bg-gradient shadow-sm">
 		<div class="row d-flex align-items-center justify-content-md-between">
 			<div class="d-flex col-12 ms-sm-5 col-sm-1 justify-content-center">
-				<a th:href="@{/app/home}"><img
-					th:src="@{/images/LogoTomoList.png}" height="50px"
+				<a th:href="@{/app/home}"><img id="logo"
+					th:src="@{/images/LogoTomoList.png}" height="50px" width="105px"
 					alt="img-thumbnail"></a>
 			</div>
-			<div class="col-12 col-sm-5 mx-auto w-auto display-1 text-light pb-2">Comentarios</div>
+			<div class="col-12 col-sm-5 mx-auto w-auto display-1 text-light text-center pb-2">Comentarios</div>
 			<div
 				class="btn-group col-8 col-sm-6 col-md-4 col-lg-3 col-xxl-2 mx-auto mx-md-0 py-2 gap-1">
 				<div id="card-header"
@@ -74,17 +74,42 @@
 					<div class="img-container-usuario-post">
 						<img id="imgUsuarioPost"
 							class="bg-white border rounded-circle border-dark"
-							th:src="@{${post.autor.foto}}">
+							th:src="${post.autor.foto} ? ${post.autor.foto} : '/images/fotoex.jpg'">
 					</div>
 					<h3 class="card-title display-1 fs-2 text-dark"
 						th:text="${post.autor.username}">Nombre autor</h3>
 					<input type="hidden" th:value="${post.autor.idusuario}">
 				</div>
 
-				<img th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
+				<img th:if="${#strings.startsWith(post.imagen,'http')}"
+					th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
+				<img th:unless="${#strings.startsWith(post.imagen,'http')}"
+					th:src="@{/images/entradaex.jpg}" class="card-img-top"
+					alt="card-img-top">
 				<div class="card-body d-flex flex-column">
-					<h5 class="card-subtitle h3" th:text="${post.titulo}">Card
-						title</h5>
+					<div class="row">
+						<h5 class="card-subtitle fs-4 col-9 col-sm-10 col-md-11 col-lg-10"
+							th:text="${post.titulo}">Card title</h5>
+						<div
+							th:if="${#strings.equals(#authentication.name,post.autor.username)}"
+							class="btn-group  col-3 col-sm-2 col-md-1 col-lg-2">
+							<button type="button"
+								class="btn btn-primary text-dark bg-transparent border border-0 rounded"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-pencil-square text-secondary fs-5"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li><a class="dropdown-item text-info"
+									th:href="@{/app/updatePost/{id}(id=${post.identrada})}"><i
+										class="bi bi-file-earmark-diff me-2"></i>Modificar</a></li>
+								<li><a class="dropdown-item text-danger"
+									data-bs-toggle="modal" data-bs-target="#modalBorrarEntrada"
+									href="#"><i class="bi bi-file-x me-2"></i>Borrar</a></li>
+
+							</ul>
+						</div>
+					</div>
+
 
 					<p class="card-text pt-2 fs-5" th:text="${post.contenido}">This
 						is a wider card</p>
@@ -121,7 +146,7 @@
 							</div>
 							<button id="newComment" type="submit"
 								class="btn btn-success col-3 col-md-2 ms-2 my-3 disabled">
-								<i class="bi bi-send-fill"></i> Enviar
+								<i class="bi bi-send-fill me-1"></i> Enviar
 							</button>
 						</div>
 
@@ -150,16 +175,18 @@
 							<div class="img-container-usuario-post">
 								<img id="imgUsuarioPost"
 									class="bg-white border rounded-circle border-dark"
-									th:src="@{${comentario.usuario.foto}}">
+									th:src="${comentario.usuario.foto}?${comentario.usuario.foto}:'/images/fotoex.jpg'">
 							</div>
 							<h3 class="card-title display-1 fs-2 text-dark"
 								th:text="${comentario.usuario.username}">Nombre autor</h3>
 							<input type="hidden" th:value="${comentario.usuario.idusuario}">
 						</div>
-						<div class="card-body">
-							<p class="card-text" th:text="*{comentario.contenido}">With
-								supporting text below as a natural lead-in to additional
-								content.</p>
+						<div class="card-body d-flex justify-content-between">
+							<p class="card-text my-auto" th:text="*{comentario.contenido}">With
+								supporting text below.</p>
+								<form method="post" th:action="@{/app/borrarComentario/{id}/{idE}(id=${comentario.idcomentario},idE=${post.identrada})}">
+								<button th:if="${comentario.usuario.idusuario==usuario.idusuario}" class="btn btn-danger" type="submit"><i class="bi bi-x-lg"></i></button>
+								</form>
 						</div>
 						<div class="card-footer text-muted">
 							<small id="diaSemanaPost" class="me-2"
@@ -213,6 +240,30 @@
 			</div>
 		</div>
 	</footer>
+
+	<div id="modalBorrarEntrada" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalVerticallyCenteredLabel">Eliminando
+						entrada...</h5>
+					<button type="button" data-bs-dismiss="modal" class="btn-close"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Estás seguro de eliminar tu post?</div>
+				<div class="modal-footer">
+					<form th:action="@{/app/borrarPost/{id}(id=${post.identrada})}"
+						method="post">
+						<button type="button" data-bs-dismiss="modal"
+							class="btn btn-secondary">Cerrar</button>
+						<button type="submit" class="btn btn-danger">
+							<i class="bi bi-trash me-1"></i>Borrar entrada
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<input id="idu" type="hidden" th:value="${usuario.idusuario}" />
 
 	<form id="formLogout" method="post" th:action="@{/logout}"></form>

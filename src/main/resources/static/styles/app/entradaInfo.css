@@ -19,4 +19,10 @@ header {
 #ajustes:hover{
 	cursor:pointer;
 }
+@media (min-width: 1000px){
 
+	#logo{
+	height: 70px;
+	width: 150px;
+	}
+}

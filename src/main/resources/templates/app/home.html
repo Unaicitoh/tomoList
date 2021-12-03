@@ -141,19 +141,21 @@
 					<div class="img-container-usuario-post">
 						<img id="imgUsuarioPost"
 							class="bg-white border rounded-circle border-dark"
-							th:src="@{${post.autor.foto}}">
+							th:src="${post.autor.foto} ? ${post.autor.foto} : '/images/fotoex.jpg'">
 					</div>
 					<h3 class="card-title display-1 fs-2 text-dark"
 						th:text="${post.autor.username}">Nombre autor</h3>
 					<input type="hidden" th:value="${post.autor.idusuario}">
 				</div>
-				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img
-					th:src="${post.imagen}" class="card-img-top" alt="card-img-top"></a>
+				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img th:if="${#strings.startsWith(post.imagen,'http')}"
+					th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
+					<img th:unless="${#strings.startsWith(post.imagen,'http')}"
+					th:src="@{/images/entradaex.jpg}" class="card-img-top" alt="card-img-top"></a>
 				<div class="card-body d-flex flex-column">
-					<h5 class="card-subtitle h4" th:text="${post.titulo}">Card
+					<h5 class="card-subtitle fs-5" th:text="${post.titulo}">Card
 						title</h5>
 
-					<p class="card-text pt-2 fs-5" th:text="${post.contenido}">This
+					<p class="card-text pt-2" th:text="${post.contenido}">This
 						is a wider card</p>
 					<div class="card-text d-flex h-100">
 						<small id="diaSemanaPost" class="text-muted align-self-end col-1"
@@ -180,7 +182,7 @@
 						th:classappend="${!posts.paging.isPrevEnabled()? 'disabled' : ''}">
 						<a class="page-link"
 						th:href="@{'/app/home?pageNumber=' + ${posts.paging.pageNumber - 1}}"
-						tabindex="-1">Previous</a>
+						tabindex="-1">Anterior</a>
 					</li>
 					<th:block th:each="item : ${posts.paging.getItems()}">
 						<li class="page-item"
@@ -196,7 +198,7 @@
 					<li class="page-item"
 						th:classappend="${!posts.paging.isNextEnabled()? 'disabled' : ''}">
 						<a class="page-link"
-						th:href="@{'/app/home?pageNumber=' + ${posts.paging.pageNumber + 1}}">Next</a>
+						th:href="@{'/app/home?pageNumber=' + ${posts.paging.pageNumber + 1}}">Siguiente</a>
 					</li>
 				</ul>
 			</nav>

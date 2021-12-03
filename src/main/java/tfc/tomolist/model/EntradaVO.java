@@ -30,11 +30,12 @@ public class EntradaVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int identrada;
-	@NotEmpty
+	@NotEmpty(message = "Titulo obligatorio")
 	@Column(length = 70, nullable = false)
 	private String titulo;
 	@Column(length = 250)
 	private String contenido;
+	@NotEmpty(message = "URL de imagen obligatorio")
 	@Column(length = 500)
 	private String imagen;
 	@Column(nullable = false)

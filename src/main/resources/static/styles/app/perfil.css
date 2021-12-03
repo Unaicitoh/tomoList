@@ -60,7 +60,13 @@ header {
 	#filaPerfil{
 		width: 75%;
 	}
+	#logo{
+	height: 70px;
+	width: 150px;
+	}
 }
+
+
 
 @media (min-width: 1200px){
 	#imgPerfil{

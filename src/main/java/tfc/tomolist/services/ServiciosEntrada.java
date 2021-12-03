@@ -48,4 +48,7 @@ public interface ServiciosEntrada {
 	
 	//Numero de likes de la entrada
 	int numeroDeLikes(int id);
+	
+	Optional<ComentarioVO> getComentarioUsuario(int id,int id2);
+
 }

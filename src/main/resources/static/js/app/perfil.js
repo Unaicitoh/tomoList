@@ -36,6 +36,15 @@ $(document).ready(function() {
 		}
 	});
 
+	//Evento borrar entrada
+	$(".link-modal").click(function(){
+		entradaActual=this.parentElement.parentElement.nextElementSibling.value;
+	});
+	
+	$("#btn-borrar-entrada").click(function(){
+		$("#form-entrada").attr("action","/app/borrarPost/"+entradaActual);
+		$("#form-entrada").submit;
+	});
 
 
 });

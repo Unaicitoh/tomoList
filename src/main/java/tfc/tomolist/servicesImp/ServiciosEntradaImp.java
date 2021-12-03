@@ -109,5 +109,11 @@ public class ServiciosEntradaImp implements ServiciosEntrada {
         return Optional.of(new Paged<EntradaVO>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size)));
 	}
 
+	@Override
+	public Optional<ComentarioVO> getComentarioUsuario(int id, int id2) {
+		
+		return er.getComentarioUsuario(id, id2);
+	}
+
 	
 }

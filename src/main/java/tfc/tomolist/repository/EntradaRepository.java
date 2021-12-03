@@ -19,6 +19,9 @@ public interface EntradaRepository extends CrudRepository<EntradaVO, Integer>{
 	@Query("SELECT c FROM ComentarioVO c WHERE c.entrada.identrada=:id ORDER BY c.fecha DESC")
 	Optional<ArrayList<ComentarioVO>> getComentarios(@Param("id") int id);
 	
+	@Query("SELECT c FROM ComentarioVO c WHERE c.idcomentario=:id AND c.usuario.idusuario=:id2")
+	Optional<ComentarioVO> getComentarioUsuario(@Param("id") int id, @Param("id2") int id2);
+	
 	@Query("SELECT m FROM MegustaVO m WHERE m.entrada.identrada=:id")
 	Optional<ArrayList<MegustaVO>> getMegustas(@Param("id") int id);
 	
