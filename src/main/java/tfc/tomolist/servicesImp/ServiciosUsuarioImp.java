@@ -161,6 +161,11 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return ur.getAmigoUsuario(id, id2);
 	}
 
+	@Override
+	public Optional<ArrayList<AmigoVO>> getSolicitudUsuario(int id, int id2) {
+		return ur.getSolicitudUsuario(id, id2);
+	}
+
 
 
 

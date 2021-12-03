@@ -46,6 +46,10 @@ header {
 .likeIcon{
 	cursor:pointer;
 }
+#ajustes:hover{
+	cursor:pointer;
+}
+
 
 @media (min-width: 768px){
 	#imgPerfil{

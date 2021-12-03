@@ -72,6 +72,8 @@ public interface ServiciosUsuario {
 	
 	Optional<ArrayList<AmigoVO>> getAmigoUsuario(@Param("id") int id, @Param("id2") int id2);
 	
+	Optional<ArrayList<AmigoVO>> getSolicitudUsuario(@Param("id") int id, @Param("id2") int id2);
+	
 	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id);
 	
 }

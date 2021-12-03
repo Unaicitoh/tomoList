@@ -54,20 +54,18 @@
 					th:text="${usuarioSesion.username}">USERNAME</button>
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li><a class="dropdown-item"
-						th:href="@{/app/perfil(id=${usuarioSesion.idusuario})}">Perfil
-							<i class="bi bi-person-workspace"></i>
-					</a></li>
-					<li><a class="dropdown-item" href="#">Chat <i
-							class="bi bi-chat-fill"></i></a></li>
-					<li><a class="dropdown-item" href="#">Amigos <i
-							class="bi bi-people-fill"></i></a></li>
-					<li
-						th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}"><a
-						class="dropdown-item">Ajustes</a></li>
+						th:href="@{/app/perfil(id=${usuarioSesion.idusuario})}"><i
+							class="bi bi-person-workspace me-2"></i>Perfil </a></li>
+					<li><a class="dropdown-item" href="#"><i
+							class="bi bi-chat-fill me-2"></i>Chat</a></li>
+					<li><a class="dropdown-item" href="#"><i
+							class="bi bi-people-fill me-2"></i>Amigos</a></li>
+					<li id="ajustes"
+						th:if="${#strings.equals(#authentication.name,usuarioSesion.username)}"><a
+						class="dropdown-item"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
-						onclick="javascipt:document.getElementById('formLogout').submit()">Cerrar
-							sesión <i class="bi bi-door-closed-fill"></i>
-					</a></li>
+						onclick="javascipt:document.getElementById('formLogout').submit()"><i
+							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>
 				</ul>
 			</div>
 			<div
@@ -112,47 +110,71 @@
 
 
 		</div>
-		<div class="row">
-			<div>
-				<div
-					th:unless="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
-					<div th:if="${!isAmigo}"
-						class="row align-items-center justify-content-center">
-						<div class="col-3 text-center">
-							<div class="fs-5">Ya sois amigos</div>
-
-							<button class="col-8 btn btn-warning mt-3 py-2" data-bs-toggle="modal" data-bs-target="#modal">Borrar
-								amistad</button>
-
-						</div>
-						<div class="col-3 text-center">
-							<a class="col-8 btn btn-primary py-2">Ir a chat</a>
-						</div>
-
-					</div>
-					<div class="col-6 mx-auto text-center">
-						<a th:if="${isAmigo}" class="col-5 btn btn-primary py-2">Solicitud
-							de amistad</a>
-					</div>
-
-				</div>
-				<div
-					th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
-					<div class="row justify-content-center align-items-center">
-						<div class="col-3 text-center">
-							<a class="col-8 btn btn-primary py-2">Ajustes</a>
-						</div>
-						<div class="col-3 text-center">
-							<a class="col-8 btn btn-primary py-2">Chats</a>
-						</div>
+		<div
+			th:unless="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
+			<div th:if="${!isAmigo}"
+				class="row align-items-center justify-content-center mb-5">
+				<div class="col-12">
+					<div
+						class="col-6 col-md-3 alert alert-success fs-5 text-center mx-auto d-flex align-items-center justify-content-center">
+						<i class="bi bi-person-check d-flex flex-shrink-0 me-2" role="img"></i>
+						<div>Ya sois amigos</div>
 					</div>
 				</div>
+
+				<div class="row justify-content-center align-items-center gap-5">
+					<a class="col-4 col-md-2 btn btn-primary py-2"><i
+						class="bi bi-chat-right-quote me-1"></i> Ir a chat</a>
+					<button class="col-4 col-md-2 btn btn-danger py-2"
+						data-bs-toggle="modal" data-bs-target="#modalBorrar">
+						<i class="bi bi-person-dash me-1"></i> Borrar amistad
+					</button>
+				</div>
+
+			</div>
+			<div class="col-10 mx-auto text-center mb-5">
+				<form method="post"
+					th:action="@{/app/newSolicitud/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}">
+					<button th:if="${isAmigo and isSolicitud}"
+						class="col-8 col-md-3 btn btn-primary py-2">
+						<i class="bi bi-person-plus"></i> Solicitud de amistad
+					</button>
+				</form>
+				<button th:if="${isAmigo and !isSolicitud}" data-bs-toggle="modal"
+					data-bs-target="#modalSolicitud"
+					class="col-8 col-md-3 btn btn-info py-2">
+					<i class="bi bi-person"></i> Solicitud pendiente
+				</button>
 			</div>
 		</div>
-		<hr class="my-4" />
+
+
+
+		<div
+			th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
+			<div class="row justify-content-center align-items-center mb-5">
+			<div class="col-6 col-md-5 col-lg-3 text-center">
+					<a class="col-12 col-md-6  btn btn-success py-2"><i
+						class="bi bi-file-post-fill"></i> Crear entrada</a>
+				</div>
+				<div class="col-6 col-md-5 col-lg-3 text-center">
+					<a class="col-12 col-md-6 btn btn-primary py-2"><i
+						class="bi bi-gear"></i> Ajustes</a>
+				</div>
+				
+			</div>
+		</div>
+
 	</div>
+	<div class="container">
+		<div class="row">
+			<hr class="my-4" />
+		</div>
+
+	</div>
+
 	<div id="posts" class="container">
-		<div class="row justify-content-evenly gap-3 my-3">
+		<div class="row justify-content-evenly gap-3 my-5">
 			<div
 				class="card col-12 col-xl-5 shadow bg-light border-primary border-1 px-0 my-2"
 				th:each="post: ${posts.page}">
@@ -213,22 +235,50 @@
 
 		</div>
 	</div>
-	<div id="modal" class="modal" tabindex="-1">
+	<div id="modalBorrar" class="modal" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="modalVerticallyCenteredLabel">Eliminando
-						amigo...</h5>
-					<button type="button" class="btn-close" aria-label="Close"></button>
+						amistad...</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">¿Estás seguro de eliminar a tu amigo?</div>
 				<div class="modal-footer">
 					<form
 						th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
 						method="post">
-						<button type="button" class="btn btn-secondary">Cerrar</button>
-						<button type="submit" class="btn btn-danger">Borrar
-							amistad</button>
+						<button type="button" data-bs-dismiss="modal"
+							class="btn btn-secondary">Cerrar</button>
+						<button type="submit" class="btn btn-danger">
+							Borrar amistad
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modalSolicitud" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalVerticallyCenteredLabel">Eliminando
+						solicitud...</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Estás seguro de eliminar solictud de
+					amistad?</div>
+				<div class="modal-footer">
+					<form
+						th:action="@{/app/borrarSolicitud/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
+						method="post">
+						<button type="button" data-bs-dismiss="modal"
+							class="btn btn-secondary">Cerrar</button>
+						<button type="submit" class="btn btn-danger">
+							<i class="bi bi-person-dash"></i> Borrar solicitud
+						</button>
 					</form>
 				</div>
 			</div>

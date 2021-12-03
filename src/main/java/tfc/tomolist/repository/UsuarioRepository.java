@@ -29,6 +29,9 @@ public interface UsuarioRepository extends CrudRepository<UsuarioVO, Integer> {
 	@Query("SELECT a FROM AmigoVO a WHERE a.amigo1.idusuario=:id AND a.amigo2.idusuario=:id2 AND a.aceptado=1")
 	Optional<ArrayList<AmigoVO>> getAmigoUsuario(@Param("id") int id, @Param("id2") int id2);
 	
+	@Query("SELECT a FROM AmigoVO a WHERE a.amigo1.idusuario=:id AND a.amigo2.idusuario=:id2 AND a.aceptado=0")
+	Optional<ArrayList<AmigoVO>> getSolicitudUsuario(@Param("id") int id, @Param("id2") int id2);
+	
 	@Query("SELECT a FROM AmigoVO a WHERE a.amigo2.idusuario=:id AND a.aceptado=0")
 	Optional<ArrayList<AmigoVO>> getSolicitudes(@Param("id") int id);
 	

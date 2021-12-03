@@ -6,17 +6,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
+import tfc.tomolist.model.AmigoVO;
 import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.model.UsuarioVO;
 import tfc.tomolist.model.pagination.Paged;
+import tfc.tomolist.services.ServiciosAmigo;
 import tfc.tomolist.services.ServiciosEntrada;
 import tfc.tomolist.services.ServiciosUsuario;
 
@@ -30,6 +30,9 @@ public class UsersController {
 	@Autowired
 	ServiciosEntrada se;
 
+	@Autowired
+	ServiciosAmigo sa;
+	
 	@GetMapping("/home")
 	public String homeUsu(Model m,
 			@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
@@ -61,7 +64,10 @@ public class UsersController {
 
 		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get()
 				.isEmpty();
-
+		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get()
+				.isEmpty();
+		
+		m.addAttribute("isSolicitud", isSolicitud);
 		m.addAttribute("isAmigo", isAmigo);
 		m.addAttribute("usuarioSesion", usuarioSesion);
 		m.addAttribute("usuarioPerfil", usuarioPerfil);
@@ -70,7 +76,23 @@ public class UsersController {
 	}
 
 	@PostMapping("/borrarAmistad/{id1}/{id2}")
-	public String borrarAmistad(@PathVariable int id1, @PathVariable int id2, ModelMap m) {
+	public String borrarAmistad(@PathVariable int id1, @PathVariable int id2) {
+		su.borrarAmistad(id1, id2);
+		return "redirect:/app/perfil?id="+id2;
+	}
+	
+	@PostMapping("/newSolicitud/{id1}/{id2}")
+	public String solicitudAmistad(@PathVariable int id1, @PathVariable int id2) {
+		AmigoVO am=new AmigoVO();
+		am.setAceptado(false);
+		am.setAmigo1(su.findById(id1).get());
+		am.setAmigo2(su.findById(id2).get());
+		sa.save(am);
+		return "redirect:/app/perfil?id="+id2;
+	}
+	
+	@PostMapping("/borrarSolicitud/{id1}/{id2}")
+	public String borrarSolicitud(@PathVariable int id1, @PathVariable int id2) {
 		su.borrarAmistad(id1, id2);
 		return "redirect:/app/perfil?id="+id2;
 	}
