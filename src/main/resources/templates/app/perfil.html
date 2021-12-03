@@ -154,7 +154,7 @@
 			th:if="${#strings.equals(#authentication.name,usuarioPerfil.username)}">
 			<div class="row justify-content-center align-items-center mb-5">
 			<div class="col-6 col-md-5 col-lg-3 text-center">
-					<a class="col-12 col-md-6  btn btn-success py-2"><i
+					<a class="col-12 col-md-6  btn btn-success py-2" th:href="@{/app/newPost}"><i
 						class="bi bi-file-post-fill"></i> Crear entrada</a>
 				</div>
 				<div class="col-6 col-md-5 col-lg-3 text-center">

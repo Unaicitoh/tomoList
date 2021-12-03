@@ -1,0 +1,22 @@
+
+
+:root {
+	--main-color: rgb(89, 89, 255);
+	}
+
+
+header {
+	background-color: var(--main-color);
+}
+
+
+#img_header {
+	width: 38px;
+	height: 38px;
+	object-fit: cover;
+}
+
+#ajustes:hover{
+	cursor:pointer;
+}
+

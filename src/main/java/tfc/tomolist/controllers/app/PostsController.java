@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import tfc.tomolist.model.ComentarioVO;
+import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.services.ServiciosComentario;
 import tfc.tomolist.services.ServiciosEntrada;
 import tfc.tomolist.services.ServiciosUsuario;
@@ -68,5 +69,14 @@ public class PostsController {
 			return new ModelAndView("app/comentarios", m);
 		}
 	}
-
+	
+	@GetMapping("newPost")
+	public String crearEntrada(Model m) {
+		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		
+		m.addAttribute("usuario", su.findByUsername(auth.getName()).get());
+		m.addAttribute("entrada", new EntradaVO());
+		
+		return "app/newEntrada";
+	}
 }
