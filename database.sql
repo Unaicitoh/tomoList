@@ -18,13 +18,13 @@
 --
 -- Table structure for table `amigos`
 --
-
+use heroku_a52c091b5c5c5e8;
 set global innodb_file_format = BARRACUDA;
 set global innodb_large_prefix = ON;
 
 DROP TABLE IF EXISTS `amigos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `amigos` (
   `idamistad` int NOT NULL AUTO_INCREMENT,
   `aceptado` bit(1) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `amigos` (
   KEY `FK32jvyjhq2ydh3jwj2xglltr4x` (`idreceptor`),
   CONSTRAINT `FK32jvyjhq2ydh3jwj2xglltr4x` FOREIGN KEY (`idreceptor`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE,
   CONSTRAINT `FKeue3ijaf5vc1r8h7vqin79oju` FOREIGN KEY (`idautor`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +54,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `comentarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `comentarios` (
   `idcomentario` int NOT NULL AUTO_INCREMENT,
   `contenido` varchar(150) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE `comentarios` (
   CONSTRAINT `FK9bfwtu5ra26c6rfl1lq8lirw5` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE,
   CONSTRAINT `FKn8ppt4l7qgixlnnp40uu4jkc` FOREIGN KEY (`idcomentpadre`) REFERENCES `comentarios` (`idcomentario`) ON DELETE CASCADE,
   CONSTRAINT `FKs9v5xs7799qd5lr6gura8yuh2` FOREIGN KEY (`identrada`) REFERENCES `entradas` (`identrada`) ON DELETE CASCADE
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entradas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `entradas` (
   `identrada` int NOT NULL AUTO_INCREMENT,
   `contenido` varchar(250) DEFAULT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE `entradas` (
   PRIMARY KEY (`identrada`),
   KEY `FKk6vgw5y6weua7p7h75ejhyb26` (`idautor`),
   CONSTRAINT `FKk6vgw5y6weua7p7h75ejhyb26` FOREIGN KEY (`idautor`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `megustas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `megustas` (
   `idmegusta` int NOT NULL AUTO_INCREMENT,
   `identrada` int DEFAULT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `megustas` (
   KEY `FKoqelf67v701plrxvsfaci22ou` (`idusuario`),
   CONSTRAINT `FK30aaek17ead0mdmlq6ysq8pet` FOREIGN KEY (`identrada`) REFERENCES `entradas` (`identrada`) ON DELETE CASCADE,
   CONSTRAINT `FKoqelf67v701plrxvsfaci22ou` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `mensajes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `mensajes` (
   `idmensaje` int NOT NULL AUTO_INCREMENT,
   `contenido` varchar(250) NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE `mensajes` (
   KEY `FKn57x1hl2pqmwmtkkaiqbhwudi` (`idreceptor`),
   CONSTRAINT `FKktrcn8vx7c423aqprc9whbwbf` FOREIGN KEY (`idautor`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE,
   CONSTRAINT `FKn57x1hl2pqmwmtkkaiqbhwudi` FOREIGN KEY (`idreceptor`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,12 +178,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
   `idrol` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`idrol`)
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +202,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `idusuario` int NOT NULL AUTO_INCREMENT,
   `biografia` varchar(300) DEFAULT NULL,
@@ -223,7 +223,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `UK_m2dvbwfge291euvmk6vkkocao` (`username`),
   KEY `FKa9re6cim5apoodf980gsxwgh7` (`idrol`),
   CONSTRAINT `FKa9re6cim5apoodf980gsxwgh7` FOREIGN KEY (`idrol`) REFERENCES `roles` (`idrol`)
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
