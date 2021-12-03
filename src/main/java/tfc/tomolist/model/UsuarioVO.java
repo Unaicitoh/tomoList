@@ -54,9 +54,9 @@ public class UsuarioVO implements UserDetails{
 	@Size(min=4,max = 14,message = "El nickname debe tener entre 4 y 14 carácteres")
 	@Column(length = 14, nullable = false, unique = true)
 	private String username;
-	@Column(length = 500, nullable = false)
+	@Column(length = 150, nullable = false)
 	private String password;
-	@Column(length = 500, nullable = false)
+	@Column(length = 150, nullable = false)
 	@ValidPassword
 	private String rawpass;
 	@Column(nullable = false)
@@ -65,11 +65,11 @@ public class UsuarioVO implements UserDetails{
 	@Size(max = 1, message = "Solo un cáracter")
 	@Column(length = 1)
 	private String genero;
-	@Size(max=500, message = "URL de imagen superior a 500 carácteres")
-	@Column(length = 500)
+	@Size(max=250, message = "URL de imagen superior a 250 carácteres")
+	@Column(length = 250)
 	private String foto;
-	@Size(min = 0, max = 1000, message = "Biografía superior a 1000 carácteres")
-	@Column(length = 1000)
+	@Size(min = 0, max = 300, message = "Biografía superior a 300 carácteres")
+	@Column(length = 300)
 	private String biografia;
 	@Size(min = 0, max = 40, message = "Nº telefónico debe tener menos 40 dígitos")
 	@Column(length = 40)

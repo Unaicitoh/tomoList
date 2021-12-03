@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -30,7 +31,8 @@ public class MensajeVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idmensaje;
-	@Column(length = 1000, nullable = false)
+	@Size(message = "Mensaje superior a 250 carácteres")
+	@Column(length = 250, nullable = false)
 	@NotBlank(message = "Inserta contenido en entrada")
 	private String contenido;
 	@Column(nullable = false)
