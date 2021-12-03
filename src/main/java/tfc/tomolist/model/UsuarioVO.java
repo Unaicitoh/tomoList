@@ -51,7 +51,7 @@ public class UsuarioVO implements UserDetails{
 	private String email;
 	@Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "Nickname solo permite carácteres alfanuméricos o \"-\",\"_\" y \".\"")
 	@NotBlank(message="Nickname no puede estar vacio")
-	@Size(min=4,max = 18,message = "El nickname debe tener entre 4 y 14 carácteres")
+	@Size(min=4,max = 14,message = "El nickname debe tener entre 4 y 14 carácteres")
 	@Column(length = 14, nullable = false, unique = true)
 	private String username;
 	@Column(length = 500, nullable = false)
