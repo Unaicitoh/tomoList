@@ -5,7 +5,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
-<title th:text="'Perfil de '+${usuarioPerfil.username}">Perfil</title>
+<title th:text="'Perfil '+${usuarioPerfil.username}">Perfil</title>
 <link rel="icon" th:href="@{/images/LogoTomo.png}" type="image/x-icon">
 <link rel="stylesheet" href="/styles/app/perfil.css" />
 <link
@@ -62,7 +62,7 @@
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
 						th:if="${#strings.equals(#authentication.name,usuarioSesion.username)}"><a
-						class="dropdown-item"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
+						class="dropdown-item" th:href="@{/app/updateUsuario}"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()"><i
 							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>

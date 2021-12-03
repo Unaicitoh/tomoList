@@ -55,7 +55,7 @@
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
 						th:if="${#strings.equals(#authentication.name,usuario.username)}"><a
-						class="dropdown-item"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
+						class="dropdown-item" th:href="@{/app/updateUsuario}"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()"><i
 							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>

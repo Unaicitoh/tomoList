@@ -57,7 +57,7 @@
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
 						th:if="${#strings.equals(#authentication.name,usuario.username)}"><a
-						class="dropdown-item"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
+						class="dropdown-item" th:href="@{/app/updateUsuario}"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()"><i
 							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>
@@ -69,9 +69,10 @@
 
 	<div class="container my-5">
 		<div class="row">
-			<form class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto"
+			<form class="col-12 col-md-8 col-md-6 col-lg-5 mx-auto border border-2 border-info rounded shadow p-4"
 				th:action="@{/app/newPost/submit}" method="post"
 				th:object="${entrada}">
+				<div class="text-center mb-4 display-6">Información</div>
 				<input type="hidden" th:field="*{identrada}">
 				<div class="row align-items-center justify-content-center"
 					th:if="${#fields.hasErrors('titulo')}">
@@ -122,7 +123,7 @@
 					<button th:if="${entrada.identrada!=0}" type="submit" class="col-5 btn btn-success">
 						<i class="bi bi-file-richtext me-2"></i>Modificar entrada
 					</button>
-					<button th:if="${entrada.identrada=0}" type="submit" class="col-5 btn btn-success">
+					<button th:if="${entrada.identrada==0}" type="submit" class="col-5 btn btn-success">
 						<i class="bi bi-file-richtext me-2"></i>Crear entrada
 					</button>
 				</div>
