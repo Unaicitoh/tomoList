@@ -12,6 +12,7 @@
 	<groupId>tfc.tomolist</groupId>
 	<artifactId>tomoList</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>tomoList</name>
 	<description>Proyecto Fin de Curso</description>
 	<properties>
