@@ -4,7 +4,7 @@ var lista;
 var usuarioActivo;
 var autorSolicitud;
 var options;
-
+var lista;
 $(document).ready(function() {
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
@@ -12,8 +12,8 @@ $(document).ready(function() {
 	usuarioActivo = document.getElementById("idu");
 	input.addEventListener("input", userSearcher);
 
-
-
+	lista = $("#infoSolicitudes");
+	lista.hide();
 
 	//Click lupa buscador de usuarios
 	$("#search-icon").click(function() {
@@ -23,15 +23,26 @@ $(document).ready(function() {
 		}
 	});
 
-	//Evento borrar solicitud
-	$(".btnBorrarSolicitud").click(function(){
-		autorSolicitud=$(this).next().val();
+	//Abrir solicitudes
+	$("#btn-solicitudes").click(function() {
+		lista = $("#infoSolicitudes");
+		lista.fadeToggle(200, "linear");
 	});
-	
-	$("#btnModalBorrarSolicitud").click(function(){
-		$("#borrarSolicitudForm").attr("action","/app/borrarSolicitud/"+autorSolicitud);
-		$("#borrarSolicitudForm").submit;
-	});
+
+$("#btn-cerrar-solicitudes").click(function() {
+	lista = $("#infoSolicitudes");
+		lista.fadeToggle(200 , "linear");
+});
+
+//Evento borrar solicitud
+$(".btnBorrarSolicitud").click(function() {
+	autorSolicitud = $(this).next().val();
+});
+
+$("#btnModalBorrarSolicitud").click(function() {
+	$("#borrarSolicitudForm").attr("action", "/app/borrarSolicitud/" + autorSolicitud);
+	$("#borrarSolicitudForm").submit;
+});
 
 });
 
