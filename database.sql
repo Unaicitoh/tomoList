@@ -18,7 +18,7 @@
 --
 -- Table structure for table `amigos`
 --
-use heroku_41ce6890511c518;
+use heroku_82a1449b7b1fb57;
 
 DROP TABLE IF EXISTS `amigos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
