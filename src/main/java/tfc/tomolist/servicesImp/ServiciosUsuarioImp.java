@@ -170,6 +170,20 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 	public Optional<ArrayList<AmigoVO>> getSolicitudes(int id) {
 		return ur.getSolicitudes(id);
 	}
+	
+
+	public Optional<ArrayList<AmigoVO>> solicitudesOrdenadas(int id) {
+		ArrayList<AmigoVO> filterList=ur.getSolicitudes(id).get();
+		filterList.stream().forEach(x->{
+			if(x.getAmigo2().getIdusuario()==id) {
+				UsuarioVO aux;
+				aux=x.getAmigo1();
+				x.setAmigo1(x.getAmigo2());
+				x.setAmigo2(aux);
+			}
+		});
+		return Optional.of(filterList);
+	}
 
 
 

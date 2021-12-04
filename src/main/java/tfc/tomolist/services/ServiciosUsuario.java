@@ -41,7 +41,8 @@ public interface ServiciosUsuario {
 	
 	//Amigos con usuario ordenado
 	Optional<ArrayList<AmigoVO>> amigosOrdenados(int id);
-	
+	Optional<ArrayList<AmigoVO>> solicitudesOrdenadas(int id);
+
 	//Entradas de un usuario
 	Optional<ArrayList<EntradaVO>> getEntradas(int id);
 	

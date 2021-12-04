@@ -5,6 +5,8 @@ var usuarioActivo;
 var autorSolicitud;
 var options;
 var listaS;
+var listaA;
+var autorAmistad;
 $(document).ready(function() {
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
@@ -14,7 +16,7 @@ $(document).ready(function() {
 
 	listaS = $("#infoSolicitudes");
 	listaS.hide();
-
+	listaA = $("#infoAmigos");
 	//Click lupa buscador de usuarios
 	$("#search-icon").click(function() {
 		if ($("#searcher").data("id") != undefined) {
@@ -42,6 +44,28 @@ $(".btnBorrarSolicitud").click(function() {
 $("#btnModalBorrarSolicitud").click(function() {
 	$("#borrarSolicitudForm").attr("action", "/app/borrarSolicitud/" + autorSolicitud);
 	$("#borrarSolicitudForm").submit;
+});
+
+
+//Abrir amistad
+	$("#btn-amigos").click(function() {
+		listaA = $("#infoAmigos");
+		listaA.fadeToggle(200, "linear");
+	});
+
+$("#btn-cerrar-amigos").click(function() {
+	listaA = $("#infoAmigos");
+		listaA.fadeToggle(200 , "linear");
+});
+
+//Evento borrar solicitud
+$(".btnBorrarAmigo").click(function() {
+	autorAmistad = $(this).next().val();
+});
+
+$("#btnModalBorrarAmigo").click(function() {
+	$("#borrarAmigoForm").attr("action", "/app/borrarAmistad/" + autorAmistad);
+	$("#borrarAmigoForm").submit;
 });
 
 });

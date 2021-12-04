@@ -134,7 +134,8 @@ public class UsersController {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO u = su.findByUsername(auth.getName()).get();
 		m.addAttribute("usuario", u);
-		m.addAttribute("solicitudes", su.getSolicitudes(u.getIdusuario()).get());
+		m.addAttribute("solicitudes", su.solicitudesOrdenadas(u.getIdusuario()).get());
+		m.addAttribute("amigos", su.amigosOrdenados(u.getIdusuario()).get());
 		return "app/amigos";
 	}
 	
@@ -153,6 +154,17 @@ public class UsersController {
 	
 	@PostMapping("/borrarSolicitud/{idA}")
 	public String borrarSolicitud(@PathVariable int idA) {
+		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO uR = su.findByUsername(auth.getName()).get();
+		UsuarioVO uA = su.findById(idA).get();
+		
+		su.borrarAmistad(uA.getIdusuario(),uR.getIdusuario());
+		
+		return "redirect:/app/amigos";
+	}
+	
+	@PostMapping("/borrarAmistad/{idA}")
+	public String borrarAmistad(@PathVariable int idA) {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO uR = su.findByUsername(auth.getName()).get();
 		UsuarioVO uA = su.findById(idA).get();

@@ -23,7 +23,7 @@ public interface UsuarioRepository extends CrudRepository<UsuarioVO, Integer> {
 	@Query("SELECT m FROM MensajeVO m WHERE m.autor.idusuario=:id ORDER BY m.fecha")
 	Optional<ArrayList<MensajeVO>> getMensajes(@Param("id") int id);
 	
-	@Query("SELECT a FROM AmigoVO a WHERE a.amigo2.idusuario=:id OR a.amigo1.idusuario=:id AND a.aceptado=1")
+	@Query("SELECT a FROM AmigoVO a WHERE (a.amigo2.idusuario=:id OR a.amigo1.idusuario=:id) AND a.aceptado=1")
 	Optional<ArrayList<AmigoVO>> getAmigos(@Param("id") int id);
 	
 	@Query("SELECT a FROM AmigoVO a WHERE (a.amigo1.idusuario=:id AND a.amigo2.idusuario=:id2 AND a.aceptado=1) OR (a.amigo1.idusuario=:id2 AND a.amigo2.idusuario=:id AND a.aceptado=1)")
