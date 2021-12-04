@@ -126,9 +126,17 @@ public class UsersController {
 			usuario.setPassword(config.encriptarPassword(usuario.getRawpass()));
 			su.save(usuario);
 			return "redirect:/app/perfil?id=" + usuario.getIdusuario();
-		}
-
+		}	
+	}
+	
+	@GetMapping("/amigos")
+	public String amigosView(Model m) {
+		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO u = su.findByUsername(auth.getName()).get();
 		
+		m.addAttribute("usuario", u);
+		
+		return "app/amigos";
 	}
 
 }

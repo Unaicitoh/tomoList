@@ -72,7 +72,7 @@
 							class="bi bi-person-workspace me-2"></i>Perfil </a></li>
 					<li><a class="dropdown-item" href="#"><i
 							class="bi bi-chat-fill me-2"></i>Chat</a></li>
-					<li><a class="dropdown-item" href="#"><i
+					<li><a class="dropdown-item" th:href="@{/app/amigos}"><i
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
 						th:if="${#strings.equals(#authentication.name,usuario.username)}"><a
@@ -121,7 +121,7 @@
 							class="bi bi-person-workspace"></i></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chat <i
 							class="bi bi-chat"></i></a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Amigos <i
+					<li class="nav-item"><a class="nav-link" th:href="@{/app/amigos}">Amigos <i
 							class="bi bi-people"></i></a></li>
 				</ul>
 
@@ -240,7 +240,7 @@
 						aria-labelledby="list-us-list">
 						<strong>TomoList</strong>, está desarrollada para ser una red
 						social, tiene como planteamiento principal ser una app <strong>intuitiva,
-							atractiva y divertida</strong> para los usuarios darles la capacidad a los
+							atractiva y divertida</strong> darles la capacidad a los
 						usuarios de interactuar unos con otros.
 					</div>
 					<div class="tab-pane fade" id="list-autor" role="tabpanel"

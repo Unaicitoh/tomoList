@@ -9,6 +9,11 @@ header {
 	background-color: var(--main-color);
 }
 
+#search-icon:hover {
+	color: black;
+	cursor: pointer;
+}
+
 
 #img_header {
 	width: 38px;
@@ -16,19 +21,12 @@ header {
 	object-fit: cover;
 }
 
+
 #ajustes:hover{
 	cursor:pointer;
 }
 
 @media (min-width: 768px){
-
-	#logo{
-	height: 45px;
-	width: 90px;
-	}
-}
-
-@media (min-width: 1024px){
 
 	#logo{
 	height: 70px;
