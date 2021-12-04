@@ -25,48 +25,60 @@ $(document).ready(function() {
 		}
 	});
 
+	//Link perfil amistad
+	$(".linkSolicitudPerfil").click(function() {
+		var idusuario = $(this).find("input").val();
+		location.href = "/app/perfil?id=" + idusuario;
+	});
+
+	//Link perfil solicitudes
+	$(".linkPerfilAmigo").click(function() {
+		var idusuario = $(this).find("input").val();
+		location.href = "/app/perfil?id=" + idusuario;
+	});
+
 	//Abrir solicitudes
 	$("#btn-solicitudes").click(function() {
 		listaS = $("#infoSolicitudes");
 		listaS.fadeToggle(200, "linear");
 	});
 
-$("#btn-cerrar-solicitudes").click(function() {
-	listaS = $("#infoSolicitudes");
-		listaS.fadeToggle(200 , "linear");
-});
+	$("#btn-cerrar-solicitudes").click(function() {
+		listaS = $("#infoSolicitudes");
+		listaS.fadeToggle(200, "linear");
+	});
 
-//Evento borrar solicitud
-$(".btnBorrarSolicitud").click(function() {
-	autorSolicitud = $(this).next().val();
-});
+	//Evento borrar solicitud
+	$(".btnBorrarSolicitud").click(function() {
+		autorSolicitud = $(this).next().val();
+	});
 
-$("#btnModalBorrarSolicitud").click(function() {
-	$("#borrarSolicitudForm").attr("action", "/app/borrarSolicitud/" + autorSolicitud);
-	$("#borrarSolicitudForm").submit;
-});
+	$("#btnModalBorrarSolicitud").click(function() {
+		$("#borrarSolicitudForm").attr("action", "/app/borrarSolicitud/" + autorSolicitud);
+		$("#borrarSolicitudForm").submit;
+	});
 
 
-//Abrir amistad
+	//Abrir amistad
 	$("#btn-amigos").click(function() {
 		listaA = $("#infoAmigos");
 		listaA.fadeToggle(200, "linear");
 	});
 
-$("#btn-cerrar-amigos").click(function() {
-	listaA = $("#infoAmigos");
-		listaA.fadeToggle(200 , "linear");
-});
+	$("#btn-cerrar-amigos").click(function() {
+		listaA = $("#infoAmigos");
+		listaA.fadeToggle(200, "linear");
+	});
 
-//Evento borrar solicitud
-$(".btnBorrarAmigo").click(function() {
-	autorAmistad = $(this).next().val();
-});
+	//Evento borrar solicitud
+	$(".btnBorrarAmigo").click(function() {
+		autorAmistad = $(this).next().val();
+	});
 
-$("#btnModalBorrarAmigo").click(function() {
-	$("#borrarAmigoForm").attr("action", "/app/borrarAmistad/" + autorAmistad);
-	$("#borrarAmigoForm").submit;
-});
+	$("#btnModalBorrarAmigo").click(function() {
+		$("#borrarAmigoForm").attr("action", "/app/borrarAmistad/" + autorAmistad);
+		$("#borrarAmigoForm").submit;
+	});
 
 });
 

@@ -107,14 +107,15 @@
 						<div
 							class="d-flex justify-content-between align-items-center gap-2">
 							<div class="col-2 text-center">
-								<img id="imagenAutor" class="rounded-circle"
+								<a th:href="@{/app/perfil(id=${solicitud.amigo2.idusuario})}"><img id="imagenAutor" class="rounded-circle"
 									th:if="${#strings.contains(solicitud.amigo2.foto,'jpg') or #strings.contains(solicitud.amigo2.foto,'png') or #strings.contains(solicitud.amigo2.foto,'jpeg')}"
 									th:src="${solicitud.amigo2.foto}"> <img id="imagenAutor"
 									class="rounded-circle"
 									th:unless="${#strings.contains(solicitud.amigo2.foto,'jpg') or #strings.contains(solicitud.amigo2.foto,'png') or #strings.contains(solicitud.amigo2.foto,'jpeg')}"
-									th:src="@{/images/fotoex.jpg}">
+									th:src="@{/images/fotoex.jpg}"></a>
 							</div>
-							<div class="col-6">
+							<div class="col-6 linkSolicitudPerfil">
+							<input type="hidden" th:value="${solicitud.amigo2.idusuario}"/>
 								<div class="display-5 fs-3 pb-2"
 									th:text="${solicitud.amigo2.username}"></div>
 								<div id="nombre" class="display-6 fs-6"
@@ -159,16 +160,17 @@
 						<div
 							class="d-flex justify-content-between align-items-center gap-2">
 							<div class="col-2 text-center">
-								<img id="imagenAutor" class="rounded-circle"
+								<a th:href="@{/app/perfil(id=${amigo.amigo2.idusuario})}"><img id="imagenAutor" class="rounded-circle"
 									th:if="${#strings.contains(amigo.amigo2.foto,'jpg') or #strings.contains(amigo.amigo2.foto,'png') or #strings.contains(amigo.amigo2.foto,'jpeg')}"
 									th:src="${amigo.amigo2.foto}"> <img id="imagenAutor"
 									class="rounded-circle"
 									th:unless="${#strings.contains(amigo.amigo2.foto,'jpg') or #strings.contains(amigo.amigo2.foto,'png') or #strings.contains(amigo.amigo2.foto,'jpeg')}"
-									th:src="@{/images/fotoex.jpg}">
+									th:src="@{/images/fotoex.jpg}"></a>
 							</div>
-							<div class="col-6">
+							<div class="col-6 linkPerfilAmigo">
+							<input type="hidden" th:value="${amigo.amigo2.idusuario}"/>
 								<div class="display-5 fs-3 pb-2"
-									th:text="${amigo.amigo2.username}"></div>
+									th:text="${amigo.amigo2.username}"><a th:href="@{/app/perfil()}"></a></div>
 								<div id="nombre" class="display-6 fs-6"
 									th:text="${amigo.amigo2.nombre}"></div>
 							</div>
