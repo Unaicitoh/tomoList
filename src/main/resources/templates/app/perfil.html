@@ -335,7 +335,7 @@
 				<div class="modal-body">¿Estás seguro de eliminar a tu amigo?</div>
 				<div class="modal-footer">
 					<form
-						th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
+						th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioPerfil.idusuario},id2=${usuarioSesion.idusuario})}"
 						method="post">
 						<button type="button" data-bs-dismiss="modal"
 							class="btn btn-secondary">Cerrar</button>

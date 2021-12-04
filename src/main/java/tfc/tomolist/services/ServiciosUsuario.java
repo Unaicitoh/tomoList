@@ -69,9 +69,9 @@ public interface ServiciosUsuario {
 
 	Optional<ArrayList<AmigoVO>> getSolicitudes(int id);
 	
-	Optional<AmigoVO> getAmigoUsuario(int id,int id2);
+	Optional<ArrayList<AmigoVO>> getAmigoUsuario(int id,int id2);
 	
-	Optional<AmigoVO> getSolicitudUsuario(int id, int id2);
+	Optional<ArrayList<AmigoVO>> getSolicitudUsuario(int id, int id2);
 	
 	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id);
 	

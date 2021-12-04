@@ -1,5 +1,7 @@
 package tfc.tomolist.controllers.app;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +71,8 @@ public class UsersController {
 		UsuarioVO usuarioSesion = su.findByUsername(nombre).get();
 		Paged<EntradaVO> postsPageados = se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
 
-		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty(); 
-		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty(); 
+		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get().isEmpty(); 
+		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get().isEmpty(); 
 		int isTablonVacio = (int) postsPageados.getPage().getTotalElements();
 
 		m.addAttribute("isVacio", isTablonVacio);
@@ -85,7 +87,7 @@ public class UsersController {
 	@PostMapping("/borrarAmistad/{id1}/{id2}")
 	public String borrarAmistad(@PathVariable int id1, @PathVariable int id2) {
 		su.borrarAmistad(id1, id2);
-		return "redirect:/app/perfil?id=" + id2;
+		return "redirect:/app/perfil?id=" + id1;
 	}
 
 	@PostMapping("/newSolicitud/{id1}/{id2}")
@@ -142,9 +144,9 @@ public class UsersController {
 		UsuarioVO uR = su.findByUsername(auth.getName()).get();
 		UsuarioVO uA = su.findById(idA).get();
 		
-		AmigoVO a=su.getSolicitudUsuario(uA.getIdusuario(), uR.getIdusuario()).get();
-		a.setAceptado(true);
-		sa.save(a);
+		ArrayList<AmigoVO> a=su.getSolicitudUsuario(uA.getIdusuario(), uR.getIdusuario()).get();
+		a.get(0).setAceptado(true);
+		sa.save(a.get(0));
 		
 		return "redirect:/app/amigos";
 	}

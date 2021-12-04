@@ -4,7 +4,7 @@ var lista;
 var usuarioActivo;
 var autorSolicitud;
 var options;
-var lista;
+var listaS;
 $(document).ready(function() {
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
@@ -12,8 +12,8 @@ $(document).ready(function() {
 	usuarioActivo = document.getElementById("idu");
 	input.addEventListener("input", userSearcher);
 
-	lista = $("#infoSolicitudes");
-	lista.hide();
+	listaS = $("#infoSolicitudes");
+	listaS.hide();
 
 	//Click lupa buscador de usuarios
 	$("#search-icon").click(function() {
@@ -25,13 +25,13 @@ $(document).ready(function() {
 
 	//Abrir solicitudes
 	$("#btn-solicitudes").click(function() {
-		lista = $("#infoSolicitudes");
-		lista.fadeToggle(200, "linear");
+		listaS = $("#infoSolicitudes");
+		listaS.fadeToggle(200, "linear");
 	});
 
 $("#btn-cerrar-solicitudes").click(function() {
-	lista = $("#infoSolicitudes");
-		lista.fadeToggle(200 , "linear");
+	listaS = $("#infoSolicitudes");
+		listaS.fadeToggle(200 , "linear");
 });
 
 //Evento borrar solicitud
