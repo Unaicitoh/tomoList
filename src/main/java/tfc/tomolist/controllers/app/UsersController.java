@@ -69,8 +69,8 @@ public class UsersController {
 		UsuarioVO usuarioSesion = su.findByUsername(nombre).get();
 		Paged<EntradaVO> postsPageados = se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
 
-		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty();
-		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty();
+		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty(); 
+		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).isEmpty(); 
 		int isTablonVacio = (int) postsPageados.getPage().getTotalElements();
 
 		m.addAttribute("isVacio", isTablonVacio);
