@@ -44,9 +44,12 @@
 				class="btn-group col-8 col-sm-5 col-md-4 col-lg-3 col-xxl-2 order-md-2 gap-1">
 				<div id="card-header"
 					class="d-flex me-1 float-end justify-content-end">
-					<img id="img_header"
-						th:src="${usuarioSesion.foto} ? ${usuarioSesion.foto} : '/images/fotoex.jpg'"
-						class="border rounded-circle" alt="img-thumbnail">
+					<img id="img_header" class="border rounded-circle"
+						th:if="${#strings.contains(usuarioSesion.foto,'jpg') or #strings.contains(usuarioSesion.foto,'png') or #strings.contains(usuarioSesion.foto,'jpeg')}"
+						th:src="${usuarioSesion.foto}"> <img id="img_header"
+						class="border rounded-circle"
+						th:unless="${#strings.contains(usuarioSesion.foto,'jpg') or #strings.contains(usuarioSesion.foto,'png') or #strings.contains(usuarioSesion.foto,'jpeg')}"
+						th:src="@{/images/fotoex.jpg}">
 				</div>
 				<button id="btn_header" type="button"
 					class="btn btn-pimary border border-1 rounded text-light dropdown-toggle"
@@ -62,7 +65,8 @@
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
 						th:if="${#strings.equals(#authentication.name,usuarioSesion.username)}"><a
-						class="dropdown-item" th:href="@{/app/updateUsuario}"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
+						class="dropdown-item" th:href="@{/app/updateUsuario}"><i
+							class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()"><i
 							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>
@@ -86,9 +90,14 @@
 		<div id="filaPerfil"
 			class="row d-flex g-0 align-items-center mt-5 mb-4 shadow bg-light  border border-2 border-primary rounded mx-auto">
 			<div class="col-12 col-md-6 mt-4 mb-3 d-flex justify-content-center">
+
 				<img id="imgPerfil"
 					class="img-fluid rounded-circle border border-3 border-dark"
-					th:src="${usuarioPerfil.foto} ? ${usuarioPerfil.foto} : '/images/fotoex.jpg'">
+					th:if="${#strings.contains(usuarioPerfil.foto,'jpg') or #strings.contains(usuarioPerfil.foto,'png') or #strings.contains(usuarioPerfil.foto,'jpeg')}"
+					th:src="${usuarioPerfil.foto}"> <img id="imgPerfil"
+					class="img-fluid rounded-circle border border-3 border-dark"
+					th:unless="${#strings.contains(usuarioPerfil.foto,'jpg') or #strings.contains(usuarioPerfil.foto,'png') or #strings.contains(usuarioPerfil.foto,'jpeg')}"
+					th:src="@{/images/fotoex.jpg}">
 			</div>
 
 			<div class="col-12 col-md-6 d-flex flex-column my-2 p-3">
@@ -99,7 +108,7 @@
 					th:text="${usuarioPerfil.biografia}? ${usuarioPerfil.biografia} : 'Aún sin bio'"></div>
 				<div class="my-2 text-info" th:text="${usuarioPerfil.email}"></div>
 				<div class="my-2"
-					th:text="${usuarioPerfil.genero} ? 'Género: '+${usuarioPerfil.genero} : 'Género: X'">Genro</div>
+					th:text="${usuarioPerfil.genero} ? 'Género: '+${usuarioPerfil.genero} : 'Género: Aún sin especificar'">Genro</div>
 				<div class="row">
 					<div class="col-6" th:text="'Edad: '+${usuarioPerfil.edad}"></div>
 					<div class="col-6 text-muted"
@@ -159,8 +168,9 @@
 						Crear entrada</a>
 				</div>
 				<div class="col-6 col-md-5 col-lg-3 text-center">
-					<a class="col-12 col-md-6 btn btn-primary py-2" th:href="@{/app/updateUsuario}"><i
-						class="bi bi-gear me-1"></i> Ajustes</a>
+					<a class="col-12 col-md-6 btn btn-primary py-2"
+						th:href="@{/app/updateUsuario}"><i class="bi bi-gear me-1"></i>
+						Ajustes</a>
 				</div>
 
 			</div>
@@ -174,29 +184,43 @@
 
 	</div>
 
+	<div class="container" th:if="${isVacio==0}">
+		<div class="row justify-content-center my-3">
+			<div
+				class="alert alert-info col-12 text-center display fs-4 w-auto my-4 p-5">
+				Aún no hay <strong>TomoPosts</strong> en tu perfil
+			</div>
+		</div>
+	</div>
+
 	<div id="posts" class="container">
 		<div class="row justify-content-evenly gap-3 my-5">
 			<div
 				class="card col-12 col-xl-5 shadow bg-light border-primary border-1 px-0 my-2"
 				th:each="post: ${posts.page}">
 
-				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img th:if="${#strings.startsWith(post.imagen,'http')}"
+				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img
+					th:if="${#strings.contains(post.imagen,'jpg') or #strings.contains(post.imagen,'png') or #strings.contains(post.imagen,'jpeg')}"
 					th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
-					<img th:unless="${#strings.startsWith(post.imagen,'http')}"
-					th:src="@{/images/entradaex.jpg}" class="card-img-top" alt="card-img-top"></a>
+					<img
+					th:unless="${#strings.contains(post.imagen,'jpg') or #strings.contains(post.imagen,'png') or #strings.contains(post.imagen,'jpeg')}"
+					th:src="@{/images/entradaex.jpg}" class="card-img-top"
+					alt="card-img-top"></a>
 				<div class="card-body d-flex flex-column">
 
 					<div class="row">
 						<h5 class="card-title fs-5 col-9 col-sm-10 col-md-11 col-lg-10"
 							th:text="${post.titulo}">Card title</h5>
-						<div th:if="${post.autor.idusuario} == ${usuarioSesion.idusuario}" class="btn-group  col-3 col-sm-2 col-md-1 col-lg-2">
+						<div th:if="${post.autor.idusuario} == ${usuarioSesion.idusuario}"
+							class="btn-group  col-3 col-sm-2 col-md-1 col-lg-2">
 							<button type="button"
 								class="btn btn-primary text-dark bg-transparent border border-0 rounded"
 								data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-pencil-square text-secondary fs-5"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item text-info" th:href="@{/app/updatePost/{id}(id=${post.identrada})}"><i
+								<li><a class="dropdown-item text-info"
+									th:href="@{/app/updatePost/{id}(id=${post.identrada})}"><i
 										class="bi bi-file-earmark-diff me-2"></i>Modificar</a></li>
 								<li><a class="link-modal dropdown-item text-danger"
 									data-bs-toggle="modal" data-bs-target="#modalBorrarEntrada"

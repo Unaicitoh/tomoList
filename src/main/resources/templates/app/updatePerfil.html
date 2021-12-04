@@ -37,9 +37,12 @@
 				class="btn-group col-8 col-sm-6 col-md-4 col-lg-3 col-xxl-2 mx-auto mx-md-0 py-2 gap-1">
 				<div id="card-header"
 					class="d-flex me-1 float-end justify-content-end">
-					<img id="img_header"
-						th:src="${usuarioNav.foto} ? ${usuarioNav.foto} : '/images/fotoex.jpg'"
-						class="border rounded-circle" alt="img-thumbnail">
+					<img id="img_header" class="border rounded-circle"
+						th:if="${#strings.contains(usuarioNav.foto,'jpg') or #strings.contains(usuarioNav.foto,'png') or #strings.contains(usuarioNav.foto,'jpeg')}"
+						th:src="${usuarioNav.foto}"> <img id="img_header"
+						class="border rounded-circle"
+						th:unless="${#strings.contains(usuarioNav.foto,'jpg') or #strings.contains(usuarioNav.foto,'png') or #strings.contains(usuarioNav.foto,'jpeg')}"
+						th:src="@{/images/fotoex.jpg}">
 				</div>
 				<button id="btn_header" type="button"
 					class="btn btn-pimary border border-1 rounded text-light dropdown-toggle"
@@ -66,10 +69,12 @@
 			</div>
 		</div>
 	</header>
-	<form class="col-12 col-md-8 col-lg-5 mt-5 mx-auto border border-2 border-info rounded shadow p-4"
+	<form
+		class="col-12 col-md-8 col-lg-5 mt-5 mx-auto border border-2 border-info rounded shadow p-4"
 		th:action="@{/app/updatePerfil/submit}" method="post"
 		th:object="${usuario}">
-		<div class="text-center mb-4 display-6" th:text="'Perfil de '+ ${#strings.substringBefore(usuario.nombre,' ')}"></div>
+		<div class="text-center mb-4 display-6"
+			th:text="'Perfil de '+ ${#strings.substringBefore(usuario.nombre,' ')}"></div>
 		<input type="hidden" th:field="*{idusuario}"> <input
 			type="hidden" th:field="*{fecha}" /> <input type="hidden"
 			th:field="*{rol}" /> <input type="hidden" th:field="*{password}" />
@@ -77,12 +82,16 @@
 			<div class="row justify-content-center">
 				<div class="col-5 col-lg-4">
 					<div class="list-group" id="list-tab" role="tablist">
-						<a th:classappend="${#fields.hasErrors('username') or #fields.hasErrors('nombre') or #fields.hasErrors('foto') or #fields.hasErrors('biografia')}? 'text-danger text-decoration-underline'" class="list-group-item list-group-item-action active"
+						<a
+							th:classappend="${#fields.hasErrors('username') or #fields.hasErrors('nombre') or #fields.hasErrors('foto') or #fields.hasErrors('biografia')}? 'text-danger text-decoration-underline'"
+							class="list-group-item list-group-item-action active"
 							id="list-home-list" data-bs-toggle="list" href="#list-home"
-							role="tab" aria-controls="home">Datos</a> <a  th:classappend="${#fields.hasErrors('genero') or #fields.hasErrors('edad') or #fields.hasErrors('telefono') or #fields.hasErrors('direccion')}? 'text-danger text-decoration-underline'"
+							role="tab" aria-controls="home">Datos</a> <a
+							th:classappend="${#fields.hasErrors('genero') or #fields.hasErrors('edad') or #fields.hasErrors('telefono') or #fields.hasErrors('direccion')}? 'text-danger text-decoration-underline'"
 							class="list-group-item list-group-item-action"
 							id="list-profile-list" data-bs-toggle="list" href="#list-profile"
-							role="tab" aria-controls="profile">Opciones</a> <a th:classappend="${#fields.hasErrors('email') or #fields.hasErrors('rawpass')} ? 'text-danger text-decoration-underline'"
+							role="tab" aria-controls="profile">Opciones</a> <a
+							th:classappend="${#fields.hasErrors('email') or #fields.hasErrors('rawpass')} ? 'text-danger text-decoration-underline'"
 							class="list-group-item list-group-item-action"
 							id="list-messages-list" data-bs-toggle="list"
 							href="#list-messages" role="tab" aria-controls="messages">Seguridad</a>
@@ -226,10 +235,26 @@
 										aria-label="Close"></button>
 								</div>
 							</div>
-							<div class="form-floating mb-3">
-								<input maxlength="1" type="text" th:field="*{genero}"
-									class="form-control" id="floatingGenero" placeholder="Titulo">
-								<label for="floatingGenero">Género</label>
+							<div class="form-control mb-3 d-flex gap-4">
+								<label for="floatingGenero pe-4">Género:</label>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										id="inlineCheckbox1" name="genero" th:field="*{genero}"
+										value="H"> <label class="form-check-label"
+										for="inlineCheckbox1">H</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										id="inlineCheckbox2" name="genero" th:field="*{genero}"
+										value="M"> <label class="form-check-label"
+										for="inlineCheckbox2">M</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										id="inlineCheckbox3" name="genero" th:field="*{genero}"
+										value="O"> <label class="form-check-label"
+										for="inlineCheckbox3">O</label>
+								</div>
 							</div>
 
 							<div class="row align-items-center justify-content-center"

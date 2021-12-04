@@ -73,7 +73,9 @@ public class UsersController {
 				.isEmpty();
 		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get()
 				.isEmpty();
+		int isTablonVacio = (int) postsPageados.getPage().getTotalElements();
 
+		m.addAttribute("isVacio", isTablonVacio);
 		m.addAttribute("isSolicitud", isSolicitud);
 		m.addAttribute("isAmigo", isAmigo);
 		m.addAttribute("usuarioSesion", usuarioSesion);

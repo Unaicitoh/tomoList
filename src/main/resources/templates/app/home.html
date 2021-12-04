@@ -55,9 +55,12 @@
 				class="btn-group col-8 col-sm-6 col-md-3 col-lg-3 col-xxl-2 order-md-2 mx-auto gap-1">
 				<div id="card-header"
 					class="d-flex me-1 float-end justify-content-end">
-					<img id="img_header"
-						th:src="${usuario.foto} ? ${usuario.foto} : '/images/fotoex.jpg'"
-						class="border rounded-circle" alt="img-thumbnail">
+					<img id="img_header" class="border rounded-circle"
+						th:if="${#strings.contains(usuario.foto,'jpg') or #strings.contains(usuario.foto,'png') or #strings.contains(usuario.foto,'jpeg')}"
+						th:src="${usuario.foto}"> <img id="img_header"
+						class="border rounded-circle"
+						th:unless="${#strings.contains(usuario.foto,'jpg') or #strings.contains(usuario.foto,'png') or #strings.contains(usuario.foto,'jpeg')}"
+						th:src="@{/images/fotoex.jpg}">
 				</div>
 				<button id="btn_header" type="button"
 					class="btn btn-pimary border border-1 rounded text-light dropdown-toggle"
@@ -73,7 +76,8 @@
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
 						th:if="${#strings.equals(#authentication.name,usuario.username)}"><a
-						class="dropdown-item" th:href="@{/app/updateUsuario}"><i class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
+						class="dropdown-item" th:href="@{/app/updateUsuario}"><i
+							class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
 					<li><a class="dropdown-item text-danger" href="#"
 						onclick="javascipt:document.getElementById('formLogout').submit()"><i
 							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>
@@ -141,22 +145,28 @@
 					<div class="img-container-usuario-post">
 						<img id="imgUsuarioPost"
 							class="bg-white border rounded-circle border-dark"
-							th:src="${post.autor.foto} ? ${post.autor.foto} : '/images/fotoex.jpg'">
+							th:if="${#strings.contains(post.autor.foto,'jpg') or #strings.contains(post.autor.foto,'png') or #strings.contains(post.autor.foto,'jpeg')}"
+							th:src="${post.autor.foto}"> <img id="imgUsuarioPost"
+							class="bg-white border rounded-circle border-dark"
+							th:unless="${#strings.contains(post.autor.foto,'jpg') or #strings.contains(post.autor.foto,'png') or #strings.contains(post.autor.foto,'jpeg')}"
+							th:src="@{/images/fotoex.jpg}">
 					</div>
 					<h3 class="card-title display-1 fs-2 text-dark"
 						th:text="${post.autor.username}">Nombre autor</h3>
 					<input type="hidden" th:value="${post.autor.idusuario}">
 				</div>
-				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img th:if="${#strings.startsWith(post.imagen,'http')}"
-					th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
-					<img th:unless="${#strings.startsWith(post.imagen,'http')}"
-					th:src="@{/images/entradaex.jpg}" class="card-img-top" alt="card-img-top"></a>
+				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img
+					th:if="${#strings.contains(post.imagen,'jpg') or #strings.contains(post.imagen,'png') or #strings.contains(post.imagen,'jpeg')}"
+					th:src="${post.imagen}" class="card-img-top" alt="card-img-top"> <img
+					th:unless="${#strings.contains(post.imagen,'jpg') or #strings.contains(post.imagen,'png') or #strings.contains(post.imagen,'jpeg')}"
+					th:src="@{/images/entradaex.jpg}" class="card-img-top"
+					alt="card-img-top"></a>
 				<div class="card-body d-flex flex-column">
 					<h5 class="card-subtitle fs-5" th:text="${post.titulo}">Card
 						title</h5>
 
-					<p class="card-text pt-2" th:text="${post.contenido}">This
-						is a wider card</p>
+					<p class="card-text pt-2" th:text="${post.contenido}">This is a
+						wider card</p>
 					<div class="card-text d-flex h-100">
 						<small id="diaSemanaPost" class="text-muted align-self-end col-1"
 							th:text="${#temporals.dayOfWeekNameShort(post.fecha)}">DAY</small>

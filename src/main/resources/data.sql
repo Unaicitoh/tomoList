@@ -1,5 +1,5 @@
-INSERT INTO roles values (1,"ROLE_ADMIN");
-INSERT INTO roles values (2,"ROLE_ESTANDAR");
+INSERT INTO roles values (0,"ROLE_ADMIN");
+INSERT INTO roles values (0,"ROLE_ESTANDAR");
 
 INSERT INTO usuarios values (0,"No sólo sobrevivió 500 con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.","Calle 13",22,"u@email.com","2021/05/20","https://images-na.ssl-images-amazon.com/images/I/610FlSOYxiL._AC_SX522_.jpg","H","Unai Gonzalez","$2y$10$8zHvivHClP.zLVJB0kwBLe4/XmbfR.HVZx2US.fF8X/Uf318cYOEi","123","666","usu1",2);
 INSERT INTO usuarios values (0,"Adivinas","Calle 13",22,"r@email.com","2021/05/20","https://statics.proyectoclubes.com/images/sporting/opengraph_image.png?2","H","Roberto Rodriguez","$2y$10$8zHvivHClP.zLVJB0kwBLe4/XmbfR.HVZx2US.fF8X/Uf318cYOEi","123","662","usu2",2);
