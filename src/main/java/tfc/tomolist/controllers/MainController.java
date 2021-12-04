@@ -107,7 +107,7 @@ public class MainController {
 		usuario.setFecha(LocalDate.now());
 		usuario.setPassword(config.encriptarPassword(usuario.getRawpass()));
 		usuario.setRol(sr.findById(2).get());
-
+		usuario.setFoto("URL");
 		if (br.hasErrors()) {
 
 			return "register";

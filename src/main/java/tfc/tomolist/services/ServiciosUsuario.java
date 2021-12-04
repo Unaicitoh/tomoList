@@ -69,10 +69,11 @@ public interface ServiciosUsuario {
 	
 	Optional<UsuarioVO> findByUsername(String username);
 
+	Optional<ArrayList<AmigoVO>> getSolicitudes(int id);
 	
-	Optional<ArrayList<AmigoVO>> getAmigoUsuario(@Param("id") int id, @Param("id2") int id2);
+	Optional<AmigoVO> getAmigoUsuario(int id,int id2);
 	
-	Optional<ArrayList<AmigoVO>> getSolicitudUsuario(@Param("id") int id, @Param("id2") int id2);
+	Optional<AmigoVO> getSolicitudUsuario(int id, int id2);
 	
 	Optional<ArrayList<MegustaVO>> getMegustasUsuarios(int id);
 	

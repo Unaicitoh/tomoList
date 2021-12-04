@@ -21,6 +21,16 @@ header {
 	object-fit: cover;
 }
 
+#imagenAutor {
+	width: 38px;
+	height: 38px;
+	object-fit: cover;
+}
+
+#nombre{
+	word-break: break-all;
+  white-space: pre-wrap;
+}
 
 #ajustes:hover{
 	cursor:pointer;
