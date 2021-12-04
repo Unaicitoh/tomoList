@@ -143,9 +143,9 @@
 			</div>
 			<div id="amigos-container" class="col-12 col-md-6">
 				<div class="row align-items-center justify-content-center my-2">
-					<div 
+					<div id="btn-amigos"
 						class="btn btn-outline-primary d-flex justify-content-between col-8">
-						<div id="btn-amigos" class="col-10 fs-4 display-6">Amistades</div>
+						<div class="col-10 fs-4 display-6">Amistades</div>
 						<div id="nAmigos"
 							th:text="${#lists.isEmpty(amigos)? '0' : #lists.size(amigos)}"
 							class="badge bg-info col-2 fs-6">5</div>
