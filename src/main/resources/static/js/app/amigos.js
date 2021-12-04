@@ -2,7 +2,7 @@ var input;
 var nick;
 var lista;
 var usuarioActivo;
-var entradaActual;
+var autorSolicitud;
 var options;
 
 $(document).ready(function() {
@@ -23,7 +23,15 @@ $(document).ready(function() {
 		}
 	});
 
+	//Evento borrar solicitud
+	$(".btnBorrarSolicitud").click(function(){
+		autorSolicitud=$(this).next().val();
+	});
 	
+	$("#btnModalBorrarSolicitud").click(function(){
+		$("#borrarSolicitudForm").attr("action","/app/borrarSolicitud/"+autorSolicitud);
+		$("#borrarSolicitudForm").submit;
+	});
 
 });
 

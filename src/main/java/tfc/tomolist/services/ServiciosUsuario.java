@@ -3,8 +3,6 @@ package tfc.tomolist.services;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.springframework.data.repository.query.Param;
-
 import tfc.tomolist.model.AmigoVO;
 import tfc.tomolist.model.EntradaVO;
 import tfc.tomolist.model.MegustaVO;

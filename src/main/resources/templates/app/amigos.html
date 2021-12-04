@@ -96,23 +96,29 @@
 					</button>
 				</div>
 
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item" th:each="solicitud : ${solicitudes}">
+				<ul class="list-group list-group mt-3">
+					<li class="list-group-item list-group-item-action" th:each="solicitud : ${solicitudes}">
 					<div id="infoSolicitud" class="d-flex justify-content-between align-items-center gap-2">
 						<div class="col-2 text-center">
-							<img id="imagenAutor" class="border border-dark rounded-circle" th:src="${solicitud.amigo1.foto}">
+							<img id="imagenAutor" class="rounded-circle"
+						th:if="${#strings.contains(solicitud.amigo1.foto,'jpg') or #strings.contains(solicitud.amigo1.foto,'png') or #strings.contains(solicitud.amigo1.foto,'jpeg')}"
+						th:src="${solicitud.amigo1.foto}"> <img id="imagenAutor"
+						class="rounded-circle"
+						th:unless="${#strings.contains(solicitud.amigo1.foto,'jpg') or #strings.contains(solicitud.amigo1.foto,'png') or #strings.contains(solicitud.amigo1.foto,'jpeg')}"
+						th:src="@{/images/fotoex.jpg}">
 						</div>
 						<div class="col-6">
-							<div th:text="${solicitud.amigo1.username}"></div>
-							<div id="nombre" th:text="${solicitud.amigo1.nombre}"></div>
+							<div class="display-5 fs-3 pb-2" th:text="${solicitud.amigo1.username}"></div>
+							<div id="nombre" class="display-6 fs-6" th:text="${solicitud.amigo1.nombre}"></div>
 						</div>
-						<div class="col-4 d-flex gap-1 gap-md-3">
-						<button type="submit" class="btn btn-success"><i class="bi bi-patch-check"></i></button>
-						<button type="submit" class="btn btn-danger"><i class="bi bi-x-octagon"></i></button>
+						<div class="col-4 d-flex gap-1">
+						<form method="post" th:action="@{/app/crearAmistad/{idA}(idA=${solicitud.amigo1.idusuario})}"><button type="submit" class="btn btn-success"><i class="bi bi-patch-check"></i></button></form>
+						<button class="btn btn-danger btnBorrarSolicitud" data-bs-toggle="modal" data-bs-target="#modalSolicitud"><i class="bi bi-x-octagon"></i></button>
+						<input type="hidden" th:value="${solicitud.amigo1.idusuario}">
 						</div>					
 					</div>
 					</li>
-					<li class="list-group-item text-center mt-2 mb-5"><button class="btn btn-outline-secondary col-6">Cerrar lista</button></li>
+					<li class="list-group-item text-center mb-5"><button class="btn btn-outline-secondary col-6">Cerrar lista</button></li>
 				</ul>
 			</div>
 			<div id="amigos-container" class="col-12 col-md-6">Amigos</div>
@@ -159,7 +165,21 @@
 			</div>
 		</div>
 	</footer>
-
+<div id="modalSolicitud" class="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalVerticallyCenteredLabel">Eliminando solicitud...</h5>
+        <button type="button" data-bs-dismiss="modal" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">¿Estás seguro que quieres eliminar la solicitud?</div>
+      <div class="modal-footer">
+        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+        <form id="borrarSolicitudForm" method="post"><button id="btnModalBorrarSolicitud" type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Borrar solicitud</button></form>
+      </div>
+    </div>
+  </div>
+</div>
 	<datalist id="listUsers">
 	</datalist>
 

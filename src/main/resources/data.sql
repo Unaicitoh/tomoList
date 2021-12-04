@@ -8,7 +8,7 @@ INSERT INTO usuarios values (0,"","",16,"admin@email.com","2021/05/20","","H","A
 
 INSERT INTO amigos values (0,1,1,2);
 INSERT INTO amigos values (0,0,1,3);
-INSERT INTO amigos values (0,1,2,3);
+INSERT INTO amigos values (0,0,2,3);
 
 INSERT INTO mensajes values (0,"Prueba","2021/05/20 12:50:30",1,2);
 INSERT INTO mensajes values (0,"Prueba 2","2021/05/20 12:51:24",2,1);
