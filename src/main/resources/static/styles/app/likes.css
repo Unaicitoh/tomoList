@@ -9,11 +9,6 @@ header {
 	background-color: var(--main-color);
 }
 
-#search-icon:hover {
-	color: black;
-	cursor: pointer;
-}
-
 
 #img_header {
 	width: 38px;
@@ -29,7 +24,7 @@ header {
 
 .card-img-top{
 	width:100%;
-	height:65vh;
+	height:60vh;
 	object-fit:cover;
 }
 
@@ -56,7 +51,12 @@ header {
 #ajustes:hover{
 	cursor:pointer;
 }
+@media (min-width: 1000px){
 
-.nLikes:hover{
-	cursor:pointer;
+	#logo{
+	height: 70px;
+	width: 150px;
+	}
 }
+
+

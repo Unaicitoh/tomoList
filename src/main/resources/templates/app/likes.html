@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<title>Tomo Likes</title>
+<link rel="icon" th:href="@{/images/LogoTomo.png}" type="image/x-icon">
+<link rel="stylesheet" href="/styles/app/likes.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/js/app/likes.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+</head>
+<body>
+
+	<header class="container-fluid bg-gradient shadow-sm">
+		<div class="row d-flex align-items-center justify-content-md-between">
+			<div class="d-flex col-12 ms-sm-5 col-sm-1 justify-content-center">
+				<a th:href="@{/app/home}"><img id="logo"
+					th:src="@{/images/LogoTomoList.png}" height="50px" width="105px"
+					alt="img-thumbnail"></a>
+			</div>
+			<div
+				class="col-12 col-sm-5 mx-auto w-auto display-1 text-light text-center pb-2">Likes</div>
+			<div
+				class="btn-group col-8 col-sm-6 col-md-4 col-lg-3 col-xxl-2 mx-auto mx-md-0 py-2 gap-1">
+				<div id="card-header"
+					class="d-flex me-1 float-end justify-content-end">
+					<img id="img_header" class="border rounded-circle"
+						th:if="${#strings.contains(usuario.foto,'jpg') or #strings.contains(usuario.foto,'png') or #strings.contains(usuario.foto,'jpeg')}"
+						th:src="${usuario.foto}"> <img id="img_header"
+						class="border rounded-circle"
+						th:unless="${#strings.contains(usuario.foto,'jpg') or #strings.contains(usuario.foto,'png') or #strings.contains(usuario.foto,'jpeg')}"
+						th:src="@{/images/fotoex.jpg}">
+				</div>
+				<button id="btn_header" type="button"
+					class="btn btn-pimary border border-1 rounded text-light dropdown-toggle"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					th:text="${usuario.username}">USERNAME</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+
+					<li><a class="dropdown-item"
+						th:href="@{/app/perfil(id=${usuario.idusuario})}"><i
+							class="bi bi-person-workspace me-2"></i>Perfil </a></li>
+					<li><a class="dropdown-item" href="#"><i
+							class="bi bi-chat-fill me-2"></i>Chat</a></li>
+					<li><a class="dropdown-item" th:href="@{/app/amigos}"><i
+							class="bi bi-people-fill me-2"></i>Amigos</a></li>
+					<li id="ajustes"
+						th:if="${#strings.equals(#authentication.name,usuario.username)}"><a
+						class="dropdown-item" th:href="@{/app/updateUsuario}"><i
+							class="bi bi-gear-fill me-2"></i>Ajustes</a></li>
+					<li><a class="dropdown-item text-danger" href="#"
+						onclick="javascipt:document.getElementById('formLogout').submit()"><i
+							class="bi bi-door-closed-fill me-2"></i>Cerrar sesión </a></li>
+				</ul>
+
+			</div>
+		</div>
+	</header>
+
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div
+				class="card col-12 col-lg-7 shadow border-primary border-1 px-0 my-2">
+				<div id="card-header"
+					class="card-header d-flex align-items-center bg-white gap-2">
+					<div class="img-container-usuario-post">
+						<img id="imgUsuarioPost"
+							class="bg-white border rounded-circle border-dark"
+							th:if="${#strings.contains(post.autor.foto,'jpg') or #strings.contains(post.autor.foto,'png') or #strings.contains(post.autor.foto,'jpeg')}"
+							th:src="${post.autor.foto}"> <img id="imgUsuarioPost"
+							class="bg-white border rounded-circle border-dark"
+							th:unless="${#strings.contains(post.autor.foto,'jpg') or #strings.contains(post.autor.foto,'png') or #strings.contains(post.autor.foto,'jpeg')}"
+							th:src="@{/images/fotoex.jpg}">
+					</div>
+					<h3 class="card-title display-1 fs-2 text-dark"
+						th:text="${post.autor.username}">Nombre autor</h3>
+					<input type="hidden" th:value="${post.autor.idusuario}">
+				</div>
+
+				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img
+					th:if="${#strings.contains(post.imagen,'jpg') or #strings.contains(post.imagen,'png') or #strings.contains(post.imagen,'jpeg')}"
+					th:src="${post.imagen}" class="card-img-top" alt="card-img-top">
+				<img
+					th:unless="${#strings.contains(post.imagen,'jpg') or #strings.contains(post.imagen,'png') or #strings.contains(post.imagen,'jpeg')}"
+					th:src="@{/images/entradaex.jpg}" class="card-img-top"
+					alt="card-img-top"></a>
+				<div class="card-body d-flex flex-column">
+					<div class="row">
+						<h5 class="card-subtitle fs-4 col-9 col-sm-10 col-md-11 col-lg-10"
+							th:text="${post.titulo}">Card title</h5>
+						<div
+							th:if="${#strings.equals(#authentication.name,post.autor.username)}"
+							class="btn-group  col-3 col-sm-2 col-md-1 col-lg-2">
+							<button type="button"
+								class="btn btn-primary text-dark bg-transparent border border-0 rounded"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-pencil-square text-secondary fs-5"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li><a class="dropdown-item text-info"
+									th:href="@{/app/updatePost/{id}(id=${post.identrada})}"><i
+										class="bi bi-file-earmark-diff me-2"></i>Modificar</a></li>
+								<li><a class="dropdown-item text-danger"
+									data-bs-toggle="modal" data-bs-target="#modalBorrarEntrada"
+									href="#"><i class="bi bi-file-x me-2"></i>Borrar</a></li>
+
+							</ul>
+						</div>
+					</div>
+
+
+					<p class="card-text pt-2 fs-5" th:text="${post.contenido}">This
+						is a wider card</p>
+					<div class="card-text d-flex h-100">
+						<small id="diaSemanaPost" class="text-muted align-self-end col-2"
+							th:text="${#temporals.dayOfWeekNameShort(post.fecha)}">DAY</small>
+						<small class="text-muted align-self-end col-7"
+							th:text="${#temporals.format(post.fecha, 'dd-MM-yyyy HH:mm')}">Last</small>
+						<i
+							class="likeIcon bi bi-heart align-self-end col-1 fs-3 text-danger text-center"></i>
+						<div class="nLikes col-1 h-auto align-self-end ms-2 mb-md-2"></div>
+						<input id="ide" type="hidden" th:value="${post.identrada}">
+
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="container" th:if="${#lists.isEmpty(likes)}">
+			<div class="row justify-content-center">
+				<div
+					class="alert alert-info col-12 text-center display fs-5 w-auto my-4 p-5">Aún
+					no hay likes</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-center my-3">
+			<ul class="list-group list-group-flush col-12"
+				th:each="like: ${likes}">
+				<li class="list-group-item col-12 col-lg-6 mx-auto">
+					<div class="card shadow border-info border-1 px-0 my-2 bg-light">
+						<div id="card-header"
+							class="card-header d-flex align-items-center bg-white gap-2">
+							<div class="img-container-usuario-post">
+								<img id="imgUsuarioPost" class="border rounded-circle border-dark"
+						th:if="${#strings.contains(like.usuario.foto,'jpg') or #strings.contains(like.usuario.foto,'png') or #strings.contains(like.usuario.foto,'jpeg')}"
+						th:src="${like.usuario.foto}"> <img id="imgUsuarioPost"
+						class="border rounded-circle border-dark"
+						th:unless="${#strings.contains(like.usuario.foto,'jpg') or #strings.contains(like.usuario.foto,'png') or #strings.contains(like.usuario.foto,'jpeg')}"
+						th:src="@{/images/fotoex.jpg}">
+							</div>
+							<h3 class="card-title display-1 fs-2 text-dark"
+								th:text="${like.usuario.username}">Nombre autor</h3>
+							<input type="hidden" th:value="${like.usuario.idusuario}">
+						</div>
+						<div class="card-body d-flex justify-content-between align-items-center">
+							<p class="card-text my-auto" th:text="*{like.usuario.nombre}">With
+								supporting text below.</p>
+						</div>
+						<div class="card-footer text-muted">
+							<small class="me-2"
+								 th:text="'Año de nacimiento: '+(${#temporals.year(#temporals.createNow())}-${like.usuario.edad})">DAY</small>
+							
+
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<footer class="container-fluid bg-info">
+		<div
+			class="row col-12 col-lg-6 d-flex justify-content-center mx-auto mt-5 py-2">
+			<div
+				class="col-5 col-lg-4 d-flex align-items-center justify-content-center text-center">
+				<div class="list-group" id="list-tab" role="tablist">
+					<a class="list-group-item list-group-item-action" id="list-us-list"
+						data-bs-toggle="list" href="#list-us" role="tab"
+						aria-controls="us">Sobre Nosotros</a> <a
+						class="list-group-item list-group-item-action"
+						id="list-autor-list" data-bs-toggle="list" href="#list-autor"
+						role="tab" aria-controls="autor">Autor</a> <a
+						class="list-group-item list-group-item-action active"
+						id="list-copy-list" data-bs-toggle="list" href="#list-copy"
+						role="tab" aria-controls="copy">Copyright</a>
+				</div>
+			</div>
+			<div
+				class="col-7 col-lg-8 d-flex align-items-center justify-content-center">
+				<div class="tab-content" id="list-nav-tabContent">
+					<div class="tab-pane fade" id="list-us" role="tabpanel"
+						aria-labelledby="list-us-list">
+						<strong>TomoList</strong>, está desarrollada para ser una red
+						social, tiene como planteamiento principal ser una app <strong>intuitiva,
+							atractiva y divertida</strong> darles la capacidad a los
+						usuarios de interactuar unos con otros.
+					</div>
+					<div class="tab-pane fade" id="list-autor" role="tabpanel"
+						aria-labelledby="list-autor-list">
+						Unai González Sánchez, <strong>Full Stack Developer Web</strong>
+					</div>
+					<div class="tab-pane fade show active" id="list-copy"
+						role="tabpanel" aria-labelledby="list-copy-list">
+						<strong>© 2020-2021</strong> / TomoList / <strong>No
+							rights reserved</strong>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div id="modalBorrarEntrada" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalVerticallyCenteredLabel">Eliminando
+						entrada...</h5>
+					<button type="button" data-bs-dismiss="modal" class="btn-close"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Estás seguro de eliminar tu post?</div>
+				<div class="modal-footer">
+					<form th:action="@{/app/borrarPost/{id}(id=${post.identrada})}"
+						method="post">
+						<button type="button" data-bs-dismiss="modal"
+							class="btn btn-secondary">Cerrar</button>
+						<button type="submit" class="btn btn-danger">
+							<i class="bi bi-trash me-1"></i>Borrar entrada
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input id="idu" type="hidden" th:value="${usuario.idusuario}" />
+
+	<form id="formLogout" method="post" th:action="@{/logout}"></form>
+</body>
+</html>

@@ -122,4 +122,15 @@ public class PostsController {
 		sc.delete(com);
 		return "redirect:/app/comentarios/"+idE;
 	}
+	
+	@GetMapping("/likes/{idE}")
+	public String getLikes(Model m,@PathVariable int idE) {
+		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO usuario= su.findByUsername(auth.getName()).get();
+		
+		m.addAttribute("usuario", usuario);
+		m.addAttribute("post", se.findById(idE).get());
+		m.addAttribute("likes", se.getMegustas(idE).get());
+		return "app/likes";
+	}
 }

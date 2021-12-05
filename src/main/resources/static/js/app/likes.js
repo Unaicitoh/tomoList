@@ -26,12 +26,6 @@ $(document).ready(function() {
 		ele.children("h3").toggleClass("text-dark");
 	});
 
-//Click en num megustas
-	$(".nLikes").click(function(){
-		var idEntrada = $(this).siblings("input#ide").val();
-		location.href = "/app/likes/" + idEntrada;
-	});
-
 	//Validacion Comentario
 	$("textarea").keyup(function() {
 		if ($(this).val().length > 0) {
@@ -66,7 +60,9 @@ function creaEliminaLikes() {
 			$(this).addClass("bi-heart");
 			borrarLike(idE, idU);
 		}
+		
 	});
+	
 }
 
 function cargadorLikesActivos() {
@@ -82,6 +78,7 @@ function cargaLikes() {
 		var idEntrada = $(this).siblings("input#ide").attr("value");
 		var likeContainer = $(this);
 		cargadorLikes(idEntrada, likeContainer);
+		
 	});
 }
 

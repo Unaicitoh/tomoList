@@ -47,7 +47,9 @@ header {
 .likeIcon{
 	cursor:pointer;
 }
-
+.nLikes:hover{
+	cursor:pointer;
+}
 #ajustes:hover{
 	cursor:pointer;
 }

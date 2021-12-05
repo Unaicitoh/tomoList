@@ -36,6 +36,12 @@ $(document).ready(function() {
 		}
 	});
 
+	//Click en num megustas
+	$(".nLikes").click(function(){
+		var idEntrada = $(this).siblings("input#ide").val();
+		location.href = "/app/likes/" + idEntrada;
+	});
+
 	//Estilos POSTS header y Link
 	var headers = $(".card-header");
 	headers.click(function() {

@@ -28,6 +28,12 @@ $(document).ready(function() {
 		cargadorComentarios(idEntrada, commentContainer);
 	});
 
+//Click en num megustas
+	$(".nLikes").click(function(){
+		var idEntrada = $(this).siblings("input#ide").val();
+		location.href = "/app/likes/" + idEntrada;
+	});
+
 	//Click lupa buscador de usuarios
 	$("#search-icon").click(function() {
 		if ($("#searcher").data("id") != undefined) {
