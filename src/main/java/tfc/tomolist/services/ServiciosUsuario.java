@@ -49,6 +49,7 @@ public interface ServiciosUsuario {
 	
 	//Conversacion entre usuarios
 	Optional<ArrayList<MensajeVO>> getConversacionEntreAmigos(int amigo1, int amigo2);
+	Optional<ArrayList<MensajeVO>> getConversacionOrdenada(int amigo1, int amigo2);
 	
 	//Numero de amigos de un usuario
 	int numeroAmigos(int id);

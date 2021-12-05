@@ -71,8 +71,10 @@ public class UsersController {
 		UsuarioVO usuarioSesion = su.findByUsername(nombre).get();
 		Paged<EntradaVO> postsPageados = se.entradasPerfil(usuarioPerfil.getIdusuario(), pageNumber, size).get();
 
-		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get().isEmpty(); 
-		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get().isEmpty(); 
+		boolean isAmigo = su.getAmigoUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get()
+				.isEmpty();
+		boolean isSolicitud = su.getSolicitudUsuario(usuarioSesion.getIdusuario(), usuarioPerfil.getIdusuario()).get()
+				.isEmpty();
 		int isTablonVacio = (int) postsPageados.getPage().getTotalElements();
 
 		m.addAttribute("isVacio", isTablonVacio);
@@ -126,67 +128,91 @@ public class UsersController {
 			usuario.setPassword(config.encriptarPassword(usuario.getRawpass()));
 			su.save(usuario);
 			return "redirect:/app/perfil?id=" + usuario.getIdusuario();
-		}	
+		}
 	}
-	
+
 	@GetMapping("/amigos")
 	public String amigosView(Model m) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO u = su.findByUsername(auth.getName()).get();
 		m.addAttribute("usuario", u);
 		m.addAttribute("solicitudes", su.solicitudesOrdenadas(u.getIdusuario()).get());
-		boolean isRest =false;
+		boolean isRest = false;
 		m.addAttribute("isRest", isRest);
 		m.addAttribute("amigos", su.amigosOrdenados(u.getIdusuario()).get());
 		return "app/amigos";
 	}
-	
+
 	@PostMapping("/crearAmistad/{idA}")
 	public String crearAmistad(@PathVariable int idA) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO uR = su.findByUsername(auth.getName()).get();
 		UsuarioVO uA = su.findById(idA).get();
-		
-		ArrayList<AmigoVO> a=su.getSolicitudUsuario(uA.getIdusuario(), uR.getIdusuario()).get();
+
+		ArrayList<AmigoVO> a = su.getSolicitudUsuario(uA.getIdusuario(), uR.getIdusuario()).get();
 		a.get(0).setAceptado(true);
 		sa.save(a.get(0));
-		
+
 		return "redirect:/app/amigos";
 	}
-	
+
 	@PostMapping("/borrarSolicitud/{idA}")
 	public String borrarSolicitud(@PathVariable int idA) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO uR = su.findByUsername(auth.getName()).get();
 		UsuarioVO uA = su.findById(idA).get();
-		
-		su.borrarAmistad(uA.getIdusuario(),uR.getIdusuario());
-		
+
+		su.borrarAmistad(uA.getIdusuario(), uR.getIdusuario());
+
 		return "redirect:/app/amigos";
 	}
-	
+
 	@PostMapping("/borrarAmistad/{idA}")
 	public String borrarAmistad(@PathVariable int idA) {
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO uR = su.findByUsername(auth.getName()).get();
 		UsuarioVO uA = su.findById(idA).get();
-		
-		su.borrarAmistad(uA.getIdusuario(),uR.getIdusuario());
-		
+
+		su.borrarAmistad(uA.getIdusuario(), uR.getIdusuario());
+
 		return "redirect:/app/amigos";
 	}
 
 	@GetMapping("/friendsearch/{user}/{id}")
-	public String getAmigosBuscados(@PathVariable("user") String name, @PathVariable("id") int id, Model m){
-		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+	public String getAmigosBuscados(@PathVariable("user") String name, @PathVariable("id") int id, Model m) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsuarioVO u = su.findByUsername(auth.getName()).get();
 		m.addAttribute("usuario", u);
 		m.addAttribute("solicitudes", su.solicitudesOrdenadas(u.getIdusuario()).get());
-		boolean isRest =true;
+		boolean isRest = true;
 		m.addAttribute("isRest", isRest);
 		m.addAttribute("amigos", su.amigosRestOrdenadas(name, id).get());
 		return "app/amigos";
-		
+
 	}
 	
+	@GetMapping("/friendchatsearcher/{user}/{id}")
+	public String getAmigosChatBuscados(@PathVariable("user") String name, @PathVariable("id") int id, Model m) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO u = su.findByUsername(auth.getName()).get();
+		m.addAttribute("usuario", u);
+		m.addAttribute("solicitudes", su.solicitudesOrdenadas(u.getIdusuario()).get());
+		boolean isRest = true;
+		m.addAttribute("isRest", isRest);
+		m.addAttribute("amigos", su.amigosRestOrdenadas(name, id).get());
+		return "app/chats";
+
+	}
+
+	@GetMapping("/chats")
+	public String getChat(Model m) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO u = su.findByUsername(auth.getName()).get();
+		boolean isRest = false;
+		m.addAttribute("isRest", isRest);
+		m.addAttribute("usuario", u);
+		m.addAttribute("amigos", su.amigosOrdenados(u.getIdusuario()).get());
+		return "app/chats";
+	}
+
 }

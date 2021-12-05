@@ -71,7 +71,7 @@
 						th:href="@{/app/perfil(id=${usuario.idusuario})}"><i
 							class="bi bi-person-workspace me-2"></i>Perfil </a></li>
 					<li><a class="dropdown-item" th:href="@{/app/chats}"><i
-							class="bi bi-chat-fill me-2"></i>Chat</a></li>
+							class="bi bi-chat-fill me-2"></i>Chats</a></li>
 					<li><a class="dropdown-item" th:href="@{/app/amigos}"><i
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
@@ -119,7 +119,7 @@
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/app/perfil(id=${usuario.idusuario})}">Perfil <i
 							class="bi bi-person-workspace"></i></a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Chat <i
+					<li class="nav-item"><a class="nav-link" th:href="@{/app/chats}">Chats <i
 							class="bi bi-chat"></i></a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/app/amigos}">Amigos <i
 							class="bi bi-people"></i></a></li>

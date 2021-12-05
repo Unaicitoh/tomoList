@@ -14,7 +14,10 @@ $(document).ready(function() {
 	$("#searcher").change(function() {
 		loadOptions();
 		var id = $("#searcher").data("id");
-		location.href = "/app/perfil?id=" + id;
+		if (id != undefined) {
+			location.href = "/app/perfil?id=" + id;
+		}
+
 	});
 
 	//Carga likes activos
