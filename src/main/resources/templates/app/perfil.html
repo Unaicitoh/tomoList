@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<header class="container-fluid bg-gradient">
+	<header class="container-fluid bg-gradient shadow-sm">
 		<div
 			class="d-flex row align-items-center  justify-content-between py-4">
 
@@ -60,7 +60,7 @@
 						th:href="@{/app/perfil(id=${usuarioSesion.idusuario})}"><i
 							class="bi bi-person-workspace me-2"></i>Perfil </a></li>
 					<li><a class="dropdown-item" th:href="@{/app/chats}"><i
-							class="bi bi-chat-fill me-2"></i>Chat</a></li>
+							class="bi bi-chat-fill me-2"></i>Chats</a></li>
 					<li><a class="dropdown-item" th:href="@{/app/amigos}"><i
 							class="bi bi-people-fill me-2"></i>Amigos</a></li>
 					<li id="ajustes"
@@ -132,8 +132,8 @@
 				</div>
 
 				<div class="row justify-content-center align-items-center gap-5">
-					<a class="col-4 col-md-2 btn btn-primary py-2"><i
-						class="bi bi-chat-right-quote me-1"></i> Ir a chat</a>
+					<a class="col-4 col-md-2 btn btn-primary py-2" th:href="@{/app/chat/{id}(id=${usuarioPerfil.idusuario})}"><i
+						class="bi bi-chat-right-quote me-1"></i> Enviar mensaje</a>
 					<button class="col-4 col-md-2 btn btn-danger py-2"
 						data-bs-toggle="modal" data-bs-target="#modalBorrar">
 						<i class="bi bi-person-dash me-1"></i> Borrar amistad

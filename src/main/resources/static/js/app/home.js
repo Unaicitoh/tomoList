@@ -2,7 +2,6 @@ var input;
 var nick;
 var lista;
 var usuarioActivo;
-var entradaActual;
 var options;
 
 $(document).ready(function() {
