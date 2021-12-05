@@ -185,7 +185,23 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return Optional.of(filterList);
 	}
 
+	@Override
+	public Optional<ArrayList<AmigoVO>> getAmigosRest(String s, int id) {
+		return ur.getAmigosRest(s, id);
+	}
 
+	public Optional<ArrayList<AmigoVO>> amigosRestOrdenadas(String s,int id) {
+		ArrayList<AmigoVO> filterList=ur.getAmigosRest(s, id).get();
+		filterList.stream().forEach(x->{
+			if(x.getAmigo2().getIdusuario()==id) {
+				UsuarioVO aux;
+				aux=x.getAmigo1();
+				x.setAmigo1(x.getAmigo2());
+				x.setAmigo2(aux);
+			}
+		});
+		return Optional.of(filterList);
+	}
 
 
 }

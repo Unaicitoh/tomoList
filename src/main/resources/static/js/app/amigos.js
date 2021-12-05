@@ -13,10 +13,22 @@ $(document).ready(function() {
 	lista = document.getElementById("listUsers");
 	usuarioActivo = document.getElementById("idu");
 	input.addEventListener("input", userSearcher);
-
+	$("#searcher").change(function() {
+		loadOptions();
+		var id = $("#searcher").data("id");
+		location.href = "/app/perfil?id=" + id;
+	});
 	listaS = $("#infoSolicitudes");
 	listaS.hide();
 	listaA = $("#infoAmigos");
+
+	//Buscador amigos
+	$("#amigos-searcher").change(function() {
+		var idU=$("#idu").val();
+		var username=$(this).val();
+		loadAmigos(username, idU);
+	});
+
 	//Click lupa buscador de usuarios
 	$("#search-icon").click(function() {
 		if ($("#searcher").data("id") != undefined) {
@@ -82,6 +94,10 @@ $(document).ready(function() {
 
 });
 
+
+ async function loadAmigos(username, idU) {
+	location.href="/app/friendsearch/"+username+"/"+idU;
+}
 
 
 

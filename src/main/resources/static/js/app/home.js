@@ -11,7 +11,11 @@ $(document).ready(function() {
 	lista = document.getElementById("listUsers");
 	usuarioActivo = document.getElementById("idu");
 	input.addEventListener("input", userSearcher);
-
+	$("#searcher").change(function() {
+		loadOptions();
+		var id = $("#searcher").data("id");
+		location.href = "/app/perfil?id=" + id;
+	});
 
 	//Carga likes activos
 	cargadorLikesActivos();
@@ -37,7 +41,7 @@ $(document).ready(function() {
 	});
 
 	//Click en num megustas
-	$(".nLikes").click(function(){
+	$(".nLikes").click(function() {
 		var idEntrada = $(this).siblings("input#ide").val();
 		location.href = "/app/likes/" + idEntrada;
 	});
@@ -66,7 +70,7 @@ $(document).ready(function() {
 });
 
 function creaEliminaLikes() {
-	
+
 	$(".likeIcon").click(function() {
 		var idU = $("#idu").val();
 		var idE = $(this).siblings("input#ide").val();
@@ -77,7 +81,7 @@ function creaEliminaLikes() {
 		} else if ($(this).hasClass("bi-heart-fill")) {
 			$(this).removeClass("bi-heart-fill");
 			$(this).addClass("bi-heart");
-			borrarLike(idE,idU);
+			borrarLike(idE, idU);
 		}
 	});
 }

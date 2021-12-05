@@ -135,6 +135,8 @@ public class UsersController {
 		UsuarioVO u = su.findByUsername(auth.getName()).get();
 		m.addAttribute("usuario", u);
 		m.addAttribute("solicitudes", su.solicitudesOrdenadas(u.getIdusuario()).get());
+		boolean isRest =false;
+		m.addAttribute("isRest", isRest);
 		m.addAttribute("amigos", su.amigosOrdenados(u.getIdusuario()).get());
 		return "app/amigos";
 	}
@@ -174,4 +176,17 @@ public class UsersController {
 		return "redirect:/app/amigos";
 	}
 
+	@GetMapping("/friendsearch/{user}/{id}")
+	public String getAmigosBuscados(@PathVariable("user") String name, @PathVariable("id") int id, Model m){
+		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO u = su.findByUsername(auth.getName()).get();
+		m.addAttribute("usuario", u);
+		m.addAttribute("solicitudes", su.solicitudesOrdenadas(u.getIdusuario()).get());
+		boolean isRest =true;
+		m.addAttribute("isRest", isRest);
+		m.addAttribute("amigos", su.amigosRestOrdenadas(name, id).get());
+		return "app/amigos";
+		
+	}
+	
 }
