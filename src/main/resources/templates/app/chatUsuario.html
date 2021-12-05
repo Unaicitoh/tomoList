@@ -83,11 +83,25 @@
 		</div>
 	</header>
 
-	<div class="container my-5">
+	<div class="container my-3 my-md-5">
 		<div class="row">
-			<div id="chat-container">
-				<div id="chat-header"></div>
-				<div id="chat-body"></div>
+			<div id="chat-container" class="border border-dark">
+				<div id="chat-header">
+					<div class="imagenReceptor-container">
+						<img id="imagenReceptor" class="border border-dark rounded-circle"
+							th:if="${#strings.contains(usuarioReceptor,'jpg') or
+						#strings.contains(usuarioReceptor.foto,'png') or
+						#strings.contains(usuarioReceptor.foto,'jpeg')}"
+							th:src="${usuarioReceptor.foto}"> <img id="imagenAutor"
+							class="border border-dark rounded-circle"
+							th:unless="${#strings.contains(usuarioReceptor.foto,'jpg') or #strings.contains(usuarioReceptor.foto,'png') or #strings.contains(usuarioReceptor.foto,'jpeg')}"
+							th:src="@{/images/fotoex.jpg}">
+					</div>
+					<div th:text="${usuarioReceptor.nombre}"></div>
+				</div>
+				<div id="chat-body">
+					
+				</div>
 				<div id="chat-input"></div>
 			</div>
 		</div>

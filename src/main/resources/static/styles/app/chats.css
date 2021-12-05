@@ -26,6 +26,10 @@ header {
 	cursor: pointer;
 }
 
+#amigos-container{
+	height: 60vh;
+	overflow: auto;
+}
 
 #btn_header:hover {
 	background-color: rgb(0, 0, 0, 0.75);

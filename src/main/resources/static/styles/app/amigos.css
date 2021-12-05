@@ -23,6 +23,15 @@ header {
 	cursor: pointer;
 }
 
+#infoSolicitudes{
+	max-height: 62vh;
+	overflow: auto;
+}
+
+#infoAmigos{
+	max-height: 62vh;
+	overflow: auto;
+}
 
 #img_header {
 	width: 38px;
