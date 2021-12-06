@@ -23,7 +23,9 @@ $(document).ready(function() {
 
 
 	setInterval(function() {
+		var mensaje=$("#floatingText").val();
 		window.location.reload();
+		$("#floatingText").val(mensaje);
 	}, 10000)
 
 
