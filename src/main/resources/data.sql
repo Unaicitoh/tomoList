@@ -10,11 +10,20 @@ INSERT INTO amigos values (0,1,1,2);
 INSERT INTO amigos values (0,0,1,3);
 INSERT INTO amigos values (0,0,2,3);
 
-INSERT INTO mensajes values (0,"Prueba","2021/05/20 12:50:30",1,2);
-INSERT INTO mensajes values (0,"Prueba 2","2021/05/20 12:51:24",2,1);
-INSERT INTO mensajes values (0,"Prueba 3","2021/05/20 12:52:54",1,2);
-INSERT INTO mensajes values (0,"Prueba 4","2021/05/20 12:53:15",1,2);
-INSERT INTO mensajes values (0,"Prueba 5","2021/05/20 12:54:34",2,1);
+INSERT INTO mensajes values (0,"Hola","2021/05/20 12:50:30",1,2);
+INSERT INTO mensajes values (0,"Eyy","2021/05/20 12:51:24",2,1);
+INSERT INTO mensajes values (0,"Como vas","2021/05/20 12:52:54",1,2);
+INSERT INTO mensajes values (0,"Bien tio y tu","2021/05/20 12:53:15",1,2);
+INSERT INTO mensajes values (0,"COmo dios compay","2021/05/20 12:54:34",2,1);
+INSERT INTO mensajes values (0,"Aqui probando el final","2021/05/20 12:52:54",1,2);
+INSERT INTO mensajes values (0,"Sii aqui estaos","2021/05/20 12:53:15",1,2);
+INSERT INTO mensajes values (0,"Esto va funcioanndo","2021/05/20 12:54:34",2,1);
+INSERT INTO mensajes values (0,"Ya ves","2021/05/20 12:55:54",1,2);
+INSERT INTO mensajes values (0,"e dimo caaña","2021/05/20 12:56:15",1,2);
+INSERT INTO mensajes values (0,"Onono","2021/05/20 12:57:34",2,1);
+INSERT INTO mensajes values (0,"El wifi","2021/05/20 12:58:54",1,2);
+INSERT INTO mensajes values (0,"A divias","2021/05/20 12:59:59",1,2);
+INSERT INTO mensajes values (0,"Adivinas bien escrito","2021/05/20 13:54:34",2,1);
 
 INSERT INTO entradas values (0,"Lores sit amet eros. Quisque sapien turpis, tristique et ornare facilisis, tempor ut nunc. Aliquam erat volutpat. ","2021/03/25 11:50:34","https://images.pexels.com/photos/5767607/pexels-photo-5767607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","Entrada1",1);
 INSERT INTO entradas values (0,"Sed ultricies, felis ut laoreet tincidunt, ipsum quam facilisis nibh, sed fringilla arcu diam sit amet eros. Quisque sapien turpis, tristique et ornare facilisis, tempor ut nunc. Aliquam erat volutpat. ","2021/05/20 12:22:34","https://images.pexels.com/photos/7047538/pexels-photo-7047538.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","Entrada2",1);

@@ -203,18 +203,7 @@ public class ServiciosUsuarioImp implements ServiciosUsuario, UserDetailsService
 		return Optional.of(filterList);
 	}
 
-	public Optional<ArrayList<MensajeVO>> getConversacionOrdenada(int id,int id2) {
-		ArrayList<MensajeVO> filterList=ur.getConversacionEntreAmigos(id, id2).get();
-		filterList.stream().forEach(x->{
-			if(x.getReceptor().getIdusuario()==id) {
-				UsuarioVO aux;
-				aux=x.getAutor();
-				x.setAutor(x.getReceptor());
-				x.setReceptor(aux);
-			}
-		});
-		return Optional.of(filterList);
-	}
+
 
 
 }

@@ -1,11 +1,9 @@
-:root { 
-	--main-color: rgb(89, 89, 255);
+:root { --main-color: rgb(89, 89, 255);
 }
 
 header {
 	background-color: var(--main-color);
 }
-
 
 #search-icon:hover {
 	color: black;
@@ -24,12 +22,17 @@ header {
 	object-fit: cover;
 }
 
-#chat-container{
-	height:65vh;
-	
+#imgMensaje {
+	width: 38px;
+	height: 38px;
+	object-fit: cover;
 }
-#chat-body{
-	overflow: auto;
+
+
+#chat-body {
+	height: 40vh;
+	overflow-y: auto; 
+	overflow-x: hidden; 
 }
 
 #btn_header:hover {
@@ -44,32 +47,27 @@ header {
 	cursor: pointer;
 }
 
-
-#nombre{
+#nombre {
 	word-break: break-all;
-  white-space: pre-wrap;
+	white-space: pre-wrap;
 }
 
 @media ( min-width : 768px) {
-
 	#logo {
 		height: 70px;
 		width: 150px;
 	}
 	#imagenReceptor {
-	width: 65px;
-	height: 65px;
-	object-fit: cover;
-}
-
+		width: 65px;
+		height: 65px;
+		object-fit: cover;
+	}
 }
 
 @media ( min-width : 1200px) {
-
 	#imagenReceptor {
-	width: 80px;
-	height: 80px;
-	object-fit: cover;
-}
-
+		width: 80px;
+		height: 80px;
+		object-fit: cover;
+	}
 }

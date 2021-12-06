@@ -108,21 +108,26 @@
 				</div>
 				<hr />
 				<div id="chat-body">
-					<div th:each="mensaje :${mensajes}">
+					<div th:each="mensaje :${mensajes}" class="my-3">
 						<div th:if="${mensaje.autor.idusuario == usuario.idusuario}">
-							<div>Yo</div>
-							<div th:text="mensaje.contenido"></div>
-							<div th:text="mensaje.fecha"></div>
+							<div class="text-end">Yo</div>
+							<div class="row text-end">
+								<div class="col-10" th:text="${mensaje.contenido}"></div>
+								<div class="col-2" th:text="${mensaje.fecha}"></div>
+							</div>
+
 						</div>
 
-						<div
-							th:if="${mensaje.receptor.idusuario == usuarioReceptor.idusuario}">
+						<div class="d-flex"
+							th:if="${mensaje.autor.idusuario == usuarioReceptor.idusuario}">
 							<div>
-							<img class="img-fluid" th:src="@{${mensaje.receptor.foto}}">
+								<img id="imgMensaje"
+									class="img-fluid border border-dark rounded-circle"
+									th:src="@{${mensaje.autor.foto}}">
 							</div>
-							<div th:text="mensaje.contenido"></div>
-							<div th:text="mensaje.fecha"></div>
-							</div>
+							<div th:text="${mensaje.contenido}"></div>
+							<div th:text="${mensaje.fecha}"></div>
+						</div>
 					</div>
 				</div>
 				<div id="chat-input"></div>

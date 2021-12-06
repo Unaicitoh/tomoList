@@ -41,15 +41,19 @@ public interface ServiciosUsuario {
 	
 	//Amigos con usuario ordenado
 	Optional<ArrayList<AmigoVO>> amigosOrdenados(int id);
+	
 	Optional<ArrayList<AmigoVO>> solicitudesOrdenadas(int id);
+	
 	Optional<ArrayList<AmigoVO>> getAmigosRest(String s, int id);
+	
 	Optional<ArrayList<AmigoVO>> amigosRestOrdenadas(String s,int id);
+	
 	//Entradas de un usuario
 	Optional<ArrayList<EntradaVO>> getEntradas(int id);
 	
 	//Conversacion entre usuarios
 	Optional<ArrayList<MensajeVO>> getConversacionEntreAmigos(int amigo1, int amigo2);
-	Optional<ArrayList<MensajeVO>> getConversacionOrdenada(int amigo1, int amigo2);
+
 	
 	//Numero de amigos de un usuario
 	int numeroAmigos(int id);
