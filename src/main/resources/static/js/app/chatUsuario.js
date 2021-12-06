@@ -67,7 +67,7 @@ $(document).ready(function() {
 function scrollDiv() {
 
 	var div = document.getElementById('chat-body');
-	var scrollHeight   div.scrollHeight;
+	var scrollHeight = div.scrollHeight;
 	div.scrollTop = scrollHeight;
 }
 
