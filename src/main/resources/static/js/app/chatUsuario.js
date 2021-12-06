@@ -22,6 +22,17 @@ $(document).ready(function() {
 
 	scrollDiv()
 
+//Validacion Mensaje
+
+	var msginput=document.getElementById("floatingText");
+	
+	msginput.addEventListener("input",function(){
+		if ($(this).val().length > 0) {
+			$("#sendMensaje").removeClass("disabled");
+		} else {
+			$("#sendMensaje").addClass("disabled");
+		}
+	})
 
 
 	//Buscador amigos

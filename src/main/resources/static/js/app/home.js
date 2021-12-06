@@ -19,6 +19,13 @@ $(document).ready(function() {
 
 	});
 
+	var token = $("meta[name='_csrf']").attr("value");
+	var header = $("meta[name='_csrf_header']").attr("value");
+
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(header, token);
+	});
+
 	//Carga likes activos
 	cargadorLikesActivos();
 	//Carga de num likes

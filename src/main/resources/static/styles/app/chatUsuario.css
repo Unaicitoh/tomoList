@@ -8,19 +8,19 @@
 
 /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
 #chat-body::-webkit-scrollbar-thumb {
-    background: #ccc;
+    background: #00ffff;
     border-radius: 4px;
 }
 
 /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
 #chat-body::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
+    background: #0080ff;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 /* Cambiamos el fondo cuando esté en active */
 #chat-body::-webkit-scrollbar-thumb:active {
-    background-color: #999999;
+    background-color: #ff80ff;
 }
 
 header {
@@ -74,7 +74,7 @@ header {
 	cursor: pointer;
 }
 
-#nombre {
+.mensaje {
 	word-break: break-all;
 	white-space: pre-wrap;
 }

@@ -1,15 +1,24 @@
 package tfc.tomolist.controllers.app;
 
+import java.time.LocalDateTime;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import tfc.tomolist.model.MensajeVO;
 import tfc.tomolist.model.UsuarioVO;
+import tfc.tomolist.services.ServiciosMensaje;
 import tfc.tomolist.services.ServiciosUsuario;
 
 @Controller
@@ -18,6 +27,9 @@ public class ChatController {
 	
 	@Autowired
 	ServiciosUsuario su;
+	
+	@Autowired
+	ServiciosMensaje sm;
 	
 	@GetMapping("/friendchatsearcher/{user}/{id}")
 	public String getAmigosChatBuscados(@PathVariable("user") String name, @PathVariable("id") int id, Model m) {
@@ -51,6 +63,27 @@ public class ChatController {
 		m.addAttribute("usuarioReceptor", su.findById(id).get());
 		m.addAttribute("usuario", u);
 		m.addAttribute("mensajes", su.getConversacionEntreAmigos(u.getIdusuario(), id).get());
+		m.addAttribute("input", new MensajeVO());
 		return "app/chatUsuario";
+	}
+	
+	@PostMapping("/mensaje/{idR}")
+	public String envioMensaje(@PathVariable int idR,@Valid @ModelAttribute MensajeVO men, BindingResult br, Model m) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO u = su.findByUsername(auth.getName()).get();
+		
+		
+		if(br.hasErrors()) {
+			m.addAttribute("usuarioReceptor", su.findById(idR).get());
+			m.addAttribute("usuario", u);
+			m.addAttribute("mensajes", su.getConversacionEntreAmigos(u.getIdusuario(), idR).get());
+			return "app/chatUsuario";
+		}else {
+			men.setFecha(LocalDateTime.now());
+			men.setReceptor(su.findById(idR).get());
+			men.setAutor(u);
+			sm.save(men);
+			return "redirect:/app/chat/"+idR;
+		}	
 	}
 }

@@ -4,6 +4,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8" />
+<meta name="_csrf" th:value="${_csrf.token}"/>
+<meta name="_csrf_header" th:value="${_csrf.headerName}"/>
 <title th:text="${#authentication.name}+' Home'">Home</title>
 <link rel="icon" th:href="@{/images/LogoTomo.png}" type="image/x-icon">
 <link rel="stylesheet" href="/styles/app/home.css" />
@@ -259,7 +261,9 @@
 
 	<datalist id="listUsers">
 	</datalist>
-
+	<form>
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+	</form>
 	<input id="idu" type="hidden" th:value="${usuario.idusuario}" />
 	<form id="formLogout" method="post" th:action="@{/logout}"></form>
 

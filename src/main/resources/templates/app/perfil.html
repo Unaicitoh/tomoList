@@ -5,6 +5,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
+<meta name="_csrf" th:value="${_csrf.token}" />
+<meta name="_csrf_header" th:value="${_csrf.headerName}" />
 <title th:text="'Perfil '+${usuarioPerfil.username}">Perfil</title>
 <link rel="icon" th:href="@{/images/LogoTomo.png}" type="image/x-icon">
 <link rel="stylesheet" href="/styles/app/perfil.css" />
@@ -132,7 +134,8 @@
 				</div>
 
 				<div class="row justify-content-center align-items-center gap-5">
-					<a class="col-4 col-md-2 btn btn-primary py-2" th:href="@{/app/chat/{id}(id=${usuarioPerfil.idusuario})}"><i
+					<a class="col-4 col-md-2 btn btn-primary py-2"
+						th:href="@{/app/chat/{id}(id=${usuarioPerfil.idusuario})}"><i
 						class="bi bi-chat-right-quote me-1"></i> Enviar mensaje</a>
 					<button class="col-4 col-md-2 btn btn-danger py-2"
 						data-bs-toggle="modal" data-bs-target="#modalBorrar">
@@ -306,8 +309,8 @@
 						aria-labelledby="list-us-list">
 						<strong>TomoList</strong>, está desarrollada para ser una red
 						social, tiene como planteamiento principal ser una app <strong>intuitiva,
-							atractiva y divertida</strong> darles la capacidad a los
-						usuarios de interactuar unos con otros.
+							atractiva y divertida</strong> darles la capacidad a los usuarios de
+						interactuar unos con otros.
 					</div>
 					<div class="tab-pane fade" id="list-autor" role="tabpanel"
 						aria-labelledby="list-autor-list">
@@ -337,6 +340,8 @@
 					<form
 						th:action="@{/app/borrarAmistad/{id1}/{id2}(id1=${usuarioPerfil.idusuario},id2=${usuarioSesion.idusuario})}"
 						method="post">
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}">
 						<button type="button" data-bs-dismiss="modal"
 							class="btn btn-secondary">Cerrar</button>
 						<button type="submit" class="btn btn-danger">
@@ -362,6 +367,9 @@
 					<form
 						th:action="@{/app/borrarSolicitud/{id1}/{id2}(id1=${usuarioSesion.idusuario},id2=${usuarioPerfil.idusuario})}"
 						method="post">
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}"> <input type="hidden"
+							th:name="_csrf" th:value="${_csrf.token}">
 						<button type="button" data-bs-dismiss="modal"
 							class="btn btn-secondary">Cerrar</button>
 						<button type="submit" class="btn btn-danger">
@@ -384,6 +392,8 @@
 				<div class="modal-body">¿Estás seguro de eliminar tu post?</div>
 				<div class="modal-footer">
 					<form id="form-entrada" method="post">
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}">
 						<button type="button" data-bs-dismiss="modal"
 							class="btn btn-secondary">Cerrar</button>
 						<button id="btn-borrar-entrada" type="submit"

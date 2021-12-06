@@ -31,22 +31,18 @@ $(document).ready(function() {
 		var idEntrada = $(this).siblings("input#ide").val();
 		location.href = "/app/likes/" + idEntrada;
 	});
+	
+	var msgcomentario=document.getElementById("floatingTextarea");
+	
+	msgcomentario.addEventListener("input",function(){
+		if ($(this).val().length > 0) {
+			$("#newComment").removeClass("disabled");
+		} else {
+			$("#newComment").addClass("disabled");
+		}
+	})
 
-	//Validacion Comentario
-	$("textarea").keyup(function() {
-		if ($(this).val().length > 0) {
-			$("#newComment").removeClass("disabled");
-		} else {
-			$("#newComment").addClass("disabled");
-		}
-	});
-	$("textarea").keydown(function() {
-		if ($(this).val().length > 0) {
-			$("#newComment").removeClass("disabled");
-		} else {
-			$("#newComment").addClass("disabled");
-		}
-	});
+
 
 
 

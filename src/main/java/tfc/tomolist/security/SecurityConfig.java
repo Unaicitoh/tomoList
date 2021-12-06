@@ -35,12 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/","/register","/login").permitAll();
+		http.authorizeRequests().antMatchers("/","/register","/login","/api/**").permitAll();
+		http.exceptionHandling().accessDeniedPage("/error");
+		http.csrf().ignoringAntMatchers("/api/**");
 		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/app/**").hasRole("ESTANDAR");
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/success",true).permitAll();
 		http.logout().logoutSuccessUrl("/login?logout");
-
 	}
 	
 	

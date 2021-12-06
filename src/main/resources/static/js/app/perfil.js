@@ -6,6 +6,14 @@ var entradaActual;
 var options;
 
 $(document).ready(function() {
+
+	var token = $("meta[name='_csrf']").attr("value");
+	var header = $("meta[name='_csrf_header']").attr("value");
+
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(header, token);
+	});
+
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
 	lista = document.getElementById("listUsers");
