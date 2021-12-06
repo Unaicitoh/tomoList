@@ -76,7 +76,9 @@ public class PostsController {
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 		
 		m.addAttribute("usuario", su.findByUsername(auth.getName()).get());
-		m.addAttribute("entrada", new EntradaVO());
+		EntradaVO e = new EntradaVO();
+		e.setImagen("URL");
+		m.addAttribute("entrada", e);
 		
 		return "app/entradaInfo";
 	}
