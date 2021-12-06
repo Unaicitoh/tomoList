@@ -73,8 +73,7 @@
 		class="col-12 col-md-8 col-lg-5 mt-5 mx-auto border border-2 border-info bg-white rounded shadow p-4"
 		th:action="@{/app/updatePerfil/submit}" method="post"
 		th:object="${usuario}">
-		<div class="text-center mb-4 display-6"
-			th:text="'Perfil de '+ ${#strings.substringBefore(usuario.nombre,' ')}"></div>
+		<div class="text-center mb-4 display-6">Mis datos</div>
 		<input type="hidden" th:field="*{idusuario}"> <input
 			type="hidden" th:field="*{fecha}" /> <input type="hidden"
 			th:field="*{rol}" /> <input type="hidden" th:field="*{password}" />
