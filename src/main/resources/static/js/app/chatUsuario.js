@@ -6,9 +6,8 @@ var usuarioActivo;
 var options;
 
 $(document).ready(function() {
-	setInterval(function() {
-		window.location.reload();
-	}, 10000)
+	scrollDiv()
+
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
 	lista = document.getElementById("listUsers");
@@ -23,8 +22,10 @@ $(document).ready(function() {
 	});
 
 
+	setInterval(function() {
+		window.location.reload();
+	}, 10000)
 
-	scrollDiv()
 
 	//Validacion Mensaje
 
@@ -66,13 +67,10 @@ $(document).ready(function() {
 function scrollDiv() {
 
 	var div = document.getElementById('chat-body');
-	var scrollHeight = div.scrollHeight;
+	var scrollHeight   div.scrollHeight;
 	div.scrollTop = scrollHeight;
 }
 
-async function loadAmigos(username, idU) {
-	location.href   "/app/friendchatsearcher/" +  username + "/" + idU;
-}
 
 
 
