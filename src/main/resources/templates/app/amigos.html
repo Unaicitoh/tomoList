@@ -96,7 +96,8 @@
 					</button>
 				</div>
 
-				<ul id="infoSolicitudes" class="list-group list-group mt-3 bg-white shadow">
+				<ul id="infoSolicitudes"
+					class="list-group list-group mt-3 bg-white shadow">
 					<li class="list-unstyled" th:if="${#lists.isEmpty(solicitudes)}"><div
 							class="alert alert-info text-center col-12  mb-2 ">
 							<i class="bi bi-exclamation-diamond me-2"></i>No tienes
@@ -153,7 +154,8 @@
 							th:text="${#lists.isEmpty(amigos)? '0' : #lists.size(amigos)}"
 							class="badge bg-info col-2 fs-6">5</div>
 					</div>
-					<ul id="infoAmigos" class="list-group list-group mt-3 pe-0 bg-white shadow">
+					<ul id="infoAmigos"
+						class="list-group list-group mt-3 pe-0 bg-white shadow">
 						<li class="list-unstyled"
 							th:if="${#lists.isEmpty(amigos) and !isRest}"><div
 								class="alert alert-info text-center col-12 mb-2">
@@ -169,8 +171,7 @@
 						<li class="list-group-item d-flex">
 							<div id="search-icon-container">
 								<i id="search-icon" class="bi bi-search me-3 fs-3" role="img"></i>
-							</div>
-							<input id="amigos-searcher" type="text" class="form-control"
+							</div> <input id="amigos-searcher" type="text" class="form-control"
 							placeholder="Presiona Enter para buscar">
 						</li>
 						<li id="amigos-list"
@@ -196,7 +197,9 @@
 								</div>
 								<div
 									class="col-4 d-flex gap-1 justify-content-center align-items-center">
-									<a class="btn btn-primary" th:href="@{/app/chat/{id}(id=${amigo.amigo2.idusuario})}"> <i class="bi bi-send"></i>
+									<a class="btn btn-primary"
+										th:href="@{/app/chat/{id}(id=${amigo.amigo2.idusuario})}">
+										<i class="bi bi-send"></i>
 									</a>
 									<button class="btn btn-danger btnBorrarAmigo"
 										data-bs-toggle="modal" data-bs-target="#modalAmigo">

@@ -86,51 +86,92 @@
 	<div class="container my-3 my-md-5">
 		<div class="row">
 			<div id="chat-container"
-				class="border border-dark col-lg-10 mx-auto bg-white">
+				class="border border-primary bg-info bg-opacity-25 px-0 py-2 py-md-3 col-lg-9 mx-auto shadow-lg">
 				<div id="chat-header"
-					class="d-flex align-items-center justify-content-between">
-					<div class="imagenReceptor-container col-2  text-center">
+					class="d-flex align-items-center justify-content-between text-center text-sm-start mb-3">
+					<div class="col-2 text-center">
+						<a class="btn btn-outline-primary"
+							th:href="@{/app/chats}"><i class="bi bi-arrow-bar-left"></i></a>
+					</div>
+					<div class="imagenReceptor-container col-2 text-center">
 						<img id="imagenReceptor" class="border border-dark rounded-circle"
 							th:if="${#strings.contains(usuarioReceptor,'jpg') or
 						#strings.contains(usuarioReceptor.foto,'png') or
 						#strings.contains(usuarioReceptor.foto,'jpeg')}"
-							th:src="${usuarioReceptor.foto}"> <img id="imagenAutor"
+							th:src="${usuarioReceptor.foto}"> <img id="imagenReceptor"
 							class="border border-dark rounded-circle"
 							th:unless="${#strings.contains(usuarioReceptor.foto,'jpg') or #strings.contains(usuarioReceptor.foto,'png') or #strings.contains(usuarioReceptor.foto,'jpeg')}"
 							th:src="@{/images/fotoex.jpg}">
 					</div>
-					<div class="col-8 display-6" th:text="${usuarioReceptor.nombre}"></div>
+					<div class="col-6 display-6 text-primary"
+						th:text="${usuarioReceptor.nombre}"></div>
 					<div class="col-2 text-center">
-						<a class="btn btn-outline-primary col-12 col-sm-9 col-lg-6 fs-4"
+						<a class="btn btn-outline-primary"
 							th:href="@{/app/perfil(id=${usuarioReceptor.idusuario})}"><i
 							class="bi bi-box-arrow-in-up-right"></i></a>
 					</div>
+
 				</div>
-				<hr />
-				<div id="chat-body">
-					<div th:each="mensaje :${mensajes}" class="my-3">
-						<div th:if="${mensaje.autor.idusuario == usuario.idusuario}">
-							<div class="text-end">Yo</div>
-							<div class="row text-end">
-								<div class="col-10" th:text="${mensaje.contenido}"></div>
-								<div class="col-2" th:text="${mensaje.fecha}"></div>
+				<div id="chat-body"
+					class="mx-md-5 my-md-3 p-md-4 py-3  bg-success bg-opacity-25 border rounded border-info shadow-sm">
+					<div th:each="mensaje :${mensajes}" class="mb-3 clearfix">
+						<div id="msgUsuario"
+							class="alert alert-info d-inline-block float-end shadow-lg"
+							th:if="${mensaje.autor.idusuario == usuario.idusuario}">
+							<div class="col-12 text-end mb-2">
+								<div class="badge bg-primary fs-6">Yo</div>
 							</div>
+							<div class="d-flex align-items-center">
+								<div class="fs-6 fw-bold" th:text="${mensaje.contenido}"></div>
+								<div class="small text-muted ms-2 align-self-end"
+									th:text="${#temporals.format(mensaje.fecha, 'HH:mm dd/MM')}"></div>
+							</div>
+
 
 						</div>
 
-						<div class="d-flex"
+						<div class="alert alert-info d-inline-block shadow-lg"
 							th:if="${mensaje.autor.idusuario == usuarioReceptor.idusuario}">
-							<div>
+							<div class="d-flex align-items-center mb-2">
 								<img id="imgMensaje"
-									class="img-fluid border border-dark rounded-circle"
-									th:src="@{${mensaje.autor.foto}}">
+									class="border border-dark rounded-circle me-2"
+									th:if="${#strings.contains(mensaje.autor.foto,'jpg') or
+						#strings.contains(mensaje.autor.foto,'png') or
+						#strings.contains(mensaje.autor.foto,'jpeg')}"
+									th:src="${mensaje.autor.foto}"> <img id="imgMensaje"
+									class="border border-dark rounded-circle me-2"
+									th:unless="${#strings.contains(mensaje.autor.foto,'jpg') or #strings.contains(mensaje.autor.foto,'png') or #strings.contains(mensaje.autor.foto,'jpeg')}"
+									th:src="@{/images/fotoex.jpg}">
+								<div class="badge bg-primary fs-6"
+									th:text="${mensaje.autor.username}"></div>
 							</div>
-							<div th:text="${mensaje.contenido}"></div>
-							<div th:text="${mensaje.fecha}"></div>
+							<div class="d-flex">
+								<div class="me-2 fs-6 fw-bold" th:text="${mensaje.contenido}"></div>
+								<div class="small text-muted align-self-end"
+									th:text="${#temporals.format(mensaje.fecha, 'HH:mm dd/MM')}"></div>
+
+							</div>
+
 						</div>
 					</div>
 				</div>
-				<div id="chat-input"></div>
+				<div id="chat-input"
+					class="row align-items-center mt-3 mx-auto">
+					<div class="d-flex align-items-center justify-content-between gap-2">
+						<div class="form-floating col-9 col-md-10 col-lg-11">
+							<textarea class="form-control" placeholder="Leave a comment here"
+								id="floatingTextarea" style="height: 100px"></textarea>
+							<label for="floatingTextarea">Comments</label>
+						</div>
+						<div class="col-3 col-md-2 col-lg-1 text-center">
+						<button class="btn btn-success" type="submit">
+								<i class="bi bi-send"></i>
+							</button>
+						</div>
+							
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>

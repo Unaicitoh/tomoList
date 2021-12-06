@@ -20,12 +20,14 @@ $(document).ready(function() {
 	});
 
 
+	scrollDiv()
+
 
 
 	//Buscador amigos
 	$("#amigos-searcher").change(function() {
-		var idU=$("#idu").val();
-		var username=$(this).val();
+		var idU = $("#idu").val();
+		var username = $(this).val();
 		loadAmigos(username, idU);
 	});
 
@@ -46,10 +48,15 @@ $(document).ready(function() {
 
 
 });
+function scrollDiv() {
 
+	var div = document.getElementById('chat-body');
+	var scrollHeight=div.scrollHeight;
+	div.scrollTop = scrollHeight;
+}
 
- async function loadAmigos(username, idU) {
-	location.href="/app/friendchatsearcher/"+username+"/"+idU;
+async function loadAmigos(username, idU) {
+	location.href = "/app/friendchatsearcher/" + username + "/" + idU;
 }
 
 

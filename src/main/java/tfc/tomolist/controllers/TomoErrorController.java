@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class tomoErrorController implements ErrorController  {
+public class TomoErrorController implements ErrorController  {
 
     @RequestMapping("/error")
     public String handleError() {

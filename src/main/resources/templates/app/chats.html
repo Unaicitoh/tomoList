@@ -85,11 +85,17 @@
 
 	<div class="container my-3 my-md-5">
 		<div class="row">
-			<div class="card px-0 col-md-10 col-lg-7 mx-auto bg-info bg-gradient bg-opacity-25 shadow">
-				<div class="card-header display-1 fs-1 bg-transparent text-muted text-center"><a class="text-secondary text-decoration-none" th:href="@{/app/chats}">Chats</a></div>
+			<div
+				class="card px-0 col-md-10 col-lg-7 mx-auto bg-info bg-gradient bg-opacity-25 shadow">
+				<div
+					class="card-header display-1 fs-1 bg-transparent text-muted text-center">
+					<a class="text-secondary text-decoration-none"
+						th:href="@{/app/chats}">Chats</a>
+				</div>
 				<div class="card-body px-1 px-lg-3">
 					<div class="card-title px-0 px-lg-6">
-						<ul id="amigos-container" class="list-group col-md-11 mx-auto shadow bg-white">
+						<ul id="amigos-container"
+							class="list-group col-md-11 mx-auto shadow bg-white">
 							<li class="list-unstyled"
 								th:if="${#lists.isEmpty(amigos) and !isRest}"><div
 									class="alert alert-info text-center col-12 mb-2">
@@ -103,11 +109,11 @@
 									Nickname similar
 								</div></li>
 							<li class="list-group-item d-flex">
-							<div id="search-icon-container">
-								<i id="search-icon" class="bi bi-search me-2 fs-3" role="img"></i>
-							</div><input id="amigos-searcher"
-								type="text" class="form-control"
-								placeholder="Presiona Enter para buscar"></li>
+								<div id="search-icon-container">
+									<i id="search-icon" class="bi bi-search me-2 fs-3" role="img"></i>
+								</div> <input id="amigos-searcher" type="text" class="form-control"
+								placeholder="Presiona Enter para buscar">
+							</li>
 
 							<li id="amigos-list"
 								class="list-group-item list-group-item-action"
@@ -132,8 +138,9 @@
 									</div>
 									<div
 										class="col-4 d-flex gap-1 justfify-content-center align-items-center">
-										<a class="btn btn-primary col-8 col-lg-4 text-center mx-auto" th:href="@{/app/chat/{id}(id=${amigo.amigo2.idusuario})}">
-											<i class="bi bi-send"></i>
+										<a class="btn btn-primary col-8 col-lg-4 text-center mx-auto"
+											th:href="@{/app/chat/{id}(id=${amigo.amigo2.idusuario})}">
+											<i class="bi bi-send-plus"></i>
 										</a> <input type="hidden" th:value="${amigo.amigo2.idusuario}">
 									</div>
 								</div>
@@ -143,17 +150,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="fixed-bottom text-center ms-2 mb-2">
-				<button class="btn btn-secondary rounded-circle" id="myBtn"
-					title="Go to top">
-					<i class="bi bi-arrow-up-circle fs-3"></i>
-				</button>
-			</div>
-		</div>
-
-
-
 	</div>
 
 
