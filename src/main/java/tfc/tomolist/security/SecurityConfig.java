@@ -40,7 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/app/**").hasRole("ESTANDAR");
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/success",true).permitAll();
 		http.logout().logoutSuccessUrl("/login?logout");
-		http.csrf().disable();
 
 	}
 	

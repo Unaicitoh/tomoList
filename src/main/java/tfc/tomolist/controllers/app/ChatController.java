@@ -50,7 +50,7 @@ public class ChatController {
 		
 		m.addAttribute("usuarioReceptor", su.findById(id).get());
 		m.addAttribute("usuario", u);
-		m.addAttribute("mensajes", su.getConversacionOrdenada(u.getIdusuario(), id));
+		m.addAttribute("mensajes", su.getConversacionOrdenada(u.getIdusuario(), id).get());
 		return "app/chatUsuario";
 	}
 }

@@ -22,7 +22,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
-<body>
+<body class="bg-light">
 	<header class="container-fluid bg-gradient shadow-sm">
 		<div
 			class="d-flex row align-items-center  justify-content-between py-4">
@@ -85,9 +85,11 @@
 
 	<div class="container my-3 my-md-5">
 		<div class="row">
-			<div id="chat-container" class="border border-dark">
-				<div id="chat-header">
-					<div class="imagenReceptor-container">
+			<div id="chat-container"
+				class="border border-dark col-lg-10 mx-auto bg-white">
+				<div id="chat-header"
+					class="d-flex align-items-center justify-content-between">
+					<div class="imagenReceptor-container col-2  text-center">
 						<img id="imagenReceptor" class="border border-dark rounded-circle"
 							th:if="${#strings.contains(usuarioReceptor,'jpg') or
 						#strings.contains(usuarioReceptor.foto,'png') or
@@ -97,10 +99,31 @@
 							th:unless="${#strings.contains(usuarioReceptor.foto,'jpg') or #strings.contains(usuarioReceptor.foto,'png') or #strings.contains(usuarioReceptor.foto,'jpeg')}"
 							th:src="@{/images/fotoex.jpg}">
 					</div>
-					<div th:text="${usuarioReceptor.nombre}"></div>
+					<div class="col-8 display-6" th:text="${usuarioReceptor.nombre}"></div>
+					<div class="col-2 text-center">
+						<a class="btn btn-outline-primary col-12 col-sm-9 col-lg-6 fs-4"
+							th:href="@{/app/perfil(id=${usuarioReceptor.idusuario})}"><i
+							class="bi bi-box-arrow-in-up-right"></i></a>
+					</div>
 				</div>
+				<hr />
 				<div id="chat-body">
-					
+					<div th:each="mensaje :${mensajes}">
+						<div th:if="${mensaje.autor.idusuario == usuario.idusuario}">
+							<div>Yo</div>
+							<div th:text="mensaje.contenido"></div>
+							<div th:text="mensaje.fecha"></div>
+						</div>
+
+						<div
+							th:if="${mensaje.receptor.idusuario == usuarioReceptor.idusuario}">
+							<div>
+							<img class="img-fluid" th:src="@{${mensaje.receptor.foto}}">
+							</div>
+							<div th:text="mensaje.contenido"></div>
+							<div th:text="mensaje.fecha"></div>
+							</div>
+					</div>
 				</div>
 				<div id="chat-input"></div>
 			</div>

@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body class="bg-light">
 	<header class="container-fluid bg-gradient shadow-sm">
 		<div
 			class="d-flex row align-items-center  justify-content-between py-4">
@@ -88,7 +88,7 @@
 
 	<div id="infoPerfil" class="container">
 		<div id="filaPerfil"
-			class="row d-flex g-0 align-items-center mt-5 mb-4 shadow bg-light  border border-2 border-primary rounded mx-auto">
+			class="row d-flex g-0 align-items-center mt-5 mb-4 shadow bg-white  border border-2 border-primary rounded mx-auto">
 			<div class="col-12 col-md-6 mt-4 mb-3 d-flex justify-content-center">
 
 				<img id="imgPerfil"
@@ -196,7 +196,7 @@
 	<div id="posts" class="container">
 		<div class="row justify-content-evenly gap-3 my-5">
 			<div
-				class="card col-12 col-xl-5 shadow bg-light border-primary border-1 px-0 my-2"
+				class="card col-12 col-xl-5 shadow bg-white border-primary border-1 px-0 my-2"
 				th:each="post: ${posts.page}">
 
 				<a th:href="@{/app/comentarios/{idE}(idE=${post.identrada})}"><img
