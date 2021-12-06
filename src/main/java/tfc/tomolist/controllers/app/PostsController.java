@@ -101,7 +101,9 @@ public class PostsController {
 		if(br.hasErrors()) {
 			return "app/entradaInfo";
 		}else {
-			e.setFecha(LocalDateTime.now());
+			if(e.getFecha()==null) {
+				e.setFecha(LocalDateTime.now());
+			}
 			e.setAutor(usuario);
 			se.save(e);
 			return "redirect:/app/perfil?id="+usuario.getIdusuario();
