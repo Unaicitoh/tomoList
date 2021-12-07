@@ -68,6 +68,37 @@
 			</div>
 		</div>
 	</header>
+	<nav class="navbar navbar-expand-xl navbar-light shadow-sm"
+		style="background-color: #e3f2fd;">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" th:href="@{/app/home}"> <img
+				class="img-fluid" th:src="@{/images/LogoTomo.png}" width="75"
+				height="50">
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarLight"
+				aria-controls="navbarLight" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse show" id="navbarLight">
+				<ul class="navbar-nav me-auto mb-2 mb-xl-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/app/home}">Home</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/app/perfil(id=${usuarioNav.idusuario})}">Perfil <i
+							class="bi bi-person-workspace"></i></a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/app/chats}">Chats <i
+							class="bi bi-chat"></i></a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/app/amigos}">Amigos <i
+							class="bi bi-people"></i></a></li>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+	
 	<form
 		class="col-12 col-md-8 col-lg-5 mt-5 mx-auto border border-2 border-info bg-white rounded shadow p-4"
 		th:action="@{/app/updatePerfil/submit}" method="post"
