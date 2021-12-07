@@ -47,7 +47,7 @@
 
 						<div
 							th:if="${#fields.hasErrors('username')  or mensajeUsername !=null}"
-							class="col-7 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
+							class="alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
 							<i
 								class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2"
 								role="img"></i>
@@ -65,7 +65,7 @@
 						</div>
 
 						<div th:if="${#fields.hasErrors('email') or mensajeEmail !=null}"
-							class="col-7 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
+							class="alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
 							<i
 								class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2"
 								role="img"></i>
@@ -83,7 +83,7 @@
 						</div>
 
 						<div th:if="${#fields.hasErrors('rawpass')}"
-							class="col-7 alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
+							class="alert alert-danger alert-dismissible d-flex align-items-center mx-auto">
 							<i
 								class="bi bi-exclamation-triangle-fill d-flex flex-shrink-0  me-2"
 								role="img"></i>
