@@ -158,6 +158,19 @@ public class UsersController {
 
 		return "redirect:/app/amigos";
 	}
+	
+	@PostMapping("/crearAmistadPerfil/{idA}")
+	public String crearAmistadPerfil(@PathVariable int idA) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UsuarioVO uR = su.findByUsername(auth.getName()).get();
+		UsuarioVO uA = su.findById(idA).get();
+
+		ArrayList<AmigoVO> a = su.getSolicitudUsuario(uA.getIdusuario(), uR.getIdusuario()).get();
+		a.get(0).setAceptado(true);
+		sa.save(a.get(0));
+
+		return "redirect:/app/perfil"+uR.getIdusuario();
+	}
 
 	@PostMapping("/borrarSolicitud/{idA}")
 	public String borrarSolicitud(@PathVariable int idA) {
