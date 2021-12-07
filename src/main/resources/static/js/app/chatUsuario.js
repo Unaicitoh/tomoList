@@ -40,7 +40,7 @@ $(document).ready(function() {
 		window.localStorage.msg =  $("#floatingText").val();
 		window.location.reload();
 
-	}, 10000);
+	}, 17000);
 
 
 	//Validacion Mensaje
