@@ -8,6 +8,7 @@ var listaS;
 var listaA;
 var autorAmistad;
 $(document).ready(function() {
+	window.localStorage.clear();
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
 	lista = document.getElementById("listUsers");

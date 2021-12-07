@@ -6,7 +6,7 @@ var entradaActual;
 var options;
 
 $(document).ready(function() {
-
+window.localStorage.clear();
 	var token = $("meta[name='_csrf']").attr("value");
 	var header = $("meta[name='_csrf_header']").attr("value");
 

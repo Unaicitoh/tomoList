@@ -82,6 +82,7 @@ public class ChatController {
 			men.setFecha(LocalDateTime.now());
 			men.setReceptor(su.findById(idR).get());
 			men.setAutor(u);
+			men.setContenido(men.getContenido().trim());
 			sm.save(men);
 			return "redirect:/app/chat/"+idR;
 		}	

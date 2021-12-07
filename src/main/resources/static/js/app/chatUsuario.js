@@ -7,7 +7,12 @@ var options;
 
 $(document).ready(function() {
 	scrollDiv()
-
+	$("#floatingText").val(window.localStorage.msg);
+	if ($("#floatingText").val().length > 0) {
+		$("#sendMensaje").removeClass("disabled");
+	} else {
+		$("#sendMensaje").addClass("disabled");
+	}
 	//Info usuario lista y entrada
 	input = document.getElementById("searcher");
 	lista = document.getElementById("listUsers");
@@ -21,12 +26,21 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#floatingText").keydown(function(e) {
+		if (e.which == 13) {
+			window.localStorage.clear();
+		}
+	});
+
+	$("#sendMensaje").click(function() {
+		window.localStorage.clear();
+	});
 
 	setInterval(function() {
-		var mensaje=$("#floatingText").val();
+		window.localStorage.msg =  $("#floatingText").val();
 		window.location.reload();
-		$("#floatingText").val(mensaje);
-	}, 10000)
+
+	}, 15000);
 
 
 	//Validacion Mensaje

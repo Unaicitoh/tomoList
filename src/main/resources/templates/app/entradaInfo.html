@@ -24,7 +24,8 @@
 <body class="bg-light">
 	<header class="container-fluid bg-gradient shadow-sm">
 		<div class="row d-flex align-items-center">
-			<div class="d-flex col-12 col-sm-2 justify-content-center justify-content-md-between">
+			<div
+				class="d-flex col-12 col-sm-2 justify-content-center justify-content-md-between">
 				<a th:href="@{/app/home}"><img id="logo"
 					th:src="@{/images/LogoTomoList.png}" height="50px" width="105px"
 					alt="img-thumbnail"></a>
@@ -77,7 +78,8 @@
 				th:action="@{/app/newPost/submit}" method="post"
 				th:object="${entrada}">
 				<div class="text-center mb-4 display-6">Información</div>
-				<input type="hidden" th:field="*{identrada}">
+				<input type="hidden" th:field="*{identrada}"> <input
+					type="hidden" th:field="*{fecha}" />
 				<div class="row align-items-center justify-content-center"
 					th:if="${#fields.hasErrors('titulo')}">
 					<div
@@ -163,8 +165,8 @@
 						aria-labelledby="list-us-list">
 						<strong>TomoList</strong>, está desarrollada para ser una red
 						social, tiene como planteamiento principal ser una app <strong>intuitiva,
-							atractiva y divertida,</strong> darles la capacidad a los
-						usuarios de interactuar unos con otros.
+							atractiva y divertida,</strong> darles la capacidad a los usuarios de
+						interactuar unos con otros.
 					</div>
 					<div class="tab-pane fade" id="list-autor" role="tabpanel"
 						aria-labelledby="list-autor-list">

@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-
+window.localStorage.clear();
 	cargadorLikesActivos();
 	//Carga de num likes
 	cargaLikes();
