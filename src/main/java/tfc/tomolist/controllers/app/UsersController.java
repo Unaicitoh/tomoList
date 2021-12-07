@@ -169,7 +169,7 @@ public class UsersController {
 		a.get(0).setAceptado(true);
 		sa.save(a.get(0));
 
-		return "redirect:/app/perfil"+uR.getIdusuario();
+		return "redirect:/app/perfil?id="+uA.getIdusuario();
 	}
 
 	@PostMapping("/borrarSolicitud/{idA}")
